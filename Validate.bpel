@@ -1,0 +1,757 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  Created: Mon Oct 07 17:58:03 COT 2013
+  Author:  diego fagua
+  Purpose: Synchronous BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="Validate"
+         targetNamespace="http://xmlns.tigo.com/ProcessValidator/Validate"
+         xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:client="http://xmlns.tigo.com/ProcessValidator/Validate"
+         xmlns:ora="http://schemas.oracle.com/xpath/extension"
+         xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+         xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:ns10="http://xmlns.tigo.com/AdditionalSchema/V1"
+         xmlns:ns7="http://xmlns.tigo.com/ProductSchema/V1"
+         xmlns:ns5="http://xmlns.tigo.com/RequestHeader/V3"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:ns6="http://xmlns.tigo.com/ClientSchema/V1"
+         xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20"
+         xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+         xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions"
+         xmlns:ns8="http://xmlns.tigo.com/ProcessValidator/BillingAccountSchema/V1"
+         xmlns:ns4="http://xmlns.tigo.com/ProcessValidator/ValidateConditionalRequest"
+         xmlns:ns11="http://xmlns.tigo.com/ProcessValidator/ValidatorGeneralResponse"
+         xmlns:ns36="http://xmlns.tigo.com/ProcessValidator/Validations"
+         xmlns:ns38="http://xmlns.tigo.com/ProcessValidator/ValidatorFaultResponse"
+         xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc"
+         xmlns:ns12="http://xmlns.tigo.com/ResponseHeader/V3"
+         xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue"
+         xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath"
+         xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath"
+         xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk"
+         xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions"
+         xmlns:ns18="http://xmlns.oracle.com/pcbpel/adapter/db/DB_Select_RuleData"
+         xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap"
+         xmlns:ns22="http://xmlns.oracle.com/bpel"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+         xmlns:ns32="http://tigo.com/enterprise/business/task/MasterDataEngine/v1"
+         xmlns:ns34="http://tigo.com/enterprise/business/task/MasterDataEngine/v1/schema"
+         xmlns:ns33="http://tigo.com/rules/v1/schema"
+         xmlns:ns35="http://tigo.com/enterprise/resources/GeneralResponse/v1/schema"
+         xmlns:ns37="http://tigo.com/enterprise/business/entities/validate/v1/schema"
+         xmlns:ns1="http://xmlns.oracle.com/pcbpel/adapter/db/PSV_v2/ProcessValidatorV2/DB_Select_PROCESS_RULES_DATAS"
+         xmlns:ns2="http://xmlns.oracle.com/pcbpel/adapter/db/DB_Select_PROCESS_RULES_DATAS"
+         xmlns:ns3="http://xmlns.tigo.com/ProcessValidator/ServiceAccountSchema/V1"
+         xmlns:ns15="http://xmlns.tigo.com/ProcessValidator/StepSchema/V1"
+         xmlns:ns13="http://xmlns.tigo.com/ProcessValidator/StatusSchema/V1"
+         xmlns:ns14="http://xmlns.tigo.com/ProcessValidator/RoleSchema/V1"
+         xmlns:ns16="http:/xmlns.tigo.com/ProcessValidator/ProcessDetailsSchema/V1"
+         xmlns:ns9="http://xmlns.tigo.com/ProcessValidator/RuleSchema/V1"
+         xmlns:ns17="http://tigo.com/entities/v1/schema"
+         xmlns:ns19="http://xmlns.oracle.com/pcbpel/adapter/db/Broker/ProcessValidatorV2/DB_Select_PROCESSID_GROUP"
+         xmlns:ns20="http://xmlns.oracle.com/pcbpel/adapter/db/top/DB_Select_PROCESSID_GROUP"
+         xmlns:ns21="http://xmlns.oracle.com/pcbpel/adapter/db/Broker/ProcessValidatorV2/DB_Select_PROCESS_RULES_INFO"
+         xmlns:ns23="http://xmlns.oracle.com/pcbpel/adapter/db/DB_Select_PROCESS_RULES_INFO"
+         xmlns:ns24="http://xmlns.oracle.com/pcbpel/adapter/db/Broker/ProcessValidatorV2/DB_Select_PROCESSID_GROUPV2"
+         xmlns:ns25="http://xmlns.oracle.com/pcbpel/adapter/db/top/DB_Select_PROCESSID_GROUPV2"
+         xmlns:aia="http://www.oracle.com/XSL/Transform/java/oracle.apps.aia.core.xpath.AIAFunctions"
+         xmlns:ns26="http://xmlns.tigo.com/ProcessValidator/ProcessValidatorService/v2"
+         xml:id="id_1">
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      PARTNERLINKS                                                      
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <import namespace="http://xmlns.tigo.com/ProcessValidator/ProcessValidatorService/v2"
+          location="wsdl/ProcessValidatorPartner.wsdl"
+          importType="http://schemas.xmlsoap.org/wsdl/" xml:id="id_2"/>
+  <import namespace="http://tigo.com/rules/v1/schema"
+          location="xsd/pvs/BasicRules_schema.xsd"
+          importType="http://www.w3.org/2001/XMLSchema" xml:id="id_3"/>
+  <import namespace="http://tigo.com/entities/v1/schema"
+          location="xsd/pvs/BasicEntities_schema.xsd"
+          importType="http://www.w3.org/2001/XMLSchema" xml:id="id_4"/>
+  <import namespace="http://xmlns.tigo.com/ProcessValidator/ValidatorGeneralResponse"
+          location="xsd/process/ValidatorGeneralResponse.xsd"
+          importType="http://www.w3.org/2001/XMLSchema" xml:id="id_5"/>
+  <import namespace="http://xmlns.tigo.com/ProcessValidator/ValidatorFaultResponse"
+          location="xsd/process/ValidatorFaultResponse.xsd"
+          importType="http://www.w3.org/2001/XMLSchema" xml:id="id_6"/>
+  <import namespace="http://tigo.com/enterprise/resources/GeneralResponse/v1/schema"
+          location="xsd/commons/resources/GeneralResponse.xsd"
+          importType="http://www.w3.org/2001/XMLSchema" xml:id="id_7"/>
+  <import namespace="http://tigo.com/enterprise/business/entities/validate/v1/schema"
+          location="xsd/pvs/BasicValidate_schema.xsd"
+          importType="http://www.w3.org/2001/XMLSchema" xml:id="id_8"/>
+  <import namespace="http://tigo.com/enterprise/business/entities/rulesDataContainer/v1/schema"
+          location="xsd/pvs/BasicRulesData_schema.xsd"
+          importType="http://www.w3.org/2001/XMLSchema" xml:id="id_9"/>
+  <partnerLinks xml:id="id_10">
+    <partnerLink name="validate_client" partnerLinkType="client:Validate"
+                 myRole="ProcessValidator" xml:id="id_11"/>
+    <partnerLink name="WS_MasterDataEngineService"
+                 partnerLinkType="ns32:WS_MasterDataEngineService"
+                 partnerRole="EntitiesServicePortType" xml:id="id_12"/>
+    <partnerLink name="MediatorValidations.MediatorValidations"
+                 partnerLinkType="ns36:MediatorValidations.MediatorValidations"
+                 partnerRole="MediatorValidationsPortType" xml:id="id_13"/>
+    <partnerLink name="DB_Select_PROCESS_RULES_DATAS"
+                 partnerLinkType="ns1:DB_Select_PROCESS_RULES_DATAS_plt"
+                 partnerRole="DB_Select_PROCESS_RULES_DATAS_role"
+                 xml:id="id_14"/>
+    <partnerLink name="DB_Select_PROCESSID_GROUP"
+                 partnerLinkType="ns19:DB_Select_PROCESSID_GROUP_plt"
+                 partnerRole="DB_Select_PROCESSID_GROUP_role" xml:id="id_15"/>
+    <partnerLink name="DB_Select_PROCESS_RULES_INFO"
+                 partnerLinkType="ns21:DB_Select_PROCESS_RULES_INFO_plt"
+                 partnerRole="DB_Select_PROCESS_RULES_INFO_role"
+                 xml:id="id_16"/>
+    <partnerLink name="DB_Select_PROCESSID_GROUPV2"
+                 partnerLinkType="ns24:DB_Select_PROCESSID_GROUPV2_plt"
+                 partnerRole="DB_Select_PROCESSID_GROUPV2_role" xml:id="id_17"/>
+  </partnerLinks>
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      VARIABLES    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <variables xml:id="id_18">
+    <!-- Reference to the message passed as input during initiation -->
+    <variable name="inputVariable" messageType="client:ValidateRequestMessage"
+              xml:id="id_19"/>
+    <!-- Reference to the message that will be returned to the requester-->
+    <variable name="outputVariable"
+              messageType="client:GeneralResponseMessage" xml:id="id_20"/>
+    <variable name="ValidateMediator_Validate_Req"
+              messageType="client:ValidateRequestMessage" xml:id="id_21"/>
+    <variable name="ValidateMediator_Validate_Res"
+              messageType="client:GeneralResponseMessage" xml:id="id_22"/>
+    <variable name="ValidateMediator_Req"
+              messageType="client:ValidateRequestMessage" xml:id="id_23"/>
+    <variable name="ValidateMediator_Res"
+              messageType="client:GeneralResponseMessage" xml:id="id_24"/>
+    <variable name="resultValidateTmp" type="xsd:boolean" xml:id="id_25"/>
+    <variable name="fault_msg_process"
+              messageType="client:GeneralResponseMessage" xml:id="id_26"/>
+    <variable name="MasterDataEngineService_Execute_Req"
+              messageType="ns32:EntitiesRequest_msg" xml:id="id_27"/>
+    <variable name="MasterDataEngineService_Execute_Res"
+              messageType="ns32:EntitiesResponse_msg" xml:id="id_28"/>
+    <variable name="MediatorValidations_Req"
+              messageType="ns36:ValidateRequestMessage" xml:id="id_29"/>
+    <variable name="MediatorValidations_Res"
+              messageType="ns36:ValidateResponseMessage" xml:id="id_30"/>
+    <variable name="validatedRuleContainer"
+              element="ns37:validatedRuleContainer" xml:id="id_31"/>
+    <variable name="faultGeneral" element="ns35:GeneralResponse"
+              xml:id="id_32"/>
+    <variable name="ValidateFaultResponse"
+              element="ns38:ValidatorFaultResponse" xml:id="id_33"/>
+    <variable name="validatedRules_array" element="ns37:validatedRules_array"
+              xml:id="id_34"/>
+    <variable name="ValidatorGeneralResponse"
+              element="ns11:ValidatorGeneralResponse" xml:id="id_35"/>
+    <variable name="entity" element="ns17:entity" xml:id="id_36"/>
+    <variable name="entitiesRule" element="ns17:entities" xml:id="id_37"/>
+    <variable name="Invoke_ProcessGroupId_Select_Input"
+              messageType="ns19:DB_Select_PROCESSID_GROUPSelect_inputParameters"
+              xml:id="id_38"/>
+    <variable name="Invoke_ProcessGroupId_Select_Output"
+              messageType="ns19:ProcessidGroupCollection_msg" xml:id="id_39"/>
+    <variable name="Invoke_Select_PROCESS_RULES_INFO_Input"
+              messageType="ns21:DB_Select_PROCESS_RULES_INFOInput_msg"
+              xml:id="id_40"/>
+    <variable name="Invoke_DB_Select_PROCESS_RULES_INFO_Output"
+              messageType="ns21:DB_Select_PROCESS_RULES_INFOOutputCollection_msg"
+              xml:id="id_41"/>
+    <variable name="rulesV2" element="ns33:rules" xml:id="id_42"/>
+    <variable name="processId" type="xsd:string" xml:id="id_43"/>
+    <variable name="Invoke1_DB_Select_PROCESSID_GROUPV2In"
+              messageType="ns24:DB_Select_PROCESSID_GROUPSelect_inputParameters"
+              xml:id="id_44"/>
+    <variable name="Invoke1_DB_Select_PROCESSID_GROUPV2Out"
+              messageType="ns24:ProcessidGroupCollection_msg" xml:id="id_45"/>
+    <variable name="AuxData" messageType="ns26:GeneralResponseMessage"
+              xml:id="id_46"/>
+  </variables>
+  <faultHandlers xml:id="id_47">
+    <catchAll xml:id="id_48">
+      <empty xml:id="id_49"/>
+    </catchAll>
+  </faultHandlers>
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC                                               
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <sequence name="main" xml:id="id_50">
+    <!-- Receive input from requestor. (Note: This maps to operation defined in Validate.wsdl) -->
+    <receive name="receiveInput" partnerLink="validate_client"
+             portType="client:ProcessValidator" operation="Validate"
+             variable="inputVariable" createInstance="yes" xml:id="id_51"/>
+    <scope name="Scope_ProcessIdGroup" exitOnStandardFault="no" xml:id="id_52">
+      <faultHandlers xml:id="id_53">
+        <catchAll xml:id="id_54">
+          <sequence name="Sequence_error_DB_Select_PROCESS_RULES_DATAS"
+                    xml:id="id_55">
+            <assign name="Assign_error_DB_Select_PROCESS_RULES_DATAS"
+                    xml:id="id_56">
+              <copy xml:id="id_57">
+                <from xml:id="id_58"><literal xml:id="id_59">Error DB_Select_PROCESSID_GROUP</literal></from>
+                <to xml:id="id_60">$ValidateFaultResponse/ns12:ResponseHeader/ns12:GeneralResponse/ns12:description</to>
+              </copy>
+            </assign>
+            <throw name="Throw_DB_Select_PROCESS_RULES_DATAS"
+                   faultName="client:FaultResponseMessage"
+                   faultVariable="ValidateFaultResponse" xml:id="id_61"/>
+          </sequence>
+        </catchAll>
+      </faultHandlers>
+      <sequence name="Scope_ProcessIdGroup" xml:id="id_62">
+        <assign name="GetPROCESSType" xml:id="id_63">
+          <bpelx:annotation xml:id="id_64">
+            <bpelx:pattern patternName="bpelx:transformation" xml:id="id_65"/>
+          </bpelx:annotation>
+          <copy xml:id="id_66">
+            <from xml:id="id_67">ora:doXSLTransformForDoc("xsl/Transformation_GetProductType.xsl", $inputVariable.part)</from>
+            <to variable="AuxData" part="part" xml:id="id_68"/>
+          </copy>
+        </assign>
+        <assign name="Assign_processId" xml:id="id_69">
+          <copy xml:id="id_70">
+            <from xml:id="id_71">$inputVariable.part/ns4:requestBody/ns4:processID</from>
+            <to xml:id="id_72">$Invoke_ProcessGroupId_Select_Input.DB_Select_PROCESSID_GROUPSelect_inputParameters/ns20:processId</to>
+          </copy>
+        </assign>
+        <assign name="Assign_processIdV2" xml:id="id_73">
+          <copy ignoreMissingFromData="yes" xml:id="id_74">
+            <from xml:id="id_75">$inputVariable.part/ns4:requestBody/ns4:processID</from>
+            <to xml:id="id_76">$Invoke1_DB_Select_PROCESSID_GROUPV2In.DB_Select_PROCESSID_GROUPSelect_inputParameters/ns25:processId</to>
+          </copy>
+          <copy xml:id="id_77">
+            <from xml:id="id_78">$AuxData.part/ns11:responseBody/ns11:token</from>
+            <to xml:id="id_79">$Invoke1_DB_Select_PROCESSID_GROUPV2In.DB_Select_PROCESSID_GROUPSelect_inputParameters/ns25:processType</to>
+          </copy>
+        </assign>
+        <invoke name="Invoke_DB_Select_PROCESSID_GROUPV2"
+                partnerLink="DB_Select_PROCESSID_GROUPV2"
+                portType="ns24:DB_Select_PROCESSID_GROUPV2_ptt"
+                operation="DB_Select_PROCESSID_GROUPV2Select"
+                inputVariable="Invoke1_DB_Select_PROCESSID_GROUPV2In"
+                outputVariable="Invoke1_DB_Select_PROCESSID_GROUPV2Out"
+                bpelx:invokeAsDetail="no" xml:id="id_80"/>
+      </sequence>
+    </scope>
+    <scope name="Scope_process" exitOnStandardFault="no" xml:id="id_81">
+      <faultHandlers xml:id="id_82">
+        <catch faultName="client:FaultResponseMessage"
+               faultVariable="fault_general"
+               faultElement="ns38:ValidatorFaultResponse" xml:id="id_83">
+          <assign name="Assign_executeProcess_False" xml:id="id_84">
+            <copy xml:id="id_85">
+              <from xml:id="id_86">false()</from>
+              <to xml:id="id_87">$resultValidateTmp</to>
+            </copy>
+          </assign>
+        </catch>
+      </faultHandlers>
+      <sequence xml:id="id_88">
+        <scope name="Scope_DB_Select_PROCESS_RULES_DATAS"
+               exitOnStandardFault="no" xml:id="id_89">
+          <faultHandlers xml:id="id_90">
+            <catchAll xml:id="id_91">
+              <sequence name="Sequence_error_DB_Select_PROCESS_RULES_DATAS"
+                        xml:id="id_92">
+                <assign name="Assign_error_DB_Select_PROCESS_RULES_DATAS"
+                        xml:id="id_93">
+                  <copy xml:id="id_94">
+                    <from xml:id="id_95"><literal xml:id="id_96">Error DB_Select_PROCESS_RULES</literal></from>
+                    <to xml:id="id_97">$ValidateFaultResponse/ns12:ResponseHeader/ns12:GeneralResponse/ns12:description</to>
+                  </copy>
+                </assign>
+                <throw name="Throw_DB_Select_PROCESS_RULES_DATAS"
+                       faultName="client:FaultResponseMessage"
+                       faultVariable="ValidateFaultResponse" xml:id="id_98"/>
+              </sequence>
+            </catchAll>
+          </faultHandlers>
+          <sequence name="Sequence_DB_Select_PROCESS_RULES_DATAS"
+                    xml:id="id_99">
+            <if name="ProcessGroup" xml:id="id_100">
+              <documentation xml:id="id_101">
+                <![CDATA[NotEmpty]]>
+              </documentation>
+              <condition xml:id="id_102">ora:countNodes('Invoke1_DB_Select_PROCESSID_GROUPV2Out','ProcessidGroupCollection','ns25:ProcessidGroup') &gt; 0</condition>
+              <sequence name="Sequence1" xml:id="id_103">
+                <assign name="Assign_DB_Select" xml:id="id_104">
+                  <copy xml:id="id_105">
+                    <from xml:id="id_106">$Invoke1_DB_Select_PROCESSID_GROUPV2Out.ProcessidGroupCollection/ns25:ProcessidGroup[1]/ns25:groupProcess</from>
+                    <to xml:id="id_107">$Invoke_Select_PROCESS_RULES_INFO_Input.DB_Select_PROCESS_RULES_INFOInput_msg/ns23:processId</to>
+                  </copy>
+                  <copy xml:id="id_362">
+                    <from xml:id="id_363">$inputVariable.part/ns4:requestBody/ns4:processID</from>
+                    <to xml:id="id_364">$Invoke_Select_PROCESS_RULES_INFO_Input.DB_Select_PROCESS_RULES_INFOInput_msg/ns23:productId</to>
+                  </copy>
+                  <copy xml:id="id_108">
+                    <from xml:id="id_109">$Invoke1_DB_Select_PROCESSID_GROUPV2Out.ProcessidGroupCollection/ns25:ProcessidGroup[1]/ns25:groupProcess</from>
+                    <to xml:id="id_110">$processId</to>
+                  </copy>
+                </assign>
+              </sequence>
+              <else xml:id="id_111">
+                <documentation xml:id="id_112">
+                  <![CDATA[Empty]]>
+                </documentation>
+                <sequence name="Sequence2" xml:id="id_113">
+                  <assign name="Assign_DB_Select" xml:id="id_114">
+                    <copy xml:id="id_115">
+                      <from xml:id="id_116">$inputVariable.part/ns4:requestBody/ns4:processID</from>
+                      <to xml:id="id_117">$Invoke_Select_PROCESS_RULES_INFO_Input.DB_Select_PROCESS_RULES_INFOInput_msg/ns23:processId</to>
+                    </copy>
+                    <copy xml:id="id_118">
+                      <from xml:id="id_119">$inputVariable.part/ns4:requestBody/ns4:processID</from>
+                      <to xml:id="id_120">$processId</to>
+                    </copy>
+                  </assign><throw name="Throw_no_rules"
+                                  faultName="client:FaultResponseMessage"
+                                  faultVariable="ValidateFaultResponse"
+                                  xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+                                  xml:id="id_121"/></sequence>
+              </else>
+            </if>
+            <invoke name="Invoke_PROCESS_RULES_INFO"
+                    partnerLink="DB_Select_PROCESS_RULES_INFO"
+                    portType="ns21:DB_Select_PROCESS_RULES_INFO_ptt"
+                    operation="DB_Select_PROCESS_RULES_INFO"
+                    inputVariable="Invoke_Select_PROCESS_RULES_INFO_Input"
+                    outputVariable="Invoke_DB_Select_PROCESS_RULES_INFO_Output"
+                    bpelx:invokeAsDetail="no" xml:id="id_122"/>
+            <assign name="Transform_Process_Rules" xml:id="id_123">
+              <bpelx:annotation xml:id="id_124">
+                <bpelx:pattern patternName="bpelx:transformation"
+                               xml:id="id_125"/>
+              </bpelx:annotation>
+              <copy xml:id="id_126">
+                <from xml:id="id_127">ora:doXSLTransformForDoc("xsl/Transformation_RulesInfoToRules.xsl", $Invoke_DB_Select_PROCESS_RULES_INFO_Output.DB_Select_PROCESS_RULES_INFOOutputCollection)</from>
+                <to variable="rulesV2" xml:id="id_128"/>
+              </copy>
+            </assign>
+            <assign name="Transform_RulesCustom" xml:id="id_129">
+              <bpelx:annotation xml:id="id_130">
+                <bpelx:pattern patternName="bpelx:transformation"
+                               xml:id="id_131"/>
+              </bpelx:annotation>
+              <copy xml:id="id_132">
+                <from xml:id="id_133">ora:doXSLTransformForDoc("xsl/Transformation_RulesV2ToRulesV2Custom.xsl", $Invoke_DB_Select_PROCESS_RULES_INFO_Output.DB_Select_PROCESS_RULES_INFOOutputCollection, "rulesV2", $rulesV2)</from>
+                <to variable="rulesV2" xml:id="id_134"/>
+              </copy>
+            </assign>
+          </sequence>
+        </scope>
+        <if name="If_has_Rules" xml:id="id_135">
+          <documentation xml:id="id_136"/>
+          <condition xml:id="id_137">ora:countNodes('rulesV2','rule') &gt; 0</condition>
+          <sequence name="Sequence_has_DB_Select_Rules" xml:id="id_138">
+            <forEach parallel="no" counterName="rulesCounter"
+                     name="ForEach_Rule" xml:id="id_139">
+              <startCounterValue xml:id="id_140">1</startCounterValue>
+              <finalCounterValue xml:id="id_141">ora:countNodes('rulesV2','rule')</finalCounterValue>
+              <scope name="Scope_ForEach_Rule" exitOnStandardFault="no"
+                     xml:id="id_142">
+                <sequence name="Sequence_ForEach_Rule" xml:id="id_143">
+                  <if name="If_has_entities" xml:id="id_144">
+                    <condition xml:id="id_145">ora:countNodes('rulesV2','rule[$rulesCounter]/entities/entity') &gt; 0</condition>
+                    <sequence xml:id="id_146">
+                      <assign name="Assign_entitiesRule" xml:id="id_147">
+                        <copy xml:id="id_148">
+                          <from xml:id="id_149">$rulesV2/rule[$rulesCounter]/entities</from>
+                          <to xml:id="id_150">$entitiesRule</to>
+                        </copy>
+                      </assign>
+                      <forEach parallel="no" counterName="entitiesCounter"
+                               name="ForEach_entities" xml:id="id_151">
+                        <startCounterValue xml:id="id_152">1</startCounterValue>
+                        <finalCounterValue xml:id="id_153">count($entitiesRule/entity)</finalCounterValue>
+                        <scope name="Scope_ForEach_entities"
+                               exitOnStandardFault="no" xml:id="id_154">
+                          <scope name="Scope_MasterDataEngineService_Execute"
+                                 exitOnStandardFault="no" xml:id="id_155">
+                            <faultHandlers xml:id="id_156">
+                              <catch faultName="ns32:fault"
+                                     faultVariable="faultMasterDataEngine"
+                                     faultElement="ns35:GeneralResponse"
+                                     xml:id="id_157">
+                                <sequence name="Sequence_fault_MasterDataEngineService_Execute"
+                                          xml:id="id_158">
+                                  <assign name="Assign_fault_MasterDataEngineService_Execute"
+                                          xml:id="id_159">
+                                    <copy ignoreMissingFromData="yes"
+                                          xml:id="id_160">
+                                      <from xml:id="id_161">$faultMasterDataEngine/status</from>
+                                      <to xml:id="id_162">$ValidateFaultResponse/ns12:ResponseHeader/ns12:GeneralResponse/ns12:status</to>
+                                    </copy>
+                                    <copy ignoreMissingFromData="yes"
+                                          xml:id="id_163">
+                                      <from xml:id="id_164">$faultMasterDataEngine/code</from>
+                                      <to xml:id="id_165">$ValidateFaultResponse/ns12:ResponseHeader/ns12:GeneralResponse/ns12:code</to>
+                                    </copy>
+                                    <copy ignoreMissingFromData="yes"
+                                          xml:id="id_166">
+                                      <from xml:id="id_167">$faultMasterDataEngine/codeType</from>
+                                      <to xml:id="id_168">$ValidateFaultResponse/ns12:ResponseHeader/ns12:GeneralResponse/ns12:codeType</to>
+                                    </copy>
+                                    <copy ignoreMissingFromData="yes"
+                                          xml:id="id_169">
+                                      <from xml:id="id_170">$faultMasterDataEngine/message</from>
+                                      <to xml:id="id_171">$ValidateFaultResponse/ns12:ResponseHeader/ns12:GeneralResponse/ns12:description</to>
+                                    </copy>
+                                  </assign>
+                                  <throw name="Throw_fault_MasterDataEngineService_Execute"
+                                         faultName="client:FaultResponseMessage"
+                                         faultVariable="ValidateFaultResponse"
+                                         xml:id="id_172"/>
+                                </sequence>
+                              </catch>
+                              <catchAll xml:id="id_173">
+                                <sequence name="Sequence_error_MasterDataEngineService_Execute"
+                                          xml:id="id_174">
+                                  <assign name="Assign_error_MasterDataEngineService_Execute"
+                                          xml:id="id_175">
+                                    <copy xml:id="id_176">
+                                      <from xml:id="id_177"><literal xml:id="id_178">ERROR MasterDataEngineService_Execute</literal></from>
+                                      <to xml:id="id_179">$ValidateFaultResponse/ns12:ResponseHeader/ns12:GeneralResponse/ns12:description</to>
+                                    </copy>
+                                  </assign>
+                                  <throw name="Throw_error_MasterDataEngineService_Execute"
+                                         faultName="client:FaultResponseMessage"
+                                         faultVariable="ValidateFaultResponse"
+                                         xml:id="id_180"/>
+                                </sequence>
+                              </catchAll>
+                            </faultHandlers>
+                            <sequence name="Sequence_MasterDataEngineService_Execute"
+                                      xml:id="id_181">
+                              <assign name="Assign_MasterDataEngineService_Execute_Req"
+                                      xml:id="id_182">
+                                <copy xml:id="id_183">
+                                  <from xml:id="id_184">$entitiesRule/entity[$entitiesCounter]</from>
+                                  <to xml:id="id_185">$entity</to>
+                                </copy>
+                              </assign>
+                              <assign name="Transform_input_to_MasterDataEngine_Execute"
+                                      xml:id="id_186">
+                                <bpelx:annotation xml:id="id_187">
+                                  <bpelx:pattern patternName="bpelx:transformation"
+                                                 xml:id="id_188"/>
+                                </bpelx:annotation>
+                                <copy xml:id="id_189">
+                                  <from xml:id="id_190">ora:doXSLTransformForDoc("xsl/input_to_MasterDataEngine_Execute.xsl", $inputVariable.part, "entity", $entity)</from>
+                                  <to variable="MasterDataEngineService_Execute_Req"
+                                      part="body" xml:id="id_191"/>
+                                </copy>
+                              </assign>
+                              <invoke name="Invoke_MasterDataEngine_Execute"
+                                      partnerLink="WS_MasterDataEngineService"
+                                      portType="ns32:EntitiesServicePortType"
+                                      operation="ExecuteOrder"
+                                      inputVariable="MasterDataEngineService_Execute_Req"
+                                      outputVariable="MasterDataEngineService_Execute_Res"
+                                      bpelx:invokeAsDetail="no"
+                                      xml:id="id_192"/>
+                              <if name="If_has_entities" xml:id="id_193">
+                                <documentation xml:id="id_194"/>
+                                <condition xml:id="id_195">count($MasterDataEngineService_Execute_Res.body/entities/entity)&lt;1</condition>
+                                <sequence name="Sequence_no_found_data_MasterDataEngine"
+                                          xml:id="id_196">
+                                  <assign name="Assign_no_found_data_MasterDataEngine"
+                                          xml:id="id_197">
+                                    <copy xml:id="id_198">
+                                      <from xml:id="id_199"><literal xml:id="id_200">Error no found MasterDataEngine</literal></from>
+                                      <to xml:id="id_201">$ValidateFaultResponse/ns12:ResponseHeader/ns12:GeneralResponse/ns12:description</to>
+                                    </copy>
+                                  </assign>
+                                  <throw name="Throw_no_found_data_MasterDataEngine"
+                                         faultName="client:FaultResponseMessage"
+                                         faultVariable="ValidateFaultResponse"
+                                         xml:id="id_202"/>
+                                </sequence>
+                                <else xml:id="id_203">
+                                  <sequence xml:id="id_204">
+                                    <assign name="Assign_entity"
+                                            xml:id="id_205">
+                                      <extensionAssignOperation xml:id="id_206">
+                                        <bpelx:copyList ignoreMissingFromData="yes"
+                                                        xml:id="id_207">
+                                          <bpelx:from xml:id="id_208">$MasterDataEngineService_Execute_Res.body/entities/entity</bpelx:from>
+                                          <bpelx:to xml:id="id_209">$rulesV2/rule[$rulesCounter]/entities/entity[$entitiesCounter]</bpelx:to>
+                                        </bpelx:copyList>
+                                      </extensionAssignOperation>
+                                      <copy ignoreMissingFromData="yes"
+                                            xml:id="id_210">
+                                        <from xml:id="id_211">$MasterDataEngineService_Execute_Res.body/parameters/parameter[1]/name</from>
+                                        <to xml:id="id_212">$rulesV2/rule[$rulesCounter]/ns10:additionals/ns10:additional[1]/ns10:name</to>
+                                      </copy>
+                                      <copy ignoreMissingFromData="yes"
+                                            xml:id="id_213">
+                                        <from xml:id="id_214">$MasterDataEngineService_Execute_Res.body/parameters/parameter[1]/value</from>
+                                        <to xml:id="id_215">$rulesV2/rule[$rulesCounter]/ns10:additionals/ns10:additional[1]/ns10:value</to>
+                                      </copy>
+                                      <copy ignoreMissingFromData="yes"
+                                            xml:id="id_216">
+                                        <from xml:id="id_217">$MasterDataEngineService_Execute_Res.body/parameters/parameter[2]/name</from>
+                                        <to xml:id="id_218">$rulesV2/rule[$rulesCounter]/ns10:additionals/ns10:additional[2]/ns10:name</to>
+                                      </copy>
+                                      <copy ignoreMissingFromData="yes"
+                                            xml:id="id_219">
+                                        <from xml:id="id_220">$MasterDataEngineService_Execute_Res.body/parameters/parameter[2]/value</from>
+                                        <to xml:id="id_221">$rulesV2/rule[$rulesCounter]/ns10:additionals/ns10:additional[2]/ns10:value</to>
+                                      </copy>
+                                      <copy ignoreMissingFromData="yes"
+                                            xml:id="id_222">
+                                        <from xml:id="id_223">$MasterDataEngineService_Execute_Res.body/parameters/parameter[3]/name</from>
+                                        <to xml:id="id_224">$rulesV2/rule[$rulesCounter]/ns10:additionals/ns10:additional[3]/ns10:name</to>
+                                      </copy>
+                                      <copy ignoreMissingFromData="yes"
+                                            xml:id="id_225">
+                                        <from xml:id="id_226">$MasterDataEngineService_Execute_Res.body/parameters/parameter[3]/value</from>
+                                        <to xml:id="id_227">$rulesV2/rule[$rulesCounter]/ns10:additionals/ns10:additional[3]/ns10:value</to>
+                                      </copy>
+                                      <copy ignoreMissingFromData="yes"
+                                            xml:id="id_228">
+                                        <from xml:id="id_229">$MasterDataEngineService_Execute_Res.body/parameters/parameter[4]/name</from>
+                                        <to xml:id="id_230">$rulesV2/rule[$rulesCounter]/ns10:additionals/ns10:additional[4]/ns10:name</to>
+                                      </copy>
+                                      <copy ignoreMissingFromData="yes"
+                                            xml:id="id_231">
+                                        <from xml:id="id_232">$MasterDataEngineService_Execute_Res.body/parameters/parameter[4]/value</from>
+                                        <to xml:id="id_233">$rulesV2/rule[$rulesCounter]/ns10:additionals/ns10:additional[4]/ns10:value</to>
+                                      </copy>
+                                      <copy ignoreMissingFromData="yes"
+                                            xml:id="id_234">
+                                        <from xml:id="id_235">$MasterDataEngineService_Execute_Res.body/parameters/parameter[5]/name</from>
+                                        <to xml:id="id_236">$rulesV2/rule[$rulesCounter]/ns10:additionals/ns10:additional[5]/ns10:name</to>
+                                      </copy>
+                                      <copy ignoreMissingFromData="yes"
+                                            xml:id="id_237">
+                                        <from xml:id="id_238">$MasterDataEngineService_Execute_Res.body/parameters/parameter[5]/value</from>
+                                        <to xml:id="id_239">$rulesV2/rule[$rulesCounter]/ns10:additionals/ns10:additional[5]/ns10:value</to>
+                                      </copy>
+                                      <copy ignoreMissingFromData="yes"
+                                            xml:id="id_240">
+                                        <from xml:id="id_241">$MasterDataEngineService_Execute_Res.body/parameters/parameter[6]/name</from>
+                                        <to xml:id="id_242">$rulesV2/rule[$rulesCounter]/ns10:additionals/ns10:additional[6]/ns10:name</to>
+                                      </copy>
+                                      <copy ignoreMissingFromData="yes"
+                                            xml:id="id_243">
+                                        <from xml:id="id_244">$MasterDataEngineService_Execute_Res.body/parameters/parameter[6]/value</from>
+                                        <to xml:id="id_245">$rulesV2/rule[$rulesCounter]/ns10:additionals/ns10:additional[6]/ns10:value</to>
+                                      </copy>
+                                      <copy ignoreMissingFromData="yes"
+                                            xml:id="id_246">
+                                        <from xml:id="id_247">$MasterDataEngineService_Execute_Res.body/parameters/parameter[7]/name</from>
+                                        <to xml:id="id_248">$rulesV2/rule[$rulesCounter]/ns10:additionals/ns10:additional[7]/ns10:name</to>
+                                      </copy>
+                                      <copy ignoreMissingFromData="yes"
+                                            xml:id="id_249">
+                                        <from xml:id="id_250">$MasterDataEngineService_Execute_Res.body/parameters/parameter[7]/value</from>
+                                        <to xml:id="id_251">$rulesV2/rule[$rulesCounter]/ns10:additionals/ns10:additional[7]/ns10:value</to>
+                                      </copy>
+                                    </assign>
+                                  </sequence>
+                                </else>
+                              </if>
+                            </sequence>
+                          </scope>
+                        </scope>
+                      </forEach>
+                    </sequence>
+                    <else xml:id="id_252">
+                      <sequence name="Sequence_no_entities" xml:id="id_253">
+                        <assign name="Assign_fault_no_entities" xml:id="id_254">
+                          <copy xml:id="id_255">
+                            <from xml:id="id_256"><literal xml:id="id_257">Error no rules entities found</literal></from>
+                            <to xml:id="id_258">$ValidateFaultResponse/ns12:ResponseHeader/ns12:GeneralResponse/ns12:description</to>
+                          </copy>
+                        </assign>
+                        <throw name="Throw_no_entities"
+                               faultName="client:FaultResponseMessage"
+                               faultVariable="ValidateFaultResponse"
+                               xml:id="id_259"/>
+                      </sequence>
+                    </else>
+                  </if>
+                </sequence>
+              </scope>
+            </forEach>
+            <forEach parallel="no" counterName="ruleValidateCounter"
+                     name="ForEach_ruleValidate" xml:id="id_260">
+              <startCounterValue xml:id="id_261">1</startCounterValue>
+              <finalCounterValue xml:id="id_262">ora:countNodes('rulesV2','rule')</finalCounterValue>
+              <scope name="Scope_ForEach_ruleValidate" exitOnStandardFault="no"
+                     xml:id="id_263">
+                <scope name="Scope_MediatorValidations"
+                       exitOnStandardFault="no" xml:id="id_264">
+                  <faultHandlers xml:id="id_265">
+                    <catchAll xml:id="id_266">
+                      <assign name="Assign_error_MediatorValidations"
+                              xml:id="id_267">
+                        <copy ignoreMissingFromData="yes" xml:id="id_268">
+                          <from xml:id="id_269"><literal xml:id="id_270">Error : Validate Rule Mediator</literal></from>
+                          <to xml:id="id_271">$outputVariable.part/ns12:ResponseHeader/ns12:GeneralResponse/ns12:description</to>
+                        </copy>
+                        <copy ignoreMissingFromData="yes" xml:id="id_272">
+                          <from xml:id="id_273"><literal xml:id="id_274">ERROR</literal></from>
+                          <to xml:id="id_275">$outputVariable.part/ns12:ResponseHeader/ns12:GeneralResponse/ns12:status</to>
+                        </copy>
+                        <copy ignoreMissingFromData="yes" xml:id="id_276">
+                          <from xml:id="id_277">false()</from>
+                          <to xml:id="id_278">$resultValidateTmp</to>
+                        </copy>
+                      </assign>
+                    </catchAll>
+                  </faultHandlers>
+                  <sequence name="Sequence_MediatorValidations" xml:id="id_279">
+                    <assign name="Assign_MediatorValidations_Req"
+                            xml:id="id_280">
+                      <copy ignoreMissingFromData="yes" xml:id="id_281">
+                        <from xml:id="id_282">$processId</from>
+                        <to xml:id="id_283">$MediatorValidations_Req.part/processID</to>
+                      </copy>
+                      <copy ignoreMissingFromData="yes" xml:id="id_284">
+                        <from xml:id="id_285">$rulesV2/rule[$ruleValidateCounter]</from>
+                        <to xml:id="id_286">$MediatorValidations_Req.part/rule</to>
+                      </copy>
+                    </assign>
+                    <invoke name="Invoke_MediatorValidations"
+                            partnerLink="MediatorValidations.MediatorValidations"
+                            portType="ns36:MediatorValidationsPortType"
+                            operation="Validate"
+                            inputVariable="MediatorValidations_Req"
+                            outputVariable="MediatorValidations_Res"
+                            bpelx:invokeAsDetail="no" xml:id="id_287"/>
+                    <assign name="Assign_MediatorValidations_Res"
+                            xml:id="id_288">
+                      <extensionAssignOperation xml:id="id_289">
+                        <bpelx:append xml:id="id_290">
+                          <bpelx:from xml:id="id_291">$MediatorValidations_Res.part</bpelx:from>
+                          <bpelx:to xml:id="id_292">$validatedRules_array</bpelx:to>
+                        </bpelx:append>
+                      </extensionAssignOperation>
+                    </assign>
+                  </sequence>
+                </scope>
+              </scope>
+            </forEach>
+            <assign name="Transform_validatedRuleContainer_to_output"
+                    xml:id="id_293">
+              <bpelx:annotation xml:id="id_294">
+                <bpelx:pattern patternName="bpelx:transformation"
+                               xml:id="id_295"/>
+              </bpelx:annotation>
+              <copy xml:id="id_296">
+                <from xml:id="id_297">ora:doXSLTransformForDoc("xsl/validatedRules_array_to_validatorGeneralResponse_v2.xsl", $validatedRules_array)</from>
+                <to variable="ValidatorGeneralResponse" xml:id="id_298"/>
+              </copy>
+            </assign>
+            <assign name="TransformValidateRuleContainerToOuput"
+                    xml:id="id_299">
+              <bpelx:annotation xml:id="id_300">
+                <bpelx:pattern patternName="bpelx:transformation"
+                               xml:id="id_301"/>
+              </bpelx:annotation>
+              <copy xml:id="id_302">
+                <from xml:id="id_303">ora:doXSLTransformForDoc("xsl/Transformation_RulesToValidatorResponse.xsl", $ValidatorGeneralResponse, "rulesV2", $rulesV2)</from>
+                <to variable="ValidatorGeneralResponse" xml:id="id_304"/>
+              </copy>
+            </assign>
+            <assign name="Assign_result_true" xml:id="id_305">
+              <copy xml:id="id_306">
+                <from xml:id="id_307">true()</from>
+                <to xml:id="id_308">$resultValidateTmp</to>
+              </copy>
+              <copy xml:id="id_309">
+                <from xml:id="id_310">$ValidatorGeneralResponse/ns11:responseBody/ns11:processRules</from>
+                <to xml:id="id_311">$outputVariable.part/ns11:responseBody/ns11:processRules</to>
+              </copy>
+              <copy xml:id="id_312">
+                <from xml:id="id_313">$ValidatorGeneralResponse/ns11:responseBody/ns11:result</from>
+                <to xml:id="id_314">$outputVariable.part/ns11:responseBody/ns11:result</to>
+              </copy>
+            </assign>
+          </sequence>
+          <else xml:id="id_315">
+            <sequence name="Sequence_no_rules" xml:id="id_316">
+              <assign name="Assign_fault_no_rules" xml:id="id_317">
+                <copy xml:id="id_318">
+                  <from xml:id="id_319"><literal xml:id="id_320">Error no rules found</literal></from>
+                  <to xml:id="id_321">$ValidateFaultResponse/ns12:ResponseHeader/ns12:GeneralResponse/ns12:description</to>
+                </copy>
+              </assign>
+              <throw name="Throw_no_rules"
+                     faultName="client:FaultResponseMessage"
+                     faultVariable="ValidateFaultResponse" xml:id="id_322"/>
+            </sequence>
+          </else>
+        </if>
+      </sequence>
+    </scope>
+    <if name="If_result_false" xml:id="id_323">
+      <documentation xml:id="id_324"/>
+      <condition xml:id="id_325">not($resultValidateTmp)</condition>
+      <sequence name="Sequence_fault_process" xml:id="id_326">
+        <assign name="Assign_fault_process" xml:id="id_327">
+          <copy xml:id="id_328">
+            <from xml:id="id_329">ora:getECID()</from>
+            <to xml:id="id_330">$ValidateFaultResponse/ns12:ResponseHeader/ns12:GeneralResponse/ns12:correlationID</to>
+          </copy>
+          <copy xml:id="id_331">
+            <from xml:id="id_332"><literal xml:id="id_333">ERROR</literal></from>
+            <to xml:id="id_334">$ValidateFaultResponse/ns12:ResponseHeader/ns12:GeneralResponse/ns12:status</to>
+          </copy>
+          <copy xml:id="id_335">
+            <from xml:id="id_336"><literal xml:id="id_337">601</literal></from>
+            <to xml:id="id_338">$ValidateFaultResponse/ns12:ResponseHeader/ns12:GeneralResponse/ns12:code</to>
+          </copy>
+        </assign>
+        <reply name="Reply_fault_process"
+               faultName="client:FaultResponseMessage"
+               variable="ValidateFaultResponse" partnerLink="validate_client"
+               portType="client:ProcessValidator" operation="Validate"
+               xml:id="id_339"/>
+        <exit name="Exit_fault_process" xml:id="id_340"/>
+      </sequence>
+      <else xml:id="id_341">
+        <assign name="Assign_generalResponse" xml:id="id_342">
+          <copy xml:id="id_343">
+            <from xml:id="id_344">ora:getECID()</from>
+            <to xml:id="id_345">$outputVariable.part/ns12:ResponseHeader/ns12:GeneralResponse/ns12:correlationID</to>
+          </copy>
+          <copy xml:id="id_346">
+            <from xml:id="id_347"><literal xml:id="id_348">OK</literal></from>
+            <to xml:id="id_349">$outputVariable.part/ns12:ResponseHeader/ns12:GeneralResponse/ns12:status</to>
+          </copy>
+          <copy xml:id="id_350">
+            <from xml:id="id_351"><literal xml:id="id_352">1</literal></from>
+            <to xml:id="id_353">$outputVariable.part/ns12:ResponseHeader/ns12:GeneralResponse/ns12:code</to>
+          </copy>
+          <copy xml:id="id_354">
+            <from xml:id="id_355"><literal xml:id="id_356">Service has been completed</literal></from>
+            <to xml:id="id_357">$outputVariable.part/ns12:ResponseHeader/ns12:GeneralResponse/ns12:description</to>
+          </copy>
+          <copy xml:id="id_358">
+            <from xml:id="id_359">ora:getECID()</from>
+            <to xml:id="id_360">$outputVariable.part/ns11:responseBody/ns11:token</to>
+          </copy>
+        </assign>
+      </else>
+    </if>
+    <!-- Generate reply to synchronous request -->
+    <reply name="replyOutput" partnerLink="validate_client"
+           portType="client:ProcessValidator" operation="Validate"
+           variable="outputVariable" xml:id="id_361"/>
+  </sequence>
+</process>

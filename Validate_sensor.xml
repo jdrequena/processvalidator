@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<sensors targetNamespace="http://xmlns.tigo.com/ProcessValidator/Validate" xmlns="http://xmlns.oracle.com/bpel/sensor" xmlns:tns="http://xmlns.tigo.com/ProcessValidator/Validate" xmlns:pc="http://xmlns.oracle.com/bpel/sensor" xmlns:ns33="http://tigo.com/rules/v1/schema">
+   <sensor sensorName="VariableSensor" classname="oracle.tip.pc.services.reports.dca.agents.BpelVariableSensorAgent" kind="variable" target="$rulesV2/ns33:rules">
+      <variableConfig outputDataType="rules_array" outputNamespace="http://tigo.com/rules/v1/schema"/>
+   </sensor>
+</sensors>

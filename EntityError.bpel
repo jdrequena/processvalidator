@@ -1,0 +1,164 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Mon Oct 06 14:33:02 COT 2014
+  Author:  josed
+  Purpose: Synchronous BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="EntityError"
+               targetNamespace="http://xmlns.oracle.com/SCA/ProcessValidatorV2/EntityError"
+               xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+               xmlns:client="http://xmlns.oracle.com/SCA/ProcessValidatorV2/EntityError"
+               xmlns:ora="http://schemas.oracle.com/xpath/extension"
+               xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+               xmlns:ns1="http://xmlns.tigo.com/ProcessValidator/Validations"
+               xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:ns3="http://xmlns.tigo.com/AdditionalSchema/V1"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:ns2="http://tigo.com/enterprise/business/entities/validate/v1/schema"
+         xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20"
+         xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+         xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc"
+         xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue"
+         xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath"
+         xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath"
+         xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions"
+         xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk"
+         xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions"
+         xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+         xmlns:aia="http://www.oracle.com/XSL/Transform/java/oracle.apps.aia.core.xpath.AIAFunctions"
+         xml:id="id_1">
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      PARTNERLINKS                                                      
+      List of services participating in this BPEL process               
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  --> 
+  <partnerLinks xml:id="id_2">
+    <!-- 
+      The 'client' role represents the requester of this service. It is 
+      used for callback. The location and correlation information associated
+      with the client role are automatically set using WS-Addressing.
+    -->
+    <partnerLink name="entityerror_client" partnerLinkType="ns1:EntityError" myRole="MediatorValidationsPortType"
+                 xml:id="id_3"/>
+  </partnerLinks>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      VARIABLES                                                        
+      List of messages and XML documents used within this BPEL process 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <variables xml:id="id_4">
+    <!-- Reference to the message passed as input during initiation -->
+    <variable name="inputVariable" messageType="ns1:ValidateRequestMessage"
+              xml:id="id_5"/>
+
+    <!-- Reference to the message that will be returned to the requester-->
+    <variable name="outputVariable" messageType="ns1:ValidateResponseMessage"
+              xml:id="id_6"/>
+    <variable name="MessageError" type="xsd:string" xml:id="id_7"/>
+  </variables>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC                                               
+     Set of activities coordinating the flow of messages across the    
+     services integrated within this business process                  
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <sequence name="main" xml:id="id_8">
+
+    <!-- Receive input from requestor. (Note: This maps to operation defined in EntityError.wsdl) -->
+    <receive name="receiveInput" partnerLink="entityerror_client" portType="ns1:MediatorValidationsPortType" operation="Validate" variable="inputVariable" createInstance="yes"
+             xml:id="id_9"/>
+    <if name="If1" xml:id="id_10">
+      <documentation xml:id="id_11">
+        <![CDATA[NO APLICABLE]]>
+      </documentation>
+      <condition xml:id="id_12">$inputVariable.part/rule/entities/entity[code = 'NA'][1]/code = 'NA'</condition>
+      <assign name="Assign2" xml:id="id_13">
+        <copy xml:id="id_14">
+          <from xml:id="id_15">$inputVariable.part/rule/id</from>
+          <to xml:id="id_16">$outputVariable.part/ruleID</to>
+        </copy>
+        <copy xml:id="id_17">
+          <from xml:id="id_18">$inputVariable.part/rule/entities/entity[code = 'NA'][1]/value</from>
+          <to xml:id="id_19">$outputVariable.part/comments</to>
+        </copy>
+        <copy xml:id="id_20">
+          <from xml:id="id_21">'OK'</from>
+          <to xml:id="id_22">$outputVariable.part/status</to>
+        </copy>
+        <copy ignoreMissingFromData="yes" xml:id="id_23">
+          <from xml:id="id_24">$inputVariable.part/rule/entities/entity/key</from>
+          <to xml:id="id_25">$outputVariable.part/action</to>
+        </copy>
+      </assign>
+      <elseif xml:id="id_26">
+        <documentation xml:id="id_27">
+          <![CDATA[ERROR FATAL]]>
+        </documentation>
+        <condition xml:id="id_28">$inputVariable.part/rule/entities/entity[code = 'FATAL'][1]/code = 'FATAL'</condition><sequence name="Sequence1"
+                                                                                                                                  xml:id="id_29">
+          <assign name="Assign4" xml:id="id_30">
+            <copy ignoreMissingFromData="yes" xml:id="id_31">
+              <from xml:id="id_32">$inputVariable.part/rule/entities/entity[code = 'MESSAGE'][1]/value</from>
+              <to xml:id="id_33">$MessageError</to>
+            </copy>
+          </assign>
+          <assign name="Assign3"
+                                                                                                                                                                            xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+                  xml:id="id_34">
+            <copy xml:id="id_35">
+              <from xml:id="id_36">$inputVariable.part/rule/id</from>
+              <to xml:id="id_37">$outputVariable.part/ruleID</to>
+            </copy>
+            <copy xml:id="id_38">
+              <from xml:id="id_39">$inputVariable.part/rule/entities/entity[code = 'FATAL'][1]/value</from>
+              <to xml:id="id_40">$outputVariable.part/comments</to>
+            </copy>
+            <copy xml:id="id_41">
+              <from xml:id="id_42">'FATAL'</from>
+              <to xml:id="id_43">$outputVariable.part/status</to>
+            </copy>
+            <copy ignoreMissingFromData="yes" xml:id="id_44">
+              <from xml:id="id_45">$inputVariable.part/rule/entities/entity/key</from>
+              <to xml:id="id_46">$outputVariable.part/action</to>
+            </copy>
+          </assign></sequence></elseif>
+      <else xml:id="id_47">
+        <documentation xml:id="id_48">
+          <![CDATA[ERROR]]>
+        </documentation>
+        <assign name="Assign1" xml:id="id_49">
+          <copy ignoreMissingFromData="yes" xml:id="id_50">
+            <from xml:id="id_51">$inputVariable.part/rule/id</from>
+            <to xml:id="id_52">$outputVariable.part/ruleID</to>
+          </copy>
+          <copy xml:id="id_53">
+            <from xml:id="id_54"><literal xml:id="id_55">ERROR</literal></from>
+            <to xml:id="id_56">$outputVariable.part/status</to>
+          </copy>
+          <copy ignoreMissingFromData="yes" xml:id="id_57">
+            <from xml:id="id_58">$inputVariable.part/rule/entities/entity[code = 'ERROR'][1]/value</from>
+            <to xml:id="id_59">$outputVariable.part/comments</to>
+          </copy>
+          <copy ignoreMissingFromData="yes" xml:id="id_60">
+            <from xml:id="id_61">$inputVariable.part/rule/entities/entity/key</from>
+            <to xml:id="id_62">$outputVariable.part/action</to>
+          </copy>
+        </assign>
+      </else>
+    </if>
+    <!-- Generate reply to synchronous request -->
+    <reply name="replyOutput" partnerLink="entityerror_client" portType="ns1:MediatorValidationsPortType" operation="Validate" variable="outputVariable"
+           xml:id="id_63"/>
+  </sequence>
+</process>

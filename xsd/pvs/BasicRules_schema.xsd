@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xsd:schema version="1.0" targetNamespace="http://tigo.com/rules/v1/schema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:rul="http://tigo.com/rules/v1/schema" xmlns:ent="http://tigo.com/entities/v1/schema" xmlns:add="http://xmlns.tigo.com/AdditionalSchema/V1">
+   <xsd:import namespace="http://tigo.com/entities/v1/schema" schemaLocation="BasicEntities_schema.xsd"/>
+   <xsd:import namespace="http://xmlns.tigo.com/AdditionalSchema/V1" schemaLocation="../CommonsResources/XSD/AdditionalSchemaV1.xsd"/>
+   <xsd:element name="rules" type="rul:rules_array" nillable="true"/>
+   <xsd:complexType name="rules_array">
+      <xsd:sequence>
+         <xsd:element name="rule" type="rul:ruleType" minOccurs="1" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:element name="rule" type="rul:ruleType"/>
+   <xsd:complexType name="ruleType">
+      <xsd:sequence>
+         <xsd:element name="id" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+         <xsd:element name="name" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+         <xsd:element ref="add:additionals" minOccurs="0" maxOccurs="1"/>
+         <xsd:element name="entities" type="ent:entities_array" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+</xsd:schema>

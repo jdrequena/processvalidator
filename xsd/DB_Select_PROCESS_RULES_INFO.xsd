@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xs:schema targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/DB_Select_PROCESS_RULES_INFO" xmlns="http://xmlns.oracle.com/pcbpel/adapter/db/DB_Select_PROCESS_RULES_INFO" elementFormDefault="qualified" attributeFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:element name="DB_Select_PROCESS_RULES_INFOInput" type="DB_Select_PROCESS_RULES_INFOInput"/>
+   <xs:complexType name="DB_Select_PROCESS_RULES_INFOInput">
+      <xs:sequence>
+         <xs:element name="processId" type="xs:string" minOccurs="0"/>
+         <xs:element name="productId" type="xs:string" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="DB_Select_PROCESS_RULES_INFOOutputCollection" type="DB_Select_PROCESS_RULES_INFOOutputCollection"/>
+   <xs:complexType name="DB_Select_PROCESS_RULES_INFOOutputCollection">
+      <xs:sequence>
+         <xs:element name="DB_Select_PROCESS_RULES_INFOOutput" type="DB_Select_PROCESS_RULES_INFOOutput" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="DB_Select_PROCESS_RULES_INFOOutput">
+      <xs:sequence>
+         <xs:element name="RULE_ID" type="xs:string" minOccurs="0"/>
+         <xs:element name="NAME" type="xs:string" minOccurs="0"/>
+         <xs:element name="DATA_ID" type="xs:string" minOccurs="0"/>
+         <xs:element name="CUSTOM_NAME" type="xs:string" minOccurs="0" nillable="true"/>
+         <xs:element name="CUSTOM_VALUE" type="xs:string" minOccurs="0" nillable="true"/>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>

@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Mediator name="ProcessValidatorPartnerMediator" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.oracle.com/sca/1.0/mediator" wsdlTargetNamespace="http://xmlns.tigo.com/ProcessValidator/ProcessValidatorService/v2" xml:id="id_1">
+   <operation name="Validate" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false" xml:id="id_2">
+      <switch xml:id="id_3">
+         <case executionType="direct" name="Validate.validate_client.Validate" xml:id="id_4">
+            <action xml:id="id_5">
+               <invoke reference="Validate.validate_client" operation="Validate" xml:id="id_6">
+                  <onReply xml:id="id_7">
+                     <transform xml:id="id_8">
+                        <part name="$out.part" function="xslt(xsl/ValidatorGeneralResponse_To_ValidatorGeneralResponse.xsl, $in.part)" xml:id="id_9"/>
+                     </transform>
+                     <reply xml:id="id_10"/>
+                  </onReply>
+                  <onFault type="FaultResponseMessage" xml:id="id_11">
+                     <fault type="FaultResponseMessage" xml:id="id_12"/>
+                  </onFault>
+               </invoke>
+            </action>
+         </case>
+      </switch>
+   </operation>
+   <operation name="GetValidation" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false" xml:id="id_13"/>
+   <operation name="ConfirmValidation" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false" xml:id="id_14"/>
+</Mediator>

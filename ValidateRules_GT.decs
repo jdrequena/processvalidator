@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<decisionServices xmlns="http://xmlns.oracle.com/bpel/rules" name="ValidateRules_GT">
+   <ruleEngineProvider name="OracleRulesSDK" provider="Oracle_11.0.0.0.0">
+      <repository type="SCA-Archive">
+         <path>ProcessValidatorV2/oracle/rules/processvalidatorv2/ValidateRules_GT.rules</path>
+      </repository>
+   </ruleEngineProvider>
+   <decisionService targetNamespace="http://xmlns.oracle.com/ValidateRules_GT/ValidateRules_GT_DecisionService_1" ruleEngineProviderReference="OracleRulesSDK" name="ValidateRules_GT_DecisionService_1">
+      <catalog>ValidateRules_GT</catalog>
+      <pattern name="CallFunctionStateless">
+         <arguments>
+            <call>processvalidatorv2.ValidateRules_GT.ValidateRules_GT_DecisionService_1</call>
+         </arguments>
+      </pattern>
+      <pattern name="CallFunctionStateful">
+         <arguments>
+            <call>processvalidatorv2.ValidateRules_GT.ValidateRules_GT_DecisionService_1</call>
+         </arguments>
+      </pattern>
+   </decisionService>
+</decisionServices>

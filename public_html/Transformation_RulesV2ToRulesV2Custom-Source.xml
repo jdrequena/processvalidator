@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<DB_Select_PROCESS_RULES_INFOOutputCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.oracle.com/pcbpel/adapter/db/DB_Select_PROCESS_RULES_INFO file:/E:/Broker/ProcessValidatorV2/xsd/DB_Select_PROCESS_RULES_INFO.xsd" xmlns="http://xmlns.oracle.com/pcbpel/adapter/db/DB_Select_PROCESS_RULES_INFO">
+   <DB_Select_PROCESS_RULES_INFOOutput>
+      <RULE_ID>RULE_ID1</RULE_ID>
+      <NAME>NAME2</NAME>
+      <DATA_ID>DATA_ID3</DATA_ID>
+      <CUSTOM_NAME>CUSTOM_NAME1</CUSTOM_NAME>
+      <CUSTOM_VALUE>CUSTOM_VALUE1</CUSTOM_VALUE>
+   </DB_Select_PROCESS_RULES_INFOOutput>
+   <DB_Select_PROCESS_RULES_INFOOutput>
+      <RULE_ID>RULE_ID1</RULE_ID>
+      <NAME>NAME7</NAME>
+      <DATA_ID>DATA_ID8</DATA_ID>
+      <CUSTOM_NAME>CUSTOM_NAME1</CUSTOM_NAME>
+      <CUSTOM_VALUE>CUSTOM_VALUE1</CUSTOM_VALUE>
+   </DB_Select_PROCESS_RULES_INFOOutput>
+   <DB_Select_PROCESS_RULES_INFOOutput>
+      <RULE_ID>RULE_ID11</RULE_ID>
+      <NAME>NAME12</NAME>
+      <DATA_ID>DATA_ID13</DATA_ID>
+      <CUSTOM_NAME>CUSTOM_NAME14</CUSTOM_NAME>
+      <CUSTOM_VALUE>CUSTOM_VALUE15</CUSTOM_VALUE>
+   </DB_Select_PROCESS_RULES_INFOOutput>
+</DB_Select_PROCESS_RULES_INFOOutputCollection>

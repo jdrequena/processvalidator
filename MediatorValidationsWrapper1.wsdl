@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<wsdl:definitions targetNamespace="http://xmlns.tigo.com/ProcessValidator/Validations" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://xmlns.tigo.com/ProcessValidator/Validations" xmlns:bpws="http://docs.oasis-open.org/wsbpel/2.0/process/executable" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <plnk:partnerLinkType name="EntityError">
+      <plnk:role name="MediatorValidationsPortType" portType="tns:MediatorValidationsPortType"/>
+   </plnk:partnerLinkType>
+   <wsdl:import namespace="http://xmlns.tigo.com/ProcessValidator/Validations" location="wsdl/mediator/MediatorValidations.wsdl"/>
+</wsdl:definitions>

@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<componentType xmlns="http://xmlns.oracle.com/sca/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ui="http://xmlns.oracle.com/soa/designer/" xml:id="id_1">
+   <service name="ValidateRules_DecisionFunction_DUM" ui:wsdlLocation="ValidateRules_DecisionFunction_DUM.wsdl" xml:id="id_2">
+      <interface.wsdl interface="http://xmlns.oracle.com/ValidateRules/ValidateRules_DecisionFunction_DUM#wsdl.interface(IDecisionService)" xml:id="id_3"/>
+   </service>
+</componentType>

@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xsd:schema version="1.0" targetNamespace="http://tigo.com/enterprise/business/entities/validate/v1/schema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:sch="http://tigo.com/enterprise/business/entities/validate/v1/schema" xmlns:rul="http://tigo.com/rules/v1/schema">
+   <xsd:import namespace="http://tigo.com/rules/v1/schema" schemaLocation="BasicRules_schema.xsd"/>
+   <xsd:element name="validation" type="sch:validation_type"/>
+   <xsd:complexType name="validation_type">
+      <xsd:sequence>
+         <xsd:element name="processID" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+         <xsd:element name="rule" type="rul:ruleType"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:element name="validationTest" type="sch:validationTest_type"/>
+   <xsd:complexType name="validationTest_type">
+      <xsd:sequence>
+         <xsd:element name="processID_Test" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+         <xsd:element name="rule_Test" type="rul:ruleType"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:element name="validatedRule" type="sch:validatedRule_type"/>
+   <xsd:complexType name="validatedRule_type">
+      <xsd:sequence>
+         <xsd:element name="ruleID" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+         <xsd:element name="status" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+         <xsd:element name="action" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+         <xsd:element name="comments" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:element name="validatedRules_array" type="sch:validatedRules_array"/>
+   <xsd:complexType name="validatedRules_array">
+      <xsd:sequence>
+         <xsd:element name="validatedRule" type="sch:validatedRule_type" minOccurs="1" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:element name="validatedRuleContainer" type="sch:validatedRuleContainer_type"/>
+   <xsd:complexType name="validatedRuleContainer_type">
+      <xsd:sequence>
+         <xsd:element name="validatedRules" type="sch:validatedRules_array"/>
+      </xsd:sequence>
+   </xsd:complexType>
+</xsd:schema>

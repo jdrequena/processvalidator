@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<properties>
+   <entry key="ID_VALIDATOR.PROCESSID_GROUP.GROUP_PROCESS:db_column_size">50</entry>
+   <entry key="ID_VALIDATOR.PROCESSID_GROUP.GROUP_PROCESS:db_column_not_null">true</entry>
+   <entry key="ID_VALIDATOR.PROCESSID_GROUP:db_column_1">GROUP_PROCESS</entry>
+   <entry key="ID_VALIDATOR.PROCESSID_GROUP.PROCESSID:db_column_size">50</entry>
+   <entry key="ID_VALIDATOR.PROCESSID_GROUP:db_column_0">PROCESSID</entry>
+   <entry key="return_single_result_set">false</entry>
+   <entry key="ID_VALIDATOR.PROCESSID_GROUP.PROCESSID:db_column_not_null">true</entry>
+   <entry key="root_descriptor_alias">ID_VALIDATOR.PROCESSID_GROUP</entry>
+   <entry key="ID_VALIDATOR.PROCESSID_GROUP.GROUP_PROCESS:db_column_type">VARCHAR2</entry>
+   <entry key="ID_VALIDATOR.PROCESSID_GROUP:db_table_type">TABLE</entry>
+   <entry key="ID_VALIDATOR.PROCESSID_GROUP.PROCESSID:db_column_type">VARCHAR2</entry>
+</properties>

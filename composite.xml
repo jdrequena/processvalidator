@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<composite name="ProcessValidatorV2" applicationName="ffs" revision="2.8" label="soa_d765ed8b-83fe-4233-b473-748b11015f39" mode="active" state="on" home="/u01/app/oracle/osm/domains/osmsoaprod_domain/servers/soa_server01/dc/soa_d765ed8b-83fe-4233-b473-748b11015f39" xmlns:ui="http://xmlns.oracle.com/soa/designer/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.oracle.com/sca/1.0" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:orawsp="http://schemas.oracle.com/ws/2006/01/policy" ui:customizable="true" xml:id="id_1">
+   <import location="wsdl/ProcessValidatorPartner.wsdl" importType="wsdl" namespace="http://xmlns.tigo.com/ProcessValidator/ProcessValidatorService/v2" xml:id="id_2"/>
+   <import location="ProcessValidateWrapper.wsdl" importType="wsdl" namespace="http://xmlns.tigo.com/ProcessValidator/Validate" xml:id="id_3"/>
+   <import location="wsdl/local/MasterDataEngineService/MasterDataEngineService.wsdl" importType="wsdl" namespace="http://tigo.com/enterprise/business/task/MasterDataEngine/v1" xml:id="id_4"/>
+   <import location="MasterDataEngineServiceWrapper.wsdl" importType="wsdl" namespace="http://tigo.com/enterprise/business/task/MasterDataEngine/v1" xml:id="id_5"/>
+   <import location="wsdl/mediator/MediatorValidations.wsdl" importType="wsdl" namespace="http://xmlns.tigo.com/ProcessValidator/Validations" xml:id="id_6"/>
+   <import location="MediatorValidationsWrapper.wsdl" importType="wsdl" namespace="http://xmlns.tigo.com/ProcessValidator/Validations" xml:id="id_7"/>
+   <import location="DB_Select_PROCESS_RULES_DATAS.wsdl" importType="wsdl" namespace="http://xmlns.oracle.com/pcbpel/adapter/db/PSV_v2/ProcessValidatorV2/DB_Select_PROCESS_RULES_DATAS" xml:id="id_8"/>
+   <import location="DB_Select_PROCESSID_GROUP.wsdl" importType="wsdl" namespace="http://xmlns.oracle.com/pcbpel/adapter/db/Broker/ProcessValidatorV2/DB_Select_PROCESSID_GROUP" xml:id="id_9"/>
+   <import location="DB_Select_PROCESS_RULES_INFO.wsdl" importType="wsdl" namespace="http://xmlns.oracle.com/pcbpel/adapter/db/Broker/ProcessValidatorV2/DB_Select_PROCESS_RULES_INFO" xml:id="id_10"/>
+   <import location="ValidateRules_DecisionFunction_DUM.wsdl" importType="wsdl" namespace="http://xmlns.oracle.com/ValidateRules/ValidateRules_DecisionFunction_DUM" xml:id="id_11"/>
+   <import location="ValidateRules_GT_DecisionService_1.wsdl" importType="wsdl" namespace="http://xmlns.oracle.com/ValidateRules_GT/ValidateRules_GT_DecisionService_1" xml:id="id_12"/>
+   <import location="MediatorValidationsWrapper1.wsdl" importType="wsdl" namespace="http://xmlns.tigo.com/ProcessValidator/Validations" xml:id="id_13"/>
+   <import location="DB_Select_PROCESSID_GROUPV2.wsdl" importType="wsdl" namespace="http://xmlns.oracle.com/pcbpel/adapter/db/Broker/ProcessValidatorV2/DB_Select_PROCESSID_GROUPV2" xml:id="id_14"/>
+   <service name="ProcessValidatorPartnerService" ui:wsdlLocation="wsdl/ProcessValidatorPartner.wsdl" xml:id="id_15">
+      <interface.wsdl interface="http://xmlns.tigo.com/ProcessValidator/ProcessValidatorService/v2#wsdl.interface(ProcessValidator)" xml:id="id_16"/>
+      <binding.ws port="http://xmlns.tigo.com/ProcessValidator/ProcessValidatorService/v2#wsdl.endpoint(ProcessValidatorPartnerService/ProcessValidator_pt)" soapVersion="1.2" streamIncomingAttachments="false" streamOutgoingAttachments="false" xml:id="id_17">
+         <property name="weblogic.wsee.wsat.transaction.flowOption" type="xs:string" many="false" xml:id="id_18">NEVER</property>
+      </binding.ws>
+   </service>
+   <service name="ValidateSOADirect" ui:wsdlLocation="wsdl/ProcessValidatorPartner.wsdl" xml:id="id_115">
+      <interface.wsdl interface="http://xmlns.tigo.com/ProcessValidator/ProcessValidatorService/v2#wsdl.interface(ProcessValidator)" xml:id="id_116"/>
+      <binding.direct xml:id="id_117"/>
+   </service>
+   <property name="auditLevel" many="false" xml:id="id_19">Development</property>
+   <property name="validateSchema" type="xs:boolean" many="false" xml:id="id_20">true</property>
+   <component name="MediatorValidations" xml:id="id_21">
+      <implementation.mediator src="MediatorValidations.mplan" xml:id="id_22"/>
+      <property name="isResequencing" many="false" override="may" xml:id="id_23">false</property>
+      <business-events xml:id="id_24"/>
+   </component>
+   <component name="ValidateRules" xml:id="id_25">
+      <implementation.decision src="ValidateRules.decs" xml:id="id_26"/>
+      <business-events xml:id="id_27"/>
+   </component>
+   <component name="ValidateRules_GT" xml:id="id_28">
+      <implementation.decision src="ValidateRules_GT.decs" xml:id="id_29"/>
+      <business-events xml:id="id_30"/>
+   </component>
+   <component name="EntityError" version="2.0" xml:id="id_31">
+      <implementation.bpel src="EntityError.bpel" xml:id="id_32"/>
+      <property name="bpel.config.transaction" type="xs:string" many="false" xml:id="id_33">required</property>
+      <property name="bpel.config.oneWayDeliveryPolicy" type="xs:string" many="false" xml:id="id_34">async.persist</property>
+      <business-events xml:id="id_35"/>
+   </component>
+   <component name="Validate" version="2.0" xml:id="id_36">
+      <implementation.bpel src="Validate.bpel" xml:id="id_37"/>
+      <property name="configuration.monitorLocation" type="xs:string" many="false" xml:id="id_38">Validate.monitor</property>
+      <property name="configuration.sensorLocation" type="xs:string" many="false" xml:id="id_39">Validate_sensor.xml</property>
+      <business-events xml:id="id_40"/>
+   </component>
+   <component name="ProcessValidatorPartnerMediator" xml:id="id_41">
+      <implementation.mediator src="ProcessValidatorPartnerMediator.mplan" xml:id="id_42"/>
+      <property name="isResequencing" many="false" override="may" xml:id="id_43">false</property>
+      <business-events xml:id="id_44"/>
+   </component>
+   <reference name="DB_Select_PROCESS_RULES_DATAS" ui:wsdlLocation="DB_Select_PROCESS_RULES_DATAS.wsdl" xml:id="id_45">
+      <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/PSV_v2/ProcessValidatorV2/DB_Select_PROCESS_RULES_DATAS#wsdl.interface(DB_Select_PROCESS_RULES_DATAS_ptt)" xml:id="id_46"/>
+      <binding.jca config="DB_Select_PROCESS_RULES_DATAS_db.jca" portType="DB_Select_PROCESS_RULES_DATAS_ptt" xml:id="id_47"/>
+      <property name="jca.retry.count" type="xs:int" many="false" override="may" xml:id="id_48">4</property>
+      <property name="jca.retry.backoff" type="xs:int" many="false" override="may" xml:id="id_49">2</property>
+      <property name="jca.retry.interval" type="xs:int" many="false" override="may" xml:id="id_50">1</property>
+      <property name="jca.retry.maxInterval" type="xs:string" many="false" override="may" xml:id="id_51">120</property>
+   </reference>
+   <reference name="DB_Select_PROCESS_RULES_INFO" ui:wsdlLocation="DB_Select_PROCESS_RULES_INFO.wsdl" xml:id="id_52">
+      <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/Broker/ProcessValidatorV2/DB_Select_PROCESS_RULES_INFO#wsdl.interface(DB_Select_PROCESS_RULES_INFO_ptt)" xml:id="id_53"/>
+      <binding.jca config="DB_Select_PROCESS_RULES_INFO_db.jca" portType="DB_Select_PROCESS_RULES_INFO_ptt" xml:id="id_54"/>
+      <property name="jca.retry.count" type="xs:int" many="false" override="may" xml:id="id_55">4</property>
+      <property name="jca.retry.backoff" type="xs:int" many="false" override="may" xml:id="id_56">2</property>
+      <property name="jca.retry.interval" type="xs:int" many="false" override="may" xml:id="id_57">1</property>
+      <property name="jca.retry.maxInterval" type="xs:string" many="false" override="may" xml:id="id_58">120</property>
+   </reference>
+   <reference name="DB_Select_PROCESSID_GROUP" ui:wsdlLocation="DB_Select_PROCESSID_GROUP.wsdl" xml:id="id_59">
+      <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/Broker/ProcessValidatorV2/DB_Select_PROCESSID_GROUP#wsdl.interface(DB_Select_PROCESSID_GROUP_ptt)" xml:id="id_60"/>
+      <binding.jca config="DB_Select_PROCESSID_GROUP_db.jca" portType="DB_Select_PROCESSID_GROUP_ptt" xml:id="id_61"/>
+      <property name="jca.retry.count" type="xs:int" many="false" override="may" xml:id="id_62">4</property>
+      <property name="jca.retry.backoff" type="xs:int" many="false" override="may" xml:id="id_63">2</property>
+      <property name="jca.retry.interval" type="xs:int" many="false" override="may" xml:id="id_64">1</property>
+      <property name="jca.retry.maxInterval" type="xs:string" many="false" override="may" xml:id="id_65">120</property>
+   </reference>
+   <reference name="WS_MasterDataEngineService" ui:wsdlLocation="wsdl/local/MasterDataEngineService/MasterDataEngineService.wsdl" xml:id="id_66">
+      <interface.wsdl interface="http://tigo.com/enterprise/business/task/MasterDataEngine/v1#wsdl.interface(EntitiesServicePortType)" xml:id="id_67"/>
+      <binding.ws port="http://tigo.com/enterprise/business/task/MasterDataEngine/v1#wsdl.endpoint(MasterDataEngineService/EntitiesServicePort)" soapVersion="1.1" location="wsdl/local/MasterDataEngineService/MasterDataEngineService.wsdl" streamIncomingAttachments="false" streamOutgoingAttachments="false" xml:id="id_68">
+         <property name="weblogic.wsee.wsat.transaction.flowOption" type="xs:string" many="false" xml:id="id_69">WSDLDriven</property>
+      </binding.ws>
+   </reference>
+   <reference name="DB_Select_PROCESSID_GROUPV2" ui:wsdlLocation="DB_Select_PROCESSID_GROUPV2.wsdl" xml:id="id_70">
+      <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/Broker/ProcessValidatorV2/DB_Select_PROCESSID_GROUPV2#wsdl.interface(DB_Select_PROCESSID_GROUPV2_ptt)" xml:id="id_71"/>
+      <binding.jca config="DB_Select_PROCESSID_GROUPV2_db.jca" portType="DB_Select_PROCESSID_GROUPV2_ptt" xml:id="id_72"/>
+      <property name="jca.retry.count" type="xs:int" many="false" override="may" xml:id="id_73">4</property>
+      <property name="jca.retry.backoff" type="xs:int" many="false" override="may" xml:id="id_74">2</property>
+      <property name="jca.retry.interval" type="xs:int" many="false" override="may" xml:id="id_75">1</property>
+      <property name="jca.retry.maxInterval" type="xs:string" many="false" override="may" xml:id="id_76">120</property>
+   </reference>
+   <wire xml:id="id_77">
+      <source.uri xml:id="id_78">Validate/DB_Select_PROCESS_RULES_INFO</source.uri>
+      <target.uri xml:id="id_79">DB_Select_PROCESS_RULES_INFO</target.uri>
+   </wire>
+   <wire xml:id="id_80">
+      <source.uri xml:id="id_81">Validate/DB_Select_PROCESS_RULES_DATAS</source.uri>
+      <target.uri xml:id="id_82">DB_Select_PROCESS_RULES_DATAS</target.uri>
+   </wire>
+   <wire xml:id="id_83">
+      <source.uri xml:id="id_84">Validate/WS_MasterDataEngineService</source.uri>
+      <target.uri xml:id="id_85">WS_MasterDataEngineService</target.uri>
+   </wire>
+   <wire xml:id="id_86">
+      <source.uri xml:id="id_87">MediatorValidations/ValidateRules.ValidateRules_DecisionFunction_DUM</source.uri>
+      <target.uri xml:id="id_88">ValidateRules/ValidateRules_DecisionFunction_DUM</target.uri>
+   </wire>
+   <wire xml:id="id_89">
+      <source.uri xml:id="id_90">Validate/DB_Select_PROCESSID_GROUP</source.uri>
+      <target.uri xml:id="id_91">DB_Select_PROCESSID_GROUP</target.uri>
+   </wire>
+   <wire xml:id="id_92">
+      <source.uri xml:id="id_93">Validate/DB_Select_PROCESSID_GROUPV2</source.uri>
+      <target.uri xml:id="id_94">DB_Select_PROCESSID_GROUPV2</target.uri>
+   </wire>
+   <wire xml:id="id_95">
+      <source.uri xml:id="id_96">ProcessValidatorPartnerService</source.uri>
+      <target.uri xml:id="id_97">ProcessValidatorPartnerMediator/ProcessValidatorPartnerMediator</target.uri>
+   </wire>
+   <wire xml:id="id_98">
+      <source.uri xml:id="id_99">ProcessValidatorPartnerMediator/Validate.validate_client</source.uri>
+      <target.uri xml:id="id_100">Validate/validate_client</target.uri>
+   </wire>
+   <wire xml:id="id_101">
+      <source.uri xml:id="id_102">Validate/MediatorValidations.MediatorValidations</source.uri>
+      <target.uri xml:id="id_103">MediatorValidations/MediatorValidations</target.uri>
+   </wire>
+   <wire xml:id="id_104">
+      <source.uri xml:id="id_105">MediatorValidations/ValidateRules_GT.ValidateRules_GT_DecisionService_1</source.uri>
+      <target.uri xml:id="id_106">ValidateRules_GT/ValidateRules_GT_DecisionService_1</target.uri>
+   </wire>
+   <wire xml:id="id_107">
+      <source.uri xml:id="id_108">MediatorValidations/EntityError.entityerror_client</source.uri>
+      <target.uri xml:id="id_109">EntityError/entityerror_client</target.uri>
+   </wire>
+   <wire xml:id="id_118">
+      <source.uri xml:id="id_119">ValidateSOADirect</source.uri>
+      <target.uri xml:id="id_120">ProcessValidatorPartnerMediator/ProcessValidatorPartnerMediator</target.uri>
+   </wire>
+</composite>

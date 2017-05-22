@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<properties>
+   <entry key="AG}-63a05a87:14508e850e1:-7c35">NE</entry>
+   <entry key="AG}-63a05a87:14508e850e1:-7c36">FR</entry>
+   <entry key="AG}-63a05a87:14508e850e1:-7c37">EL</entry>
+   <entry key="AG}53ba2277:1455705caff:-7c27">DayOgMonth</entry>
+   <entry key="AG}-63a05a87:14508e850e1:-7c31">SC</entry>
+   <entry key="AG}-63a05a87:14508e850e1:-7c32">SA</entry>
+   <entry key="AG}-63a05a87:14508e850e1:-7c33">RE</entry>
+   <entry key="AG}-205380e8:145d6f6ff96:-7c2e">AccountContractEjecutive</entry>
+   <entry key="AG}-76130fa7:145484bed07:-7c1e">StatusCustomerRange</entry>
+   <entry key="AG}-63a05a87:14508e850e1:-7c34">NN</entry>
+   <entry key="AG}21bfd31e:1458ef1b6ed:-7c37">ACTUALIZACION DE DATOS</entry>
+   <entry key="AG}-63a05a87:14508e850e1:-7c30">SS</entry>
+   <entry key="AG}59fd8f43:145ffef0167:-7c34">CESIÓN DE CONTRATO</entry>
+   <entry key="AG}-63a05a87:14508e850e1:-7c2e">SU</entry>
+   <entry key="AG}7bbded2e:145ad8d8fe5:-7c31">Validation</entry>
+   <entry key="AG}-63a05a87:14508e850e1:-7c2d">TC</entry>
+   <entry key="AG}-1f2f6488:14527b1b760:-7c22">newStatus</entry>
+   <entry key="AG}-63a05a87:14508e850e1:-7c2f">ST</entry>
+   <entry key="AG}-1f2f6488:14527b1b760:-7c23">currentStatus</entry>
+   <entry key="AG}-1f2f6488:14527b1b760:-7c24">validateStatus</entry>
+   <entry key="AG}-162d9a23:1462a7fcad7:-7c36">AJUSTE DE FACTURA Y SALDO</entry>
+   <entry key="DG}21bfd31e:1458ef1b6ed:-7c2c">Constante de Validación</entry>
+   <entry key="AG}21bfd31e:1458ef1b6ed:-7c2e">OK</entry>
+   <entry key="AG}21bfd31e:1458ef1b6ed:-7c2c">ValidationAction_global</entry>
+   <entry key="AG}21bfd31e:1458ef1b6ed:-7c2d">VALIDATE</entry>
+   <entry key="DG}-1f2f6488:14527b1b760:-7c37">Regla validada</entry>
+   <entry key="AG}-162d9a23:1462a7fcad7:-7c33">ADJUSTMENT TO ACCOUNT INVOICE</entry>
+   <entry key="AG}-162d9a23:1462a7fcad7:-7c32">ADJUSTMENT PREPAID</entry>
+   <entry key="AG}-162d9a23:1462a7fcad7:-7c35">ADJUSTMENT TO TOTAL INVOICE</entry>
+   <entry key="AG}-162d9a23:1462a7fcad7:-7c34">ADJUSTMENT TO ITEM INVOICE</entry>
+   <entry key="AG}-1f2f6488:14527b1b760:-7c1d">setGlobalValidatedRule</entry>
+   <entry key="AG}-1f2f6488:14527b1b760:-7c1c">FinalRule</entry>
+   <entry key="AG}53ba2277:1455705caff:-7c36">CAMBIO DE PLAN</entry>
+   <entry key="AG}7bbded2e:145ad8d8fe5:-7c2f">INVALID</entry>
+   <entry key="AG}21bfd31e:1458ef1b6ed:-7c30">CheckValidate</entry>
+   <entry key="AG}7bbded2e:145ad8d8fe5:-7c2e">VALID</entry>
+   <entry key="AG}-76130fa7:145484bed07:-7c28">TimeCountMonth</entry>
+   <entry key="AG}59fd8f43:145ffef0167:-7c25">F</entry>
+   <entry key="AG}59fd8f43:145ffef0167:-7c27">InvoiceCycle</entry>
+   <entry key="AG}-5b8db084:14504fc9f3c:-7c32">RENOVACION EQUIPO CONTRATO</entry>
+   <entry key="AG}-205380e8:145d6f6ff96:-7c36">REACTIVACION  PROMESA  PAGO</entry>
+   <entry key="AG}-1f2f6488:14527b1b760:-7c37">ValidatedRule_global</entry>
+   <entry key="AG}-76130fa7:145484bed07:-7c25">PaidInvoiceRanges</entry>
+</properties>

@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<rul:rules xmlns:rul="http://tigo.com/rules/v1/schema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://tigo.com/rules/v1/schema file:/E:/Broker/ProcessValidatorV2/xsd/pvs/BasicRules_schema.xsd">
+   <rule>
+      <id>id118</id>
+      <name>name119</name>
+      <add:additionals xmlns:add="http://xmlns.tigo.com/AdditionalSchema/V1"/>
+      <entities/>
+   </rule>
+   <rule>
+      <id>id135</id>
+      <name>name136</name>
+      <add:additionals xmlns:add="http://xmlns.tigo.com/AdditionalSchema/V1"/>
+      <entities/>
+   </rule>
+   <rule>
+      <id>id152</id>
+      <name>name153</name>
+      <add:additionals xmlns:add="http://xmlns.tigo.com/AdditionalSchema/V1"/>
+      <entities/>
+   </rule>
+</rul:rules>

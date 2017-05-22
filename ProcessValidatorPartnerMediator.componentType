@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<componentType xmlns="http://xmlns.oracle.com/sca/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ui="http://xmlns.oracle.com/soa/designer/" xml:id="id_1">
+   <service name="ProcessValidatorPartnerMediator" ui:wsdlLocation="wsdl/ProcessValidatorPartner.wsdl" xml:id="id_2">
+      <interface.wsdl interface="http://xmlns.tigo.com/ProcessValidator/ProcessValidatorService/v2#wsdl.interface(ProcessValidator)" xml:id="id_3"/>
+   </service>
+   <reference name="Validate.validate_client" ui:wsdlLocation="ProcessValidateWrapper.wsdl" xml:id="id_4">
+      <interface.wsdl interface="http://xmlns.tigo.com/ProcessValidator/Validate#wsdl.interface(ProcessValidator)" xml:id="id_5"/>
+   </reference>
+</componentType>

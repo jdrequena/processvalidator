@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<adapter-config name="DB_Select_PROCESS_RULES_DATAS" adapter="Database Adapter" wsdlLocation="DB_Select_PROCESS_RULES_DATAS.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+   <connection-factory location="eis/DB/DBConnection" UIConnectionName="con_hn_dev" adapterRef=""/>
+   <endpoint-interaction portType="DB_Select_PROCESS_RULES_DATAS_ptt" operation="DB_Select_PROCESS_RULES_DATAS">
+      <interaction-spec className="oracle.tip.adapter.db.DBPureSQLInteractionSpec">
+         <property name="SqlString" value="SELECT r.rule_id as ruleID, r.name, rd.data_id as dataID  FROM ID_VALIDATOR.RULES r   INNER JOIN ID_VALIDATOR.PROCESS_RULES pr  ON pr.rule_ID = r.rule_ID  INNER JOIN ID_VALIDATOR.RULES_DATA rd  ON rd.rule_ID = r.rule_ID  WHERE pr.process_ID = #process_ID ORDER BY r.rule_ID"/>
+         <property name="GetActiveUnitOfWork" value="false"/>
+      </interaction-spec>
+      <input/>
+      <output/>
+   </endpoint-interaction>
+</adapter-config>

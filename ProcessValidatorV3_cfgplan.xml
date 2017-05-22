@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<SOAConfigPlan xmlns:jca="http://platform.integration.oracle/blocks/adapter/fw/metadata" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:orawsp="http://schemas.oracle.com/ws/2006/01/policy" xmlns:edl="http://schemas.oracle.com/events/edl" xmlns="http://schemas.oracle.com/soa/configplan">
+   <composite name="ProcessValidatorV2">
+      <import>
+         <searchReplace>
+            <search/>
+            <replace/>
+         </searchReplace>
+      </import>
+      <service name="ProcessValidatorPartnerService">
+         <binding type="ws">
+            <attribute name="port">
+               <replace>http://xmlns.tigo.com/ProcessValidator/ProcessValidatorService/v2#wsdl.endpoint(ProcessValidatorPartnerService/ProcessValidator_pt)</replace>
+            </attribute>
+            <property name="weblogic.wsee.wsat.transaction.flowOption">
+               <replace>NEVER</replace>
+            </property>
+         </binding>
+      </service>
+      <property name="auditLevel">
+         <replace>Development</replace>
+      </property>
+      <property name="validateSchema">
+         <replace>true</replace>
+      </property>
+      <component name="Validate">
+         <property name="configuration.monitorLocation">
+            <replace>Validate.monitor</replace>
+         </property>
+         <property name="configuration.sensorLocation">
+            <replace>Validate_sensor.xml</replace>
+         </property>
+      </component>
+      <component name="ProcessValidatorPartnerMediator">
+         <property name="isResequencing">
+            <replace>false</replace>
+         </property>
+      </component>
+      <component name="EntityError">
+         <property name="bpel.config.transaction">
+            <replace>required</replace>
+         </property>
+         <property name="bpel.config.oneWayDeliveryPolicy">
+            <replace>async.persist</replace>
+         </property>
+      </component>
+      <reference name="WS_MasterDataEngineService">
+         <binding type="ws">
+            <attribute name="port">
+               <replace>http://tigo.com/enterprise/business/task/MasterDataEngine/v1#wsdl.endpoint(MasterDataEngineService/EntitiesServicePort)</replace>
+            </attribute>
+            <attribute name="location">
+               <replace>wsdl/local/MasterDataEngineService/MasterDataEngineService.wsdl</replace>
+            </attribute>
+            <property name="weblogic.wsee.wsat.transaction.flowOption">
+               <replace>WSDLDriven</replace>
+            </property>
+         </binding>
+      </reference>
+      <reference name="DB_Select_PROCESS_RULES_DATAS">
+         <property name="jca.retry.count">
+            <replace>4</replace>
+         </property>
+         <property name="jca.retry.interval">
+            <replace>1</replace>
+         </property>
+         <property name="jca.retry.backoff">
+            <replace>2</replace>
+         </property>
+         <property name="jca.retry.maxInterval">
+            <replace>120</replace>
+         </property>
+         <binding type="jca"/>
+      </reference>
+      <reference name="DB_Select_PROCESSID_GROUP">
+         <property name="jca.retry.count">
+            <replace>4</replace>
+         </property>
+         <property name="jca.retry.interval">
+            <replace>1</replace>
+         </property>
+         <property name="jca.retry.backoff">
+            <replace>2</replace>
+         </property>
+         <property name="jca.retry.maxInterval">
+            <replace>120</replace>
+         </property>
+         <binding type="jca"/>
+      </reference>
+      <reference name="DB_Select_PROCESS_RULES_INFO">
+         <property name="jca.retry.count">
+            <replace>4</replace>
+         </property>
+         <property name="jca.retry.interval">
+            <replace>1</replace>
+         </property>
+         <property name="jca.retry.backoff">
+            <replace>2</replace>
+         </property>
+         <property name="jca.retry.maxInterval">
+            <replace>120</replace>
+         </property>
+         <binding type="jca"/>
+      </reference>
+   </composite>
+   <wsdlAndSchema name="DB_Select_PROCESSID_GROUP.wsdl|DB_Select_PROCESSID_GROUP_db.jca|DB_Select_PROCESS_RULES_DATAS.wsdl|DB_Select_PROCESS_RULES_DATAS_db.jca|DB_Select_PROCESS_RULES_INFO.wsdl|DB_Select_PROCESS_RULES_INFO_db.jca|MasterDataEngineServiceWrapper.wsdl|MediatorValidationsWrapper.wsdl|MediatorValidationsWrapper1.wsdl|monitor.config|ProcessValidateWrapper.wsdl|ValidateRules_DecisionFunction_DUM.wsdl|ValidateRules_GT_DecisionService_1.wsdl|ValidateRules_GT_ValidateRules_GT_DecisionService_1.wsdl|wsdl/local/MasterDataEngineService/MasterDataEngineService.wsdl|wsdl/local/MasterDataEngineService/MasterDataEngine_schema.xsd|wsdl/mediator/MediatorValidations.wsdl|wsdl/process/ProcessValidate.wsdl|wsdl/ProcessValidatorPartner.wsdl|xsd/commons/resources/GeneralRequest.xsd|xsd/commons/resources/GeneralResponse.xsd|xsd/commons/resources/Parameters.xsd|xsd/CommonsResources/XSD/AdditionalSchemaV1.xsd|xsd/CommonsResources/XSD/BillingAccountSchemaV1.xsd|xsd/CommonsResources/XSD/ClientSchemaV1.xsd|xsd/CommonsResources/XSD/HeaderV1.xsd|xsd/CommonsResources/XSD/ParametersTypeV2.xsd|xsd/CommonsResources/XSD/ProductSchemaV1.xsd|xsd/CommonsResources/XSD/RequestHeaderV3.xsd|xsd/CommonsResources/XSD/ResponseHeaderV3.xsd|xsd/CommonsResources/XSD/ServiceAccountSchemaV1.xsd|xsd/DB_Select_PROCESSID_GROUP_table.xsd|xsd/DB_Select_PROCESS_RULES_DATAS.xsd|xsd/DB_Select_PROCESS_RULES_INFO.xsd|xsd/DecisionServicePrimitiveTypes.xsd|xsd/process/ConfirmValidationRequest.xsd|xsd/process/GetValidationRequest.xsd|xsd/process/ProcessDetailsSchemaV1.xsd|xsd/process/RoleSchemaV1.xsd|xsd/process/RuleSchemaV1.xsd|xsd/process/StatusSchemaV1.xsd|xsd/process/StepSchemaV1.xsd|xsd/process/ValidateConditionalRequest.xsd|xsd/process/ValidatorFaultResponse.xsd|xsd/process/ValidatorGeneralResponse.xsd|xsd/pvs/BasicEntities_schema.xsd|xsd/pvs/BasicRulesData_schema.xsd|xsd/pvs/BasicRules_schema.xsd|xsd/pvs/BasicValidate_schema.xsd|xsd/pvs/rules/PV_Rules_DUM_Status_schema.xsd|xsd/pvs/rules/ScalingRule.xsd|xsd/ValidateRulesGT_TEST_DecisionService_1MessageTypes.xsd|xsd/ValidateRulesGT_TEST_DecisionService_1Types.xsd|xsd/ValidateRules_DecisionFunction_DUMTypes.xsd|xsd/ValidateRules_GT_DecisionService_1MessageTypes.xsd|xsd/ValidateRules_GT_DecisionService_1Types.xsd|xsd/ValidateRules_GT_ValidateRules_GT_DecisionService_1MessageTypes.xsd|xsd/ValidateRules_GT_ValidateRules_GT_DecisionService_1Types.xsd|xsd/ValidateRules_GT_ValidateRules_GT_ERROR_DecisionServiceMessageTypes.xsd|xsd/ValidateRules_GT_ValidateRules_GT_ERROR_DecisionServiceTypes.xsd">
+      <searchReplace>
+         <search>osmsoa.tigo.com.gt:7001</search>
+         <replace>osmsoa.tigo.com.gt:7001</replace>
+      </searchReplace>
+   </wsdlAndSchema>
+</SOAConfigPlan>

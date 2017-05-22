@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<wsdl:definitions targetNamespace="http://xmlns.tigo.com/ProcessValidator/Validations" xmlns:tns="http://xmlns.tigo.com/ProcessValidator/Validations" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:sch="http://tigo.com/enterprise/business/entities/validate/v1/schema" xmlns:gr="http://tigo.com/enterprise/resources/GeneralResponse/v1/schema">
+   <wsdl:types>
+      <xsd:schema targetNamespace="http://xmlns.tigo.com/ProcessValidator/Validations" elementFormDefault="qualified">
+         <xsd:import schemaLocation="../../xsd/pvs/BasicValidate_schema.xsd" namespace="http://tigo.com/enterprise/business/entities/validate/v1/schema"/>
+         <xsd:import namespace="http://tigo.com/enterprise/resources/GeneralResponse/v1/schema" schemaLocation="../../xsd/commons/resources/GeneralResponse.xsd"/>
+      </xsd:schema>
+   </wsdl:types>
+   <wsdl:message name="ValidateRequestMessage">
+      <wsdl:part name="part" element="sch:validation"/>
+   </wsdl:message>
+   <wsdl:message name="ValidateResponseMessage">
+      <wsdl:part name="part" element="sch:validatedRule"/>
+   </wsdl:message>
+   <wsdl:message name="GeneralResponseMessage">
+      <wsdl:part name="fault" element="gr:GeneralResponse"/>
+   </wsdl:message>
+   <wsdl:portType name="MediatorValidationsPortType">
+      <wsdl:operation name="Validate">
+         <wsdl:input message="tns:ValidateRequestMessage"/>
+         <wsdl:output message="tns:ValidateResponseMessage"/>
+         <wsdl:fault message="tns:GeneralResponseMessage" name="fault"/>
+      </wsdl:operation>
+   </wsdl:portType>
+</wsdl:definitions>

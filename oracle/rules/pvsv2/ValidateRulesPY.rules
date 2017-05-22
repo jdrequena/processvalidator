@@ -1,0 +1,2446 @@
+<?xml version="1.0"?>
+<RuleDictionary id="G}1955eea5:145f205160c:-7b9d" xmlns="http://xmlns.oracle.com/rules/dictionary">
+    <Name>ValidateRulesPY</Name>
+    <Alias>ValidateRulesPY</Alias>
+    <Package>pvsv2</Package>
+    <Version>11.1.1.0.0</Version>
+    <DataModel id="L}2">
+        <CreationUpdateNumber>2</CreationUpdateNumber>
+        <Function id="G}1955eea5:145f205160c:-7b78">
+            <Name>getDataEntity</Name>
+            <Alias>getDataEntity</Alias>
+            <Visible>true</Visible>
+            <CreationUpdateNumber>26</CreationUpdateNumber>
+            <IDofType>J}java.lang.String</IDofType>
+            <ListContentID>B}nil</ListContentID>
+            <Type>String</Type>
+            <IDofBucketSet>B}nil</IDofBucketSet>
+            <Form>Structured</Form>
+            <FormalParameter id="G}1955eea5:145f205160c:-7b77">
+                <Name>entityList</Name>
+                <Alias>entityList</Alias>
+                <Visible>true</Visible>
+                <CreationUpdateNumber>39</CreationUpdateNumber>
+                <IDofType>J}java.util.List</IDofType>
+                <ListContentID>B}nil</ListContentID>
+                <Type>List</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+            </FormalParameter>
+            <FormalParameter id="G}1955eea5:145f205160c:-7b76">
+                <Name>entityCode</Name>
+                <Alias>entityCode</Alias>
+                <Visible>true</Visible>
+                <CreationUpdateNumber>42</CreationUpdateNumber>
+                <IDofType>J}java.lang.String</IDofType>
+                <ListContentID>B}nil</ListContentID>
+                <Type>String</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+            </FormalParameter>
+            <Action id="L}247">
+                <Form>Assign New</Form>
+                <Target>String</Target>
+                <ResolvedTarget>`J}java.lang.String`</ResolvedTarget>
+                <Expression id="L}248">
+                    <Value>&quot;ERROR&quot;</Value>
+                    <ResolvedValue>&quot;ERROR&quot;</ResolvedValue>
+                    <IsConstant>false</IsConstant>
+                    <ParameterID>B}nil</ParameterID>
+                    <Customizable>false</Customizable>
+                </Expression>
+                <Variable>entityValue</Variable>
+            </Action>
+            <Action id="L}249">
+                <Form>Assign New</Form>
+                <Target>int</Target>
+                <ResolvedTarget>`J}int`</ResolvedTarget>
+                <Expression id="L}250">
+                    <Value>0</Value>
+                    <ResolvedValue>0</ResolvedValue>
+                    <IsConstant>false</IsConstant>
+                    <ParameterID>B}nil</ParameterID>
+                    <Customizable>false</Customizable>
+                </Expression>
+                <Variable>i</Variable>
+            </Action>
+            <Action id="L}251">
+                <Form>While</Form>
+                <Expression id="L}279">
+                    <Value>i &lt; entityList.size()</Value>
+                    <ResolvedValue>`L}249` &lt; `G}1955eea5:145f205160c:-7b77`.`J}public abstract int java.util.List.size()`()</ResolvedValue>
+                    <IsConstant>false</IsConstant>
+                    <ParameterID>B}nil</ParameterID>
+                    <Customizable>false</Customizable>
+                </Expression>
+                <Action id="L}252">
+                    <Form>Assign New</Form>
+                    <Target>EntityType</Target>
+                    <ResolvedTarget>`J}com.tigo.entities.v1.schema.EntityType`</ResolvedTarget>
+                    <Expression id="L}253">
+                        <Value>(EntityType) entityList.get(i)</Value>
+                        <ResolvedValue>(`J}com.tigo.entities.v1.schema.EntityType`) `G}1955eea5:145f205160c:-7b77`.`J}public abstract java.lang.Object java.util.List.get(int)`(`L}249`)</ResolvedValue>
+                        <IsConstant>false</IsConstant>
+                        <ParameterID>B}nil</ParameterID>
+                        <Customizable>false</Customizable>
+                    </Expression>
+                    <Variable>entity</Variable>
+                </Action>
+                <Action id="L}254">
+                    <Form>If</Form>
+                    <Expression id="L}259">
+                        <Value>entity.code.equalsIgnoreCase(entityCode)</Value>
+                        <ResolvedValue>`L}252`.`J}com.tigo.entities.v1.schema.EntityType.{code}`.`J}public boolean java.lang.String.equalsIgnoreCase(java.lang.String)`(`G}1955eea5:145f205160c:-7b76`)</ResolvedValue>
+                        <IsConstant>false</IsConstant>
+                        <ParameterID>B}nil</ParameterID>
+                        <Customizable>false</Customizable>
+                    </Expression>
+                    <Action id="L}255">
+                        <Form>Assign</Form>
+                        <Target>entityValue</Target>
+                        <ResolvedTarget>`L}247`</ResolvedTarget>
+                        <Expression id="L}256">
+                            <Value>entity.value</Value>
+                            <ResolvedValue>`L}252`.`J}com.tigo.entities.v1.schema.EntityType.{value}`</ResolvedValue>
+                            <IsConstant>false</IsConstant>
+                            <ParameterID>B}nil</ParameterID>
+                            <Customizable>false</Customizable>
+                        </Expression>
+                    </Action>
+                    <Action id="L}257">
+                        <Form>Assign</Form>
+                        <Target>i</Target>
+                        <ResolvedTarget>`L}249`</ResolvedTarget>
+                        <Expression id="L}258">
+                            <Value>entityList.size() +1</Value>
+                            <ResolvedValue>`G}1955eea5:145f205160c:-7b77`.`J}public abstract int java.util.List.size()`() +1</ResolvedValue>
+                            <IsConstant>false</IsConstant>
+                            <ParameterID>B}nil</ParameterID>
+                            <Customizable>false</Customizable>
+                        </Expression>
+                    </Action>
+                </Action>
+                <Action id="L}260">
+                    <Form>Else</Form>
+                    <Action id="L}261">
+                        <Form>Assign New</Form>
+                        <Target>String</Target>
+                        <ResolvedTarget>`J}java.lang.String`</ResolvedTarget>
+                        <Expression id="L}262">
+                            <Value>&quot;ERROR&quot;</Value>
+                            <ResolvedValue>&quot;ERROR&quot;</ResolvedValue>
+                            <IsConstant>false</IsConstant>
+                            <ParameterID>B}nil</ParameterID>
+                            <Customizable>false</Customizable>
+                        </Expression>
+                        <Variable>recursiveEntity</Variable>
+                    </Action>
+                    <Action id="L}263">
+                        <Form>If</Form>
+                        <Expression id="L}276">
+                            <Value>entity.entities !=null &amp;&amp; entity.entities.entity != null &amp;&amp; entity.entities.entity.size() &gt; 0</Value>
+                            <ResolvedValue>`L}252`.`J}com.tigo.entities.v1.schema.EntityType.{entities}` !=null &amp;&amp; `L}252`.`J}com.tigo.entities.v1.schema.EntityType.{entities}`.`J}com.tigo.entities.v1.schema.EntitiesArray.{entity}` != null &amp;&amp; `L}252`.`J}com.tigo.entities.v1.schema.EntityType.{entities}`.`J}com.tigo.entities.v1.schema.EntitiesArray.{entity}`.`J}public abstract int java.util.List.size()`() &gt; 0</ResolvedValue>
+                            <IsConstant>false</IsConstant>
+                            <ParameterID>B}nil</ParameterID>
+                            <Customizable>false</Customizable>
+                        </Expression>
+                        <Action id="L}264">
+                            <Form>Assign</Form>
+                            <Target>recursiveEntity</Target>
+                            <ResolvedTarget>`L}261`</ResolvedTarget>
+                            <Expression id="L}265">
+                                <Value>getDataEntity(entity.entities.entity,entityCode)</Value>
+                                <ResolvedValue>`G}1955eea5:145f205160c:-7b78`(`L}252`.`J}com.tigo.entities.v1.schema.EntityType.{entities}`.`J}com.tigo.entities.v1.schema.EntitiesArray.{entity}`,`G}1955eea5:145f205160c:-7b76`)</ResolvedValue>
+                                <IsConstant>false</IsConstant>
+                                <ParameterID>B}nil</ParameterID>
+                                <Customizable>false</Customizable>
+                            </Expression>
+                        </Action>
+                        <Action id="L}266">
+                            <Form>Call</Form>
+                            <Target>print</Target>
+                            <ResolvedTarget>`B}function.println`</ResolvedTarget>
+                            <Expression id="L}267">
+                                <Value>recursiveEntity</Value>
+                                <ResolvedValue>`L}261`</ResolvedValue>
+                                <IsConstant>false</IsConstant>
+                                <ParameterAlias>message</ParameterAlias>
+                                <ParameterID>B}function.println_message</ParameterID>
+                                <Customizable>false</Customizable>
+                            </Expression>
+                        </Action>
+                        <Action id="L}268">
+                            <Form>If</Form>
+                            <Expression id="L}275">
+                                <Value>!recursiveEntity.equalsIgnoreCase(&quot;ERROR&quot;)</Value>
+                                <ResolvedValue>!`L}261`.`J}public boolean java.lang.String.equalsIgnoreCase(java.lang.String)`(&quot;ERROR&quot;)</ResolvedValue>
+                                <IsConstant>false</IsConstant>
+                                <ParameterID>B}nil</ParameterID>
+                                <Customizable>false</Customizable>
+                            </Expression>
+                            <Action id="L}269">
+                                <Form>Assign</Form>
+                                <Target>entityValue</Target>
+                                <ResolvedTarget>`L}247`</ResolvedTarget>
+                                <Expression id="L}270">
+                                    <Value>recursiveEntity</Value>
+                                    <ResolvedValue>`L}261`</ResolvedValue>
+                                    <IsConstant>false</IsConstant>
+                                    <ParameterID>B}nil</ParameterID>
+                                    <Customizable>false</Customizable>
+                                </Expression>
+                            </Action>
+                            <Action id="L}271">
+                                <Form>Call</Form>
+                                <Target>print</Target>
+                                <ResolvedTarget>`B}function.println`</ResolvedTarget>
+                                <Expression id="L}272">
+                                    <Value>entityValue</Value>
+                                    <ResolvedValue>`L}247`</ResolvedValue>
+                                    <IsConstant>false</IsConstant>
+                                    <ParameterAlias>message</ParameterAlias>
+                                    <ParameterID>B}function.println_message</ParameterID>
+                                    <Customizable>false</Customizable>
+                                </Expression>
+                            </Action>
+                            <Action id="L}273">
+                                <Form>Assign</Form>
+                                <Target>i</Target>
+                                <ResolvedTarget>`L}249`</ResolvedTarget>
+                                <Expression id="L}274">
+                                    <Value>entityList.size() + 1</Value>
+                                    <ResolvedValue>`G}1955eea5:145f205160c:-7b77`.`J}public abstract int java.util.List.size()`() + 1</ResolvedValue>
+                                    <IsConstant>false</IsConstant>
+                                    <ParameterID>B}nil</ParameterID>
+                                    <Customizable>false</Customizable>
+                                </Expression>
+                            </Action>
+                        </Action>
+                    </Action>
+                </Action>
+                <Action id="L}277">
+                    <Form>Assign</Form>
+                    <Target>i</Target>
+                    <ResolvedTarget>`L}249`</ResolvedTarget>
+                    <Expression id="L}278">
+                        <Value>i + 1</Value>
+                        <ResolvedValue>`L}249` + 1</ResolvedValue>
+                        <IsConstant>false</IsConstant>
+                        <ParameterID>B}nil</ParameterID>
+                        <Customizable>false</Customizable>
+                    </Expression>
+                </Action>
+            </Action>
+            <Action id="L}280">
+                <Form>Return</Form>
+                <Expression id="L}281">
+                    <Value>entityValue.trim()</Value>
+                    <ResolvedValue>`L}247`.`J}public java.lang.String java.lang.String.trim()`()</ResolvedValue>
+                    <IsConstant>false</IsConstant>
+                    <ParameterID>B}nil</ParameterID>
+                    <Customizable>false</Customizable>
+                </Expression>
+            </Action>
+            <ValidationUpdateNumber>10</ValidationUpdateNumber>
+        </Function>
+        <JaxbFactType id="J}com.tigo.xmlns.additionalschema.v1.AdditionalType">
+            <Name>com.tigo.xmlns.additionalschema.v1.AdditionalType</Name>
+            <Alias>AdditionalType</Alias>
+            <Visible>true</Visible>
+            <CreationUpdateNumber>5</CreationUpdateNumber>
+            <Property id="J}com.tigo.xmlns.additionalschema.v1.AdditionalType.{name}">
+                <Name>name</Name>
+                <Alias>name</Alias>
+                <Visible>true</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <IDofType>J}java.lang.String</IDofType>
+                <ListContentID>B}nil</ListContentID>
+                <Type>String</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+                <Writable>true</Writable>
+                <Readable>true</Readable>
+                <Local>true</Local>
+                <Expression id="L}15">
+                    <IsConstant>false</IsConstant>
+                    <ParameterID>B}nil</ParameterID>
+                    <Customizable>false</Customizable>
+                </Expression>
+                <PrimaryKey>false</PrimaryKey>
+            </Property>
+            <Property id="J}com.tigo.xmlns.additionalschema.v1.AdditionalType.{value}">
+                <Name>value</Name>
+                <Alias>value</Alias>
+                <Visible>true</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <IDofType>J}java.lang.String</IDofType>
+                <ListContentID>B}nil</ListContentID>
+                <Type>String</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+                <Writable>true</Writable>
+                <Readable>true</Readable>
+                <Local>true</Local>
+                <Expression id="L}16">
+                    <IsConstant>false</IsConstant>
+                    <ParameterID>B}nil</ParameterID>
+                    <Customizable>false</Customizable>
+                </Expression>
+                <PrimaryKey>false</PrimaryKey>
+            </Property>
+            <Method id="J}public java.lang.String com.tigo.xmlns.additionalschema.v1.AdditionalType.getValue()">
+                <Name>getValue</Name>
+                <Alias>getValue</Alias>
+                <Visible>false</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <Modifiers id="L}8">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <Access>1</Access>
+                    <isStatic>false</isStatic>
+                    <isFinal>false</isFinal>
+                    <isAbstract>false</isAbstract>
+                </Modifiers>
+                <Static>false</Static>
+                <IDofType>J}java.lang.String</IDofType>
+                <Type>String</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+            </Method>
+            <Method id="J}public void com.tigo.xmlns.additionalschema.v1.AdditionalType.setValue(java.lang.String)">
+                <Name>setValue</Name>
+                <Alias>setValue</Alias>
+                <Visible>false</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <OverloadedParameter id="G}1955eea5:145f205160c:-7b9a">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <IDsOfType>J}java.lang.String</IDsOfType>
+                </OverloadedParameter>
+                <Modifiers id="L}10">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <Access>1</Access>
+                    <isStatic>false</isStatic>
+                    <isFinal>false</isFinal>
+                    <isAbstract>false</isAbstract>
+                </Modifiers>
+                <Static>false</Static>
+                <IDofType>J}void</IDofType>
+                <Type>void</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+            </Method>
+            <Method id="J}public java.lang.String com.tigo.xmlns.additionalschema.v1.AdditionalType.getName()">
+                <Name>getName</Name>
+                <Alias>getName</Alias>
+                <Visible>false</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <Modifiers id="L}12">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <Access>1</Access>
+                    <isStatic>false</isStatic>
+                    <isFinal>false</isFinal>
+                    <isAbstract>false</isAbstract>
+                </Modifiers>
+                <Static>false</Static>
+                <IDofType>J}java.lang.String</IDofType>
+                <Type>String</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+            </Method>
+            <Method id="J}public void com.tigo.xmlns.additionalschema.v1.AdditionalType.setName(java.lang.String)">
+                <Name>setName</Name>
+                <Alias>setName</Alias>
+                <Visible>false</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <OverloadedParameter id="G}1955eea5:145f205160c:-7b99">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <IDsOfType>J}java.lang.String</IDsOfType>
+                </OverloadedParameter>
+                <Modifiers id="L}14">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <Access>1</Access>
+                    <isStatic>false</isStatic>
+                    <isFinal>false</isFinal>
+                    <isAbstract>false</isAbstract>
+                </Modifiers>
+                <Static>false</Static>
+                <IDofType>J}void</IDofType>
+                <Type>void</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+            </Method>
+            <Constructor id="J}public com.tigo.xmlns.additionalschema.v1.AdditionalType()">
+                <Visible>true</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <Modifiers id="L}6">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <Access>1</Access>
+                    <isStatic>false</isStatic>
+                    <isFinal>false</isFinal>
+                    <isAbstract>false</isAbstract>
+                </Modifiers>
+            </Constructor>
+            <IDofSuperClass>J}java.lang.Object</IDofSuperClass>
+            <ValidationUpdateNumber>5</ValidationUpdateNumber>
+            <Source>xsd/pvs/BasicValidate_schema.xsd</Source>
+            <IsArray>false</IsArray>
+            <IDofArrayComponentType>B}nil</IDofArrayComponentType>
+            <SupportXPath>false</SupportXPath>
+            <IsInterface>false</IsInterface>
+            <Modifiers id="L}197">
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <Access>1</Access>
+                <isStatic>false</isStatic>
+                <isFinal>false</isFinal>
+                <isAbstract>false</isAbstract>
+            </Modifiers>
+            <EnumBucketSetID>B}nil</EnumBucketSetID>
+            <Timestamp>0</Timestamp>
+            <ENUM>false</ENUM>
+            <XmlName>//xs:complexType[@name=&apos;additionalType&apos;]</XmlName>
+            <JAXB2.0>true</JAXB2.0>
+            <NodeName>additionalType</NodeName>
+            <Namespace>http://xmlns.tigo.com/AdditionalSchema/V1</Namespace>
+        </JaxbFactType>
+        <JaxbFactType id="J}com.tigo.xmlns.additionalschema.v1.AdditionalsType">
+            <Name>com.tigo.xmlns.additionalschema.v1.AdditionalsType</Name>
+            <Alias>AdditionalsType</Alias>
+            <Visible>true</Visible>
+            <CreationUpdateNumber>5</CreationUpdateNumber>
+            <Property id="J}com.tigo.xmlns.additionalschema.v1.AdditionalsType.{additional}">
+                <Name>additional</Name>
+                <Alias>additional</Alias>
+                <Visible>true</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <IDofType>J}java.util.List</IDofType>
+                <ListContentID>J}com.tigo.xmlns.additionalschema.v1.AdditionalType</ListContentID>
+                <Type>List</Type>
+                <ListContentType>AdditionalType</ListContentType>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+                <Writable>true</Writable>
+                <Readable>true</Readable>
+                <Local>true</Local>
+                <Expression id="L}25">
+                    <IsConstant>false</IsConstant>
+                    <ParameterID>B}nil</ParameterID>
+                    <Customizable>false</Customizable>
+                </Expression>
+                <PrimaryKey>false</PrimaryKey>
+            </Property>
+            <Method id="J}public void com.tigo.xmlns.additionalschema.v1.AdditionalsType.setAdditional(java.util.List)">
+                <Name>setAdditional</Name>
+                <Alias>setAdditional</Alias>
+                <Visible>false</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <OverloadedParameter id="G}1955eea5:145f205160c:-7b98">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <IDsOfType>J}java.util.List</IDsOfType>
+                </OverloadedParameter>
+                <Modifiers id="L}22">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <Access>1</Access>
+                    <isStatic>false</isStatic>
+                    <isFinal>false</isFinal>
+                    <isAbstract>false</isAbstract>
+                </Modifiers>
+                <Static>false</Static>
+                <IDofType>J}void</IDofType>
+                <Type>void</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+            </Method>
+            <Method id="J}public java.util.List com.tigo.xmlns.additionalschema.v1.AdditionalsType.getAdditional()">
+                <Name>getAdditional</Name>
+                <Alias>getAdditional</Alias>
+                <Visible>false</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <Modifiers id="L}24">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <Access>1</Access>
+                    <isStatic>false</isStatic>
+                    <isFinal>false</isFinal>
+                    <isAbstract>false</isAbstract>
+                </Modifiers>
+                <Static>false</Static>
+                <IDofType>J}java.util.List</IDofType>
+                <Type>List</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+            </Method>
+            <Constructor id="J}public com.tigo.xmlns.additionalschema.v1.AdditionalsType()">
+                <Visible>true</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <Modifiers id="L}20">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <Access>1</Access>
+                    <isStatic>false</isStatic>
+                    <isFinal>false</isFinal>
+                    <isAbstract>false</isAbstract>
+                </Modifiers>
+            </Constructor>
+            <IDofSuperClass>J}java.lang.Object</IDofSuperClass>
+            <ValidationUpdateNumber>5</ValidationUpdateNumber>
+            <Source>xsd/pvs/BasicValidate_schema.xsd</Source>
+            <IsArray>false</IsArray>
+            <IDofArrayComponentType>B}nil</IDofArrayComponentType>
+            <SupportXPath>false</SupportXPath>
+            <IsInterface>false</IsInterface>
+            <Modifiers id="L}201">
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <Access>1</Access>
+                <isStatic>false</isStatic>
+                <isFinal>false</isFinal>
+                <isAbstract>false</isAbstract>
+            </Modifiers>
+            <EnumBucketSetID>B}nil</EnumBucketSetID>
+            <Timestamp>0</Timestamp>
+            <ENUM>false</ENUM>
+            <XmlName>//xs:complexType[@name=&apos;additionalsType&apos;]</XmlName>
+            <JAXB2.0>true</JAXB2.0>
+            <NodeName>additionalsType</NodeName>
+            <Namespace>http://xmlns.tigo.com/AdditionalSchema/V1</Namespace>
+        </JaxbFactType>
+        <JaxbFactType id="J}com.tigo.rules.v1.schema.RuleType">
+            <Name>com.tigo.rules.v1.schema.RuleType</Name>
+            <Alias>RuleType</Alias>
+            <Visible>true</Visible>
+            <CreationUpdateNumber>5</CreationUpdateNumber>
+            <Property id="J}com.tigo.rules.v1.schema.RuleType.{additionals}">
+                <Name>additionals</Name>
+                <Alias>additionals</Alias>
+                <Visible>true</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <IDofType>J}com.tigo.xmlns.additionalschema.v1.AdditionalsType</IDofType>
+                <ListContentID>B}nil</ListContentID>
+                <Type>AdditionalsType</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+                <Writable>true</Writable>
+                <Readable>true</Readable>
+                <Local>true</Local>
+                <Expression id="L}57">
+                    <IsConstant>false</IsConstant>
+                    <ParameterID>B}nil</ParameterID>
+                    <Customizable>false</Customizable>
+                </Expression>
+                <PrimaryKey>false</PrimaryKey>
+            </Property>
+            <Property id="J}com.tigo.rules.v1.schema.RuleType.{entities}">
+                <Name>entities</Name>
+                <Alias>entities</Alias>
+                <Visible>true</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <IDofType>J}com.tigo.entities.v1.schema.EntitiesArray</IDofType>
+                <ListContentID>B}nil</ListContentID>
+                <Type>EntitiesArray</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+                <Writable>true</Writable>
+                <Readable>true</Readable>
+                <Local>true</Local>
+                <Expression id="L}58">
+                    <IsConstant>false</IsConstant>
+                    <ParameterID>B}nil</ParameterID>
+                    <Customizable>false</Customizable>
+                </Expression>
+                <PrimaryKey>false</PrimaryKey>
+            </Property>
+            <Property id="J}com.tigo.rules.v1.schema.RuleType.{id}">
+                <Name>id</Name>
+                <Alias>id</Alias>
+                <Visible>true</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <IDofType>J}java.lang.String</IDofType>
+                <ListContentID>B}nil</ListContentID>
+                <Type>String</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+                <Writable>true</Writable>
+                <Readable>true</Readable>
+                <Local>true</Local>
+                <Expression id="L}59">
+                    <IsConstant>false</IsConstant>
+                    <ParameterID>B}nil</ParameterID>
+                    <Customizable>false</Customizable>
+                </Expression>
+                <PrimaryKey>false</PrimaryKey>
+            </Property>
+            <Property id="J}com.tigo.rules.v1.schema.RuleType.{name}">
+                <Name>name</Name>
+                <Alias>name</Alias>
+                <Visible>true</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <IDofType>J}java.lang.String</IDofType>
+                <ListContentID>B}nil</ListContentID>
+                <Type>String</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+                <Writable>true</Writable>
+                <Readable>true</Readable>
+                <Local>true</Local>
+                <Expression id="L}60">
+                    <IsConstant>false</IsConstant>
+                    <ParameterID>B}nil</ParameterID>
+                    <Customizable>false</Customizable>
+                </Expression>
+                <PrimaryKey>false</PrimaryKey>
+            </Property>
+            <Method id="J}public com.tigo.entities.v1.schema.EntitiesArray com.tigo.rules.v1.schema.RuleType.getEntities()">
+                <Name>getEntities</Name>
+                <Alias>getEntities</Alias>
+                <Visible>false</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <Modifiers id="L}42">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <Access>1</Access>
+                    <isStatic>false</isStatic>
+                    <isFinal>false</isFinal>
+                    <isAbstract>false</isAbstract>
+                </Modifiers>
+                <Static>false</Static>
+                <IDofType>J}com.tigo.entities.v1.schema.EntitiesArray</IDofType>
+                <Type>EntitiesArray</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+            </Method>
+            <Method id="J}public java.lang.String com.tigo.rules.v1.schema.RuleType.getName()">
+                <Name>getName</Name>
+                <Alias>getName</Alias>
+                <Visible>false</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <Modifiers id="L}44">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <Access>1</Access>
+                    <isStatic>false</isStatic>
+                    <isFinal>false</isFinal>
+                    <isAbstract>false</isAbstract>
+                </Modifiers>
+                <Static>false</Static>
+                <IDofType>J}java.lang.String</IDofType>
+                <Type>String</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+            </Method>
+            <Method id="J}public void com.tigo.rules.v1.schema.RuleType.setEntities(com.tigo.entities.v1.schema.EntitiesArray)">
+                <Name>setEntities</Name>
+                <Alias>setEntities</Alias>
+                <Visible>false</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <OverloadedParameter id="G}1955eea5:145f205160c:-7b96">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <IDsOfType>J}com.tigo.entities.v1.schema.EntitiesArray</IDsOfType>
+                </OverloadedParameter>
+                <Modifiers id="L}46">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <Access>1</Access>
+                    <isStatic>false</isStatic>
+                    <isFinal>false</isFinal>
+                    <isAbstract>false</isAbstract>
+                </Modifiers>
+                <Static>false</Static>
+                <IDofType>J}void</IDofType>
+                <Type>void</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+            </Method>
+            <Method id="J}public com.tigo.xmlns.additionalschema.v1.AdditionalsType com.tigo.rules.v1.schema.RuleType.getAdditionals()">
+                <Name>getAdditionals</Name>
+                <Alias>getAdditionals</Alias>
+                <Visible>false</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <Modifiers id="L}48">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <Access>1</Access>
+                    <isStatic>false</isStatic>
+                    <isFinal>false</isFinal>
+                    <isAbstract>false</isAbstract>
+                </Modifiers>
+                <Static>false</Static>
+                <IDofType>J}com.tigo.xmlns.additionalschema.v1.AdditionalsType</IDofType>
+                <Type>AdditionalsType</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+            </Method>
+            <Method id="J}public void com.tigo.rules.v1.schema.RuleType.setName(java.lang.String)">
+                <Name>setName</Name>
+                <Alias>setName</Alias>
+                <Visible>false</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <OverloadedParameter id="G}1955eea5:145f205160c:-7b95">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <IDsOfType>J}java.lang.String</IDsOfType>
+                </OverloadedParameter>
+                <Modifiers id="L}50">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <Access>1</Access>
+                    <isStatic>false</isStatic>
+                    <isFinal>false</isFinal>
+                    <isAbstract>false</isAbstract>
+                </Modifiers>
+                <Static>false</Static>
+                <IDofType>J}void</IDofType>
+                <Type>void</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+            </Method>
+            <Method id="J}public void com.tigo.rules.v1.schema.RuleType.setAdditionals(com.tigo.xmlns.additionalschema.v1.AdditionalsType)">
+                <Name>setAdditionals</Name>
+                <Alias>setAdditionals</Alias>
+                <Visible>false</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <OverloadedParameter id="G}1955eea5:145f205160c:-7b94">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <IDsOfType>J}com.tigo.xmlns.additionalschema.v1.AdditionalsType</IDsOfType>
+                </OverloadedParameter>
+                <Modifiers id="L}52">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <Access>1</Access>
+                    <isStatic>false</isStatic>
+                    <isFinal>false</isFinal>
+                    <isAbstract>false</isAbstract>
+                </Modifiers>
+                <Static>false</Static>
+                <IDofType>J}void</IDofType>
+                <Type>void</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+            </Method>
+            <Method id="J}public void com.tigo.rules.v1.schema.RuleType.setId(java.lang.String)">
+                <Name>setId</Name>
+                <Alias>setId</Alias>
+                <Visible>false</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <OverloadedParameter id="G}1955eea5:145f205160c:-7b93">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <IDsOfType>J}java.lang.String</IDsOfType>
+                </OverloadedParameter>
+                <Modifiers id="L}54">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <Access>1</Access>
+                    <isStatic>false</isStatic>
+                    <isFinal>false</isFinal>
+                    <isAbstract>false</isAbstract>
+                </Modifiers>
+                <Static>false</Static>
+                <IDofType>J}void</IDofType>
+                <Type>void</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+            </Method>
+            <Method id="J}public java.lang.String com.tigo.rules.v1.schema.RuleType.getId()">
+                <Name>getId</Name>
+                <Alias>getId</Alias>
+                <Visible>false</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <Modifiers id="L}56">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <Access>1</Access>
+                    <isStatic>false</isStatic>
+                    <isFinal>false</isFinal>
+                    <isAbstract>false</isAbstract>
+                </Modifiers>
+                <Static>false</Static>
+                <IDofType>J}java.lang.String</IDofType>
+                <Type>String</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+            </Method>
+            <Constructor id="J}public com.tigo.rules.v1.schema.RuleType()">
+                <Visible>true</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <Modifiers id="L}40">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <Access>1</Access>
+                    <isStatic>false</isStatic>
+                    <isFinal>false</isFinal>
+                    <isAbstract>false</isAbstract>
+                </Modifiers>
+            </Constructor>
+            <IDofSuperClass>J}java.lang.Object</IDofSuperClass>
+            <ValidationUpdateNumber>5</ValidationUpdateNumber>
+            <Source>xsd/pvs/BasicValidate_schema.xsd</Source>
+            <IsArray>false</IsArray>
+            <IDofArrayComponentType>B}nil</IDofArrayComponentType>
+            <SupportXPath>false</SupportXPath>
+            <IsInterface>false</IsInterface>
+            <Modifiers id="L}198">
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <Access>1</Access>
+                <isStatic>false</isStatic>
+                <isFinal>false</isFinal>
+                <isAbstract>false</isAbstract>
+            </Modifiers>
+            <EnumBucketSetID>B}nil</EnumBucketSetID>
+            <Timestamp>0</Timestamp>
+            <ENUM>false</ENUM>
+            <XmlName>//xs:complexType[@name=&apos;ruleType&apos;]</XmlName>
+            <JAXB2.0>true</JAXB2.0>
+            <NodeName>ruleType</NodeName>
+            <Namespace>http://tigo.com/rules/v1/schema</Namespace>
+        </JaxbFactType>
+        <JaxbFactType id="J}com.tigo.entities.v1.schema.EntityType">
+            <Name>com.tigo.entities.v1.schema.EntityType</Name>
+            <Alias>EntityType</Alias>
+            <Visible>true</Visible>
+            <CreationUpdateNumber>5</CreationUpdateNumber>
+            <Property id="J}com.tigo.entities.v1.schema.EntityType.{code}">
+                <Name>code</Name>
+                <Alias>code</Alias>
+                <Visible>true</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <IDofType>J}java.lang.String</IDofType>
+                <ListContentID>B}nil</ListContentID>
+                <Type>String</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+                <Writable>true</Writable>
+                <Readable>true</Readable>
+                <Local>true</Local>
+                <Expression id="L}82">
+                    <IsConstant>false</IsConstant>
+                    <ParameterID>B}nil</ParameterID>
+                    <Customizable>false</Customizable>
+                </Expression>
+                <PrimaryKey>false</PrimaryKey>
+            </Property>
+            <Property id="J}com.tigo.entities.v1.schema.EntityType.{entities}">
+                <Name>entities</Name>
+                <Alias>entities</Alias>
+                <Visible>true</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <IDofType>J}com.tigo.entities.v1.schema.EntitiesArray</IDofType>
+                <ListContentID>B}nil</ListContentID>
+                <Type>EntitiesArray</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+                <Writable>true</Writable>
+                <Readable>true</Readable>
+                <Local>true</Local>
+                <Expression id="L}83">
+                    <IsConstant>false</IsConstant>
+                    <ParameterID>B}nil</ParameterID>
+                    <Customizable>false</Customizable>
+                </Expression>
+                <PrimaryKey>false</PrimaryKey>
+            </Property>
+            <Property id="J}com.tigo.entities.v1.schema.EntityType.{key}">
+                <Name>key</Name>
+                <Alias>key</Alias>
+                <Visible>true</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <IDofType>J}java.lang.String</IDofType>
+                <ListContentID>B}nil</ListContentID>
+                <Type>String</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+                <Writable>true</Writable>
+                <Readable>true</Readable>
+                <Local>true</Local>
+                <Expression id="L}84">
+                    <IsConstant>false</IsConstant>
+                    <ParameterID>B}nil</ParameterID>
+                    <Customizable>false</Customizable>
+                </Expression>
+                <PrimaryKey>false</PrimaryKey>
+            </Property>
+            <Property id="J}com.tigo.entities.v1.schema.EntityType.{value}">
+                <Name>value</Name>
+                <Alias>value</Alias>
+                <Visible>true</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <IDofType>J}java.lang.String</IDofType>
+                <ListContentID>B}nil</ListContentID>
+                <Type>String</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+                <Writable>true</Writable>
+                <Readable>true</Readable>
+                <Local>true</Local>
+                <Expression id="L}85">
+                    <IsConstant>false</IsConstant>
+                    <ParameterID>B}nil</ParameterID>
+                    <Customizable>false</Customizable>
+                </Expression>
+                <PrimaryKey>false</PrimaryKey>
+            </Property>
+            <Method id="J}public void com.tigo.entities.v1.schema.EntityType.setCode(java.lang.String)">
+                <Name>setCode</Name>
+                <Alias>setCode</Alias>
+                <Visible>false</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <OverloadedParameter id="G}1955eea5:145f205160c:-7b92">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <IDsOfType>J}java.lang.String</IDsOfType>
+                </OverloadedParameter>
+                <Modifiers id="L}67">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <Access>1</Access>
+                    <isStatic>false</isStatic>
+                    <isFinal>false</isFinal>
+                    <isAbstract>false</isAbstract>
+                </Modifiers>
+                <Static>false</Static>
+                <IDofType>J}void</IDofType>
+                <Type>void</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+            </Method>
+            <Method id="J}public com.tigo.entities.v1.schema.EntitiesArray com.tigo.entities.v1.schema.EntityType.getEntities()">
+                <Name>getEntities</Name>
+                <Alias>getEntities</Alias>
+                <Visible>false</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <Modifiers id="L}69">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <Access>1</Access>
+                    <isStatic>false</isStatic>
+                    <isFinal>false</isFinal>
+                    <isAbstract>false</isAbstract>
+                </Modifiers>
+                <Static>false</Static>
+                <IDofType>J}com.tigo.entities.v1.schema.EntitiesArray</IDofType>
+                <Type>EntitiesArray</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+            </Method>
+            <Method id="J}public void com.tigo.entities.v1.schema.EntityType.setEntities(com.tigo.entities.v1.schema.EntitiesArray)">
+                <Name>setEntities</Name>
+                <Alias>setEntities</Alias>
+                <Visible>false</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <OverloadedParameter id="G}1955eea5:145f205160c:-7b91">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <IDsOfType>J}com.tigo.entities.v1.schema.EntitiesArray</IDsOfType>
+                </OverloadedParameter>
+                <Modifiers id="L}71">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <Access>1</Access>
+                    <isStatic>false</isStatic>
+                    <isFinal>false</isFinal>
+                    <isAbstract>false</isAbstract>
+                </Modifiers>
+                <Static>false</Static>
+                <IDofType>J}void</IDofType>
+                <Type>void</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+            </Method>
+            <Method id="J}public java.lang.String com.tigo.entities.v1.schema.EntityType.getKey()">
+                <Name>getKey</Name>
+                <Alias>getKey</Alias>
+                <Visible>false</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <Modifiers id="L}73">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <Access>1</Access>
+                    <isStatic>false</isStatic>
+                    <isFinal>false</isFinal>
+                    <isAbstract>false</isAbstract>
+                </Modifiers>
+                <Static>false</Static>
+                <IDofType>J}java.lang.String</IDofType>
+                <Type>String</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+            </Method>
+            <Method id="J}public java.lang.String com.tigo.entities.v1.schema.EntityType.getValue()">
+                <Name>getValue</Name>
+                <Alias>getValue</Alias>
+                <Visible>false</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <Modifiers id="L}75">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <Access>1</Access>
+                    <isStatic>false</isStatic>
+                    <isFinal>false</isFinal>
+                    <isAbstract>false</isAbstract>
+                </Modifiers>
+                <Static>false</Static>
+                <IDofType>J}java.lang.String</IDofType>
+                <Type>String</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+            </Method>
+            <Method id="J}public void com.tigo.entities.v1.schema.EntityType.setValue(java.lang.String)">
+                <Name>setValue</Name>
+                <Alias>setValue</Alias>
+                <Visible>false</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <OverloadedParameter id="G}1955eea5:145f205160c:-7b90">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <IDsOfType>J}java.lang.String</IDsOfType>
+                </OverloadedParameter>
+                <Modifiers id="L}77">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <Access>1</Access>
+                    <isStatic>false</isStatic>
+                    <isFinal>false</isFinal>
+                    <isAbstract>false</isAbstract>
+                </Modifiers>
+                <Static>false</Static>
+                <IDofType>J}void</IDofType>
+                <Type>void</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+            </Method>
+            <Method id="J}public java.lang.String com.tigo.entities.v1.schema.EntityType.getCode()">
+                <Name>getCode</Name>
+                <Alias>getCode</Alias>
+                <Visible>false</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <Modifiers id="L}79">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <Access>1</Access>
+                    <isStatic>false</isStatic>
+                    <isFinal>false</isFinal>
+                    <isAbstract>false</isAbstract>
+                </Modifiers>
+                <Static>false</Static>
+                <IDofType>J}java.lang.String</IDofType>
+                <Type>String</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+            </Method>
+            <Method id="J}public void com.tigo.entities.v1.schema.EntityType.setKey(java.lang.String)">
+                <Name>setKey</Name>
+                <Alias>setKey</Alias>
+                <Visible>false</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <OverloadedParameter id="G}1955eea5:145f205160c:-7b8f">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <IDsOfType>J}java.lang.String</IDsOfType>
+                </OverloadedParameter>
+                <Modifiers id="L}81">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <Access>1</Access>
+                    <isStatic>false</isStatic>
+                    <isFinal>false</isFinal>
+                    <isAbstract>false</isAbstract>
+                </Modifiers>
+                <Static>false</Static>
+                <IDofType>J}void</IDofType>
+                <Type>void</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+            </Method>
+            <Constructor id="J}public com.tigo.entities.v1.schema.EntityType()">
+                <Visible>true</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <Modifiers id="L}65">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <Access>1</Access>
+                    <isStatic>false</isStatic>
+                    <isFinal>false</isFinal>
+                    <isAbstract>false</isAbstract>
+                </Modifiers>
+            </Constructor>
+            <IDofSuperClass>J}java.lang.Object</IDofSuperClass>
+            <ValidationUpdateNumber>5</ValidationUpdateNumber>
+            <Source>xsd/pvs/BasicValidate_schema.xsd</Source>
+            <IsArray>false</IsArray>
+            <IDofArrayComponentType>B}nil</IDofArrayComponentType>
+            <SupportXPath>false</SupportXPath>
+            <IsInterface>false</IsInterface>
+            <Modifiers id="L}233">
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <Access>1</Access>
+                <isStatic>false</isStatic>
+                <isFinal>false</isFinal>
+                <isAbstract>false</isAbstract>
+            </Modifiers>
+            <EnumBucketSetID>B}nil</EnumBucketSetID>
+            <Timestamp>0</Timestamp>
+            <ENUM>false</ENUM>
+            <XmlName>//xs:complexType[@name=&apos;entityType&apos;]</XmlName>
+            <JAXB2.0>true</JAXB2.0>
+            <NodeName>entityType</NodeName>
+            <Namespace>http://tigo.com/entities/v1/schema</Namespace>
+        </JaxbFactType>
+        <JaxbFactType id="J}com.tigo.entities.v1.schema.EntitiesArray">
+            <Name>com.tigo.entities.v1.schema.EntitiesArray</Name>
+            <Alias>EntitiesArray</Alias>
+            <Visible>true</Visible>
+            <CreationUpdateNumber>5</CreationUpdateNumber>
+            <Property id="J}com.tigo.entities.v1.schema.EntitiesArray.{entity}">
+                <Name>entity</Name>
+                <Alias>entity</Alias>
+                <Visible>true</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <IDofType>J}java.util.List</IDofType>
+                <ListContentID>J}com.tigo.entities.v1.schema.EntityType</ListContentID>
+                <Type>List</Type>
+                <ListContentType>EntityType</ListContentType>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+                <Writable>true</Writable>
+                <Readable>true</Readable>
+                <Local>true</Local>
+                <Expression id="L}94">
+                    <IsConstant>false</IsConstant>
+                    <ParameterID>B}nil</ParameterID>
+                    <Customizable>false</Customizable>
+                </Expression>
+                <PrimaryKey>false</PrimaryKey>
+            </Property>
+            <Method id="J}public java.util.List com.tigo.entities.v1.schema.EntitiesArray.getEntity()">
+                <Name>getEntity</Name>
+                <Alias>getEntity</Alias>
+                <Visible>false</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <Modifiers id="L}91">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <Access>1</Access>
+                    <isStatic>false</isStatic>
+                    <isFinal>false</isFinal>
+                    <isAbstract>false</isAbstract>
+                </Modifiers>
+                <Static>false</Static>
+                <IDofType>J}java.util.List</IDofType>
+                <Type>List</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+            </Method>
+            <Method id="J}public void com.tigo.entities.v1.schema.EntitiesArray.setEntity(java.util.List)">
+                <Name>setEntity</Name>
+                <Alias>setEntity</Alias>
+                <Visible>false</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <OverloadedParameter id="G}1955eea5:145f205160c:-7b8e">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <IDsOfType>J}java.util.List</IDsOfType>
+                </OverloadedParameter>
+                <Modifiers id="L}93">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <Access>1</Access>
+                    <isStatic>false</isStatic>
+                    <isFinal>false</isFinal>
+                    <isAbstract>false</isAbstract>
+                </Modifiers>
+                <Static>false</Static>
+                <IDofType>J}void</IDofType>
+                <Type>void</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+            </Method>
+            <Constructor id="J}public com.tigo.entities.v1.schema.EntitiesArray()">
+                <Visible>true</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <Modifiers id="L}89">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <Access>1</Access>
+                    <isStatic>false</isStatic>
+                    <isFinal>false</isFinal>
+                    <isAbstract>false</isAbstract>
+                </Modifiers>
+            </Constructor>
+            <IDofSuperClass>J}java.lang.Object</IDofSuperClass>
+            <ValidationUpdateNumber>5</ValidationUpdateNumber>
+            <Source>xsd/pvs/BasicValidate_schema.xsd</Source>
+            <IsArray>false</IsArray>
+            <IDofArrayComponentType>B}nil</IDofArrayComponentType>
+            <SupportXPath>false</SupportXPath>
+            <IsInterface>false</IsInterface>
+            <Modifiers id="L}234">
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <Access>1</Access>
+                <isStatic>false</isStatic>
+                <isFinal>false</isFinal>
+                <isAbstract>false</isAbstract>
+            </Modifiers>
+            <EnumBucketSetID>B}nil</EnumBucketSetID>
+            <Timestamp>0</Timestamp>
+            <ENUM>false</ENUM>
+            <XmlName>//xs:complexType[@name=&apos;entities_array&apos;]</XmlName>
+            <JAXB2.0>true</JAXB2.0>
+            <NodeName>entities_array</NodeName>
+            <Namespace>http://tigo.com/entities/v1/schema</Namespace>
+        </JaxbFactType>
+        <JaxbFactType id="J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidationType">
+            <Name>com.tigo.enterprise.business.entities.validate.v1.schema.ValidationType</Name>
+            <Alias>ValidationType</Alias>
+            <Visible>true</Visible>
+            <CreationUpdateNumber>5</CreationUpdateNumber>
+            <Property id="J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidationType.{processID}">
+                <Name>processID</Name>
+                <Alias>processID</Alias>
+                <Visible>true</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <IDofType>J}java.lang.String</IDofType>
+                <ListContentID>B}nil</ListContentID>
+                <Type>String</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+                <Writable>true</Writable>
+                <Readable>true</Readable>
+                <Local>true</Local>
+                <Expression id="L}134">
+                    <IsConstant>false</IsConstant>
+                    <ParameterID>B}nil</ParameterID>
+                    <Customizable>false</Customizable>
+                </Expression>
+                <PrimaryKey>false</PrimaryKey>
+            </Property>
+            <Property id="J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidationType.{rule}">
+                <Name>rule</Name>
+                <Alias>rule</Alias>
+                <Visible>true</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <IDofType>J}com.tigo.rules.v1.schema.RuleType</IDofType>
+                <ListContentID>B}nil</ListContentID>
+                <Type>RuleType</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+                <Writable>true</Writable>
+                <Readable>true</Readable>
+                <Local>true</Local>
+                <Expression id="L}135">
+                    <IsConstant>false</IsConstant>
+                    <ParameterID>B}nil</ParameterID>
+                    <Customizable>false</Customizable>
+                </Expression>
+                <PrimaryKey>false</PrimaryKey>
+            </Property>
+            <Method id="J}public void com.tigo.enterprise.business.entities.validate.v1.schema.ValidationType.setProcessID(java.lang.String)">
+                <Name>setProcessID</Name>
+                <Alias>setProcessID</Alias>
+                <Visible>false</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <OverloadedParameter id="G}1955eea5:145f205160c:-7b8a">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <IDsOfType>J}java.lang.String</IDsOfType>
+                </OverloadedParameter>
+                <Modifiers id="L}127">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <Access>1</Access>
+                    <isStatic>false</isStatic>
+                    <isFinal>false</isFinal>
+                    <isAbstract>false</isAbstract>
+                </Modifiers>
+                <Static>false</Static>
+                <IDofType>J}void</IDofType>
+                <Type>void</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+            </Method>
+            <Method id="J}public void com.tigo.enterprise.business.entities.validate.v1.schema.ValidationType.setRule(com.tigo.rules.v1.schema.RuleType)">
+                <Name>setRule</Name>
+                <Alias>setRule</Alias>
+                <Visible>false</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <OverloadedParameter id="G}1955eea5:145f205160c:-7b89">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <IDsOfType>J}com.tigo.rules.v1.schema.RuleType</IDsOfType>
+                </OverloadedParameter>
+                <Modifiers id="L}129">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <Access>1</Access>
+                    <isStatic>false</isStatic>
+                    <isFinal>false</isFinal>
+                    <isAbstract>false</isAbstract>
+                </Modifiers>
+                <Static>false</Static>
+                <IDofType>J}void</IDofType>
+                <Type>void</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+            </Method>
+            <Method id="J}public com.tigo.rules.v1.schema.RuleType com.tigo.enterprise.business.entities.validate.v1.schema.ValidationType.getRule()">
+                <Name>getRule</Name>
+                <Alias>getRule</Alias>
+                <Visible>false</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <Modifiers id="L}131">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <Access>1</Access>
+                    <isStatic>false</isStatic>
+                    <isFinal>false</isFinal>
+                    <isAbstract>false</isAbstract>
+                </Modifiers>
+                <Static>false</Static>
+                <IDofType>J}com.tigo.rules.v1.schema.RuleType</IDofType>
+                <Type>RuleType</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+            </Method>
+            <Method id="J}public java.lang.String com.tigo.enterprise.business.entities.validate.v1.schema.ValidationType.getProcessID()">
+                <Name>getProcessID</Name>
+                <Alias>getProcessID</Alias>
+                <Visible>false</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <Modifiers id="L}133">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <Access>1</Access>
+                    <isStatic>false</isStatic>
+                    <isFinal>false</isFinal>
+                    <isAbstract>false</isAbstract>
+                </Modifiers>
+                <Static>false</Static>
+                <IDofType>J}java.lang.String</IDofType>
+                <Type>String</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+            </Method>
+            <Constructor id="J}public com.tigo.enterprise.business.entities.validate.v1.schema.ValidationType()">
+                <Visible>true</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <Modifiers id="L}125">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <Access>1</Access>
+                    <isStatic>false</isStatic>
+                    <isFinal>false</isFinal>
+                    <isAbstract>false</isAbstract>
+                </Modifiers>
+            </Constructor>
+            <IDofSuperClass>J}java.lang.Object</IDofSuperClass>
+            <ValidationUpdateNumber>5</ValidationUpdateNumber>
+            <Source>xsd/pvs/BasicValidate_schema.xsd</Source>
+            <IsArray>false</IsArray>
+            <IDofArrayComponentType>B}nil</IDofArrayComponentType>
+            <SupportXPath>false</SupportXPath>
+            <IsInterface>false</IsInterface>
+            <Modifiers id="L}123">
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <Access>1</Access>
+                <isStatic>false</isStatic>
+                <isFinal>false</isFinal>
+                <isAbstract>false</isAbstract>
+            </Modifiers>
+            <EnumBucketSetID>B}nil</EnumBucketSetID>
+            <Timestamp>0</Timestamp>
+            <ENUM>false</ENUM>
+            <XmlName>//xs:complexType[@name=&apos;validation_type&apos;]</XmlName>
+            <JAXB2.0>true</JAXB2.0>
+            <NodeName>validation_type</NodeName>
+            <Namespace>http://tigo.com/enterprise/business/entities/validate/v1/schema</Namespace>
+        </JaxbFactType>
+        <JaxbFactType id="J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidatedRuleType">
+            <Name>com.tigo.enterprise.business.entities.validate.v1.schema.ValidatedRuleType</Name>
+            <Alias>ValidatedRuleType</Alias>
+            <Visible>true</Visible>
+            <CreationUpdateNumber>5</CreationUpdateNumber>
+            <Property id="J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidatedRuleType.{action}">
+                <Name>action</Name>
+                <Alias>action</Alias>
+                <Visible>true</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <IDofType>J}java.lang.String</IDofType>
+                <ListContentID>B}nil</ListContentID>
+                <Type>String</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+                <Writable>true</Writable>
+                <Readable>true</Readable>
+                <Local>true</Local>
+                <Expression id="L}179">
+                    <IsConstant>false</IsConstant>
+                    <ParameterID>B}nil</ParameterID>
+                    <Customizable>false</Customizable>
+                </Expression>
+                <PrimaryKey>false</PrimaryKey>
+            </Property>
+            <Property id="J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidatedRuleType.{comments}">
+                <Name>comments</Name>
+                <Alias>comments</Alias>
+                <Visible>true</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <IDofType>J}java.lang.String</IDofType>
+                <ListContentID>B}nil</ListContentID>
+                <Type>String</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+                <Writable>true</Writable>
+                <Readable>true</Readable>
+                <Local>true</Local>
+                <Expression id="L}180">
+                    <IsConstant>false</IsConstant>
+                    <ParameterID>B}nil</ParameterID>
+                    <Customizable>false</Customizable>
+                </Expression>
+                <PrimaryKey>false</PrimaryKey>
+            </Property>
+            <Property id="J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidatedRuleType.{ruleID}">
+                <Name>ruleID</Name>
+                <Alias>ruleID</Alias>
+                <Visible>true</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <IDofType>J}java.lang.String</IDofType>
+                <ListContentID>B}nil</ListContentID>
+                <Type>String</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+                <Writable>true</Writable>
+                <Readable>true</Readable>
+                <Local>true</Local>
+                <Expression id="L}181">
+                    <IsConstant>false</IsConstant>
+                    <ParameterID>B}nil</ParameterID>
+                    <Customizable>false</Customizable>
+                </Expression>
+                <PrimaryKey>false</PrimaryKey>
+            </Property>
+            <Property id="J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidatedRuleType.{status}">
+                <Name>status</Name>
+                <Alias>status</Alias>
+                <Visible>true</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <IDofType>J}java.lang.String</IDofType>
+                <ListContentID>B}nil</ListContentID>
+                <Type>String</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+                <Writable>true</Writable>
+                <Readable>true</Readable>
+                <Local>true</Local>
+                <Expression id="L}182">
+                    <IsConstant>false</IsConstant>
+                    <ParameterID>B}nil</ParameterID>
+                    <Customizable>false</Customizable>
+                </Expression>
+                <PrimaryKey>false</PrimaryKey>
+            </Property>
+            <Method id="J}public void com.tigo.enterprise.business.entities.validate.v1.schema.ValidatedRuleType.setStatus(java.lang.String)">
+                <Name>setStatus</Name>
+                <Alias>setStatus</Alias>
+                <Visible>false</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <OverloadedParameter id="G}1955eea5:145f205160c:-7b86">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <IDsOfType>J}java.lang.String</IDsOfType>
+                </OverloadedParameter>
+                <Modifiers id="L}164">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <Access>1</Access>
+                    <isStatic>false</isStatic>
+                    <isFinal>false</isFinal>
+                    <isAbstract>false</isAbstract>
+                </Modifiers>
+                <Static>false</Static>
+                <IDofType>J}void</IDofType>
+                <Type>void</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+            </Method>
+            <Method id="J}public void com.tigo.enterprise.business.entities.validate.v1.schema.ValidatedRuleType.setAction(java.lang.String)">
+                <Name>setAction</Name>
+                <Alias>setAction</Alias>
+                <Visible>false</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <OverloadedParameter id="G}1955eea5:145f205160c:-7b85">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <IDsOfType>J}java.lang.String</IDsOfType>
+                </OverloadedParameter>
+                <Modifiers id="L}166">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <Access>1</Access>
+                    <isStatic>false</isStatic>
+                    <isFinal>false</isFinal>
+                    <isAbstract>false</isAbstract>
+                </Modifiers>
+                <Static>false</Static>
+                <IDofType>J}void</IDofType>
+                <Type>void</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+            </Method>
+            <Method id="J}public void com.tigo.enterprise.business.entities.validate.v1.schema.ValidatedRuleType.setRuleID(java.lang.String)">
+                <Name>setRuleID</Name>
+                <Alias>setRuleID</Alias>
+                <Visible>false</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <OverloadedParameter id="G}1955eea5:145f205160c:-7b84">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <IDsOfType>J}java.lang.String</IDsOfType>
+                </OverloadedParameter>
+                <Modifiers id="L}168">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <Access>1</Access>
+                    <isStatic>false</isStatic>
+                    <isFinal>false</isFinal>
+                    <isAbstract>false</isAbstract>
+                </Modifiers>
+                <Static>false</Static>
+                <IDofType>J}void</IDofType>
+                <Type>void</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+            </Method>
+            <Method id="J}public java.lang.String com.tigo.enterprise.business.entities.validate.v1.schema.ValidatedRuleType.getRuleID()">
+                <Name>getRuleID</Name>
+                <Alias>getRuleID</Alias>
+                <Visible>false</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <Modifiers id="L}170">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <Access>1</Access>
+                    <isStatic>false</isStatic>
+                    <isFinal>false</isFinal>
+                    <isAbstract>false</isAbstract>
+                </Modifiers>
+                <Static>false</Static>
+                <IDofType>J}java.lang.String</IDofType>
+                <Type>String</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+            </Method>
+            <Method id="J}public java.lang.String com.tigo.enterprise.business.entities.validate.v1.schema.ValidatedRuleType.getAction()">
+                <Name>getAction</Name>
+                <Alias>getAction</Alias>
+                <Visible>false</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <Modifiers id="L}172">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <Access>1</Access>
+                    <isStatic>false</isStatic>
+                    <isFinal>false</isFinal>
+                    <isAbstract>false</isAbstract>
+                </Modifiers>
+                <Static>false</Static>
+                <IDofType>J}java.lang.String</IDofType>
+                <Type>String</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+            </Method>
+            <Method id="J}public void com.tigo.enterprise.business.entities.validate.v1.schema.ValidatedRuleType.setComments(java.lang.String)">
+                <Name>setComments</Name>
+                <Alias>setComments</Alias>
+                <Visible>false</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <OverloadedParameter id="G}1955eea5:145f205160c:-7b83">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <IDsOfType>J}java.lang.String</IDsOfType>
+                </OverloadedParameter>
+                <Modifiers id="L}174">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <Access>1</Access>
+                    <isStatic>false</isStatic>
+                    <isFinal>false</isFinal>
+                    <isAbstract>false</isAbstract>
+                </Modifiers>
+                <Static>false</Static>
+                <IDofType>J}void</IDofType>
+                <Type>void</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+            </Method>
+            <Method id="J}public java.lang.String com.tigo.enterprise.business.entities.validate.v1.schema.ValidatedRuleType.getStatus()">
+                <Name>getStatus</Name>
+                <Alias>getStatus</Alias>
+                <Visible>false</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <Modifiers id="L}176">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <Access>1</Access>
+                    <isStatic>false</isStatic>
+                    <isFinal>false</isFinal>
+                    <isAbstract>false</isAbstract>
+                </Modifiers>
+                <Static>false</Static>
+                <IDofType>J}java.lang.String</IDofType>
+                <Type>String</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+            </Method>
+            <Method id="J}public java.lang.String com.tigo.enterprise.business.entities.validate.v1.schema.ValidatedRuleType.getComments()">
+                <Name>getComments</Name>
+                <Alias>getComments</Alias>
+                <Visible>false</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <Modifiers id="L}178">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <Access>1</Access>
+                    <isStatic>false</isStatic>
+                    <isFinal>false</isFinal>
+                    <isAbstract>false</isAbstract>
+                </Modifiers>
+                <Static>false</Static>
+                <IDofType>J}java.lang.String</IDofType>
+                <Type>String</Type>
+                <IDofBucketSet>B}nil</IDofBucketSet>
+            </Method>
+            <Constructor id="J}public com.tigo.enterprise.business.entities.validate.v1.schema.ValidatedRuleType()">
+                <Visible>true</Visible>
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <Modifiers id="L}162">
+                    <CreationUpdateNumber>5</CreationUpdateNumber>
+                    <Access>1</Access>
+                    <isStatic>false</isStatic>
+                    <isFinal>false</isFinal>
+                    <isAbstract>false</isAbstract>
+                </Modifiers>
+            </Constructor>
+            <IDofSuperClass>J}java.lang.Object</IDofSuperClass>
+            <ValidationUpdateNumber>5</ValidationUpdateNumber>
+            <Source>xsd/pvs/BasicValidate_schema.xsd</Source>
+            <IsArray>false</IsArray>
+            <IDofArrayComponentType>B}nil</IDofArrayComponentType>
+            <SupportXPath>false</SupportXPath>
+            <IsInterface>false</IsInterface>
+            <Modifiers id="L}204">
+                <CreationUpdateNumber>5</CreationUpdateNumber>
+                <Access>1</Access>
+                <isStatic>false</isStatic>
+                <isFinal>false</isFinal>
+                <isAbstract>false</isAbstract>
+            </Modifiers>
+            <EnumBucketSetID>B}nil</EnumBucketSetID>
+            <Timestamp>0</Timestamp>
+            <ENUM>false</ENUM>
+            <XmlName>//xs:complexType[@name=&apos;validatedRule_type&apos;]</XmlName>
+            <JAXB2.0>true</JAXB2.0>
+            <NodeName>validatedRule_type</NodeName>
+            <Namespace>http://tigo.com/enterprise/business/entities/validate/v1/schema</Namespace>
+        </JaxbFactType>
+        <BucketSet id="G}1955eea5:145f205160c:-7b75">
+            <Name>Process</Name>
+            <Alias>Process</Alias>
+            <Visible>true</Visible>
+            <CreationUpdateNumber>14</CreationUpdateNumber>
+            <IDofType>J}java.lang.String</IDofType>
+            <ListContentID>B}nil</ListContentID>
+            <Type>String</Type>
+            <Form>LOV</Form>
+            <Bucket id="G}1955eea5:145f205160c:-7b74">
+                <Name>otherwise</Name>
+                <Alias>otherwise</Alias>
+                <Visible>true</Visible>
+                <CreationUpdateNumber>14</CreationUpdateNumber>
+                <Inclusive>true</Inclusive>
+                <Otherwise>true</Otherwise>
+                <Excluded>false</Excluded>
+                <Expression id="L}282">
+                    <IsConstant>true</IsConstant>
+                    <ParameterID>B}nil</ParameterID>
+                    <Customizable>false</Customizable>
+                </Expression>
+            </Bucket>
+            <Bucket id="G}1955eea5:145f205160c:-7b72">
+                <Name>&quot;P_PY_Suspend_1-1H5C3&quot;</Name>
+                <Alias>BLOQUEO</Alias>
+                <Visible>true</Visible>
+                <CreationUpdateNumber>273</CreationUpdateNumber>
+                <Inclusive>false</Inclusive>
+                <Otherwise>false</Otherwise>
+                <Excluded>false</Excluded>
+                <Expression id="L}284">
+                    <Value>&quot;P_PY_Suspend_1-1H5C3&quot;</Value>
+                    <ResolvedValue>&quot;P_PY_Suspend_1-1H5C3&quot;</ResolvedValue>
+                    <IsConstant>true</IsConstant>
+                    <ParameterID>B}nil</ParameterID>
+                    <Customizable>false</Customizable>
+                </Expression>
+            </Bucket>
+            <Bucket id="G}1955eea5:145f205160c:-7b71">
+                <Name>&quot;P_PY_Resume_1-1H5C3&quot;</Name>
+                <Alias>DESBLOQUEO</Alias>
+                <Visible>true</Visible>
+                <CreationUpdateNumber>276</CreationUpdateNumber>
+                <Inclusive>false</Inclusive>
+                <Otherwise>false</Otherwise>
+                <Excluded>false</Excluded>
+                <Expression id="L}285">
+                    <Value>&quot;P_PY_Resume_1-1H5C3&quot;</Value>
+                    <ResolvedValue>&quot;P_PY_Resume_1-1H5C3&quot;</ResolvedValue>
+                    <IsConstant>true</IsConstant>
+                    <ParameterID>B}nil</ParameterID>
+                    <Customizable>false</Customizable>
+                </Expression>
+            </Bucket>
+            <Bucket id="G}1955eea5:145f205160c:-7b6e">
+                <Name>&quot;P_PY_BILLING_PROFILE&quot;</Name>
+                <Alias>ECOFACTURA, GESTION MODALIDAD PAGO, CAMBIO DE CICLO</Alias>
+                <Visible>true</Visible>
+                <CreationUpdateNumber>1347</CreationUpdateNumber>
+                <Inclusive>false</Inclusive>
+                <Otherwise>false</Otherwise>
+                <Excluded>false</Excluded>
+                <Expression id="L}288">
+                    <Value>&quot;P_PY_BILLING_PROFILE&quot;</Value>
+                    <ResolvedValue>&quot;P_PY_BILLING_PROFILE&quot;</ResolvedValue>
+                    <IsConstant>true</IsConstant>
+                    <ParameterID>B}nil</ParameterID>
+                    <Customizable>false</Customizable>
+                </Expression>
+            </Bucket>
+            <CalendarForm>Date</CalendarForm>
+            <Excluded>false</Excluded>
+            <ValidationUpdateNumber>21</ValidationUpdateNumber>
+        </BucketSet>
+        <BucketSet id="G}1955eea5:145f205160c:-7b6b">
+            <Name>MediaType</Name>
+            <Alias>MediaType</Alias>
+            <Visible>true</Visible>
+            <CreationUpdateNumber>22</CreationUpdateNumber>
+            <IDofType>J}java.lang.String</IDofType>
+            <ListContentID>B}nil</ListContentID>
+            <Type>String</Type>
+            <Form>LOV</Form>
+            <Bucket id="G}1955eea5:145f205160c:-7b6a">
+                <Name>otherwise</Name>
+                <Alias>otherwise</Alias>
+                <Visible>true</Visible>
+                <CreationUpdateNumber>22</CreationUpdateNumber>
+                <Inclusive>true</Inclusive>
+                <Otherwise>true</Otherwise>
+                <Excluded>false</Excluded>
+                <Expression id="L}291">
+                    <IsConstant>true</IsConstant>
+                    <ParameterID>B}nil</ParameterID>
+                    <Customizable>false</Customizable>
+                </Expression>
+            </Bucket>
+            <Bucket id="G}1955eea5:145f205160c:-7b64">
+                <Name>&quot;Factura física&quot;</Name>
+                <Alias>&quot;FISICO&quot;</Alias>
+                <Visible>true</Visible>
+                <CreationUpdateNumber>32</CreationUpdateNumber>
+                <Inclusive>false</Inclusive>
+                <Otherwise>false</Otherwise>
+                <Excluded>false</Excluded>
+                <Expression id="L}296">
+                    <Value>&quot;Factura física&quot;</Value>
+                    <ResolvedValue>&quot;Factura física&quot;</ResolvedValue>
+                    <IsConstant>true</IsConstant>
+                    <ParameterID>B}nil</ParameterID>
+                    <Customizable>false</Customizable>
+                </Expression>
+            </Bucket>
+            <Bucket id="G}1955eea5:145f205160c:-7b63">
+                <Name>&quot;Eco factura&quot;</Name>
+                <Alias>&quot;ECOFACTURA&quot;</Alias>
+                <Visible>true</Visible>
+                <CreationUpdateNumber>33</CreationUpdateNumber>
+                <Inclusive>false</Inclusive>
+                <Otherwise>false</Otherwise>
+                <Excluded>false</Excluded>
+                <Expression id="L}297">
+                    <Value>&quot;Eco factura&quot;</Value>
+                    <ResolvedValue>&quot;Eco factura&quot;</ResolvedValue>
+                    <IsConstant>true</IsConstant>
+                    <ParameterID>B}nil</ParameterID>
+                    <Customizable>false</Customizable>
+                </Expression>
+            </Bucket>
+            <CalendarForm>Date</CalendarForm>
+            <Excluded>false</Excluded>
+            <ValidationUpdateNumber>37</ValidationUpdateNumber>
+        </BucketSet>
+        <BucketSet id="G}1955eea5:145f205160c:-7b69">
+            <Name>ClientStatus</Name>
+            <Alias>ClientStatus</Alias>
+            <Visible>true</Visible>
+            <CreationUpdateNumber>24</CreationUpdateNumber>
+            <IDofType>J}java.lang.String</IDofType>
+            <ListContentID>B}nil</ListContentID>
+            <Type>String</Type>
+            <Form>LOV</Form>
+            <Bucket id="G}1955eea5:145f205160c:-7b68">
+                <Name>otherwise</Name>
+                <Alias>otherwise</Alias>
+                <Visible>true</Visible>
+                <CreationUpdateNumber>24</CreationUpdateNumber>
+                <Inclusive>true</Inclusive>
+                <Otherwise>true</Otherwise>
+                <Excluded>false</Excluded>
+                <Expression id="L}292">
+                    <IsConstant>true</IsConstant>
+                    <ParameterID>B}nil</ParameterID>
+                    <Customizable>false</Customizable>
+                </Expression>
+            </Bucket>
+            <Bucket id="G}1955eea5:145f205160c:-7b67">
+                <Name>&quot;ACTIVO&quot;</Name>
+                <Alias>&quot;ACTIVO&quot;</Alias>
+                <Visible>true</Visible>
+                <CreationUpdateNumber>26</CreationUpdateNumber>
+                <Inclusive>false</Inclusive>
+                <Otherwise>false</Otherwise>
+                <Excluded>false</Excluded>
+                <Expression id="L}293">
+                    <Value>&quot;ACTIVO&quot;</Value>
+                    <ResolvedValue>&quot;ACTIVO&quot;</ResolvedValue>
+                    <IsConstant>true</IsConstant>
+                    <ParameterID>B}nil</ParameterID>
+                    <Customizable>false</Customizable>
+                </Expression>
+            </Bucket>
+            <Bucket id="G}1955eea5:145f205160c:-7b66">
+                <Name>&quot;INACTIVO&quot;</Name>
+                <Alias>&quot;INACTIVO&quot;</Alias>
+                <Visible>true</Visible>
+                <CreationUpdateNumber>27</CreationUpdateNumber>
+                <Inclusive>false</Inclusive>
+                <Otherwise>false</Otherwise>
+                <Excluded>false</Excluded>
+                <Expression id="L}294">
+                    <Value>&quot;INACTIVO&quot;</Value>
+                    <ResolvedValue>&quot;INACTIVO&quot;</ResolvedValue>
+                    <IsConstant>true</IsConstant>
+                    <ParameterID>B}nil</ParameterID>
+                    <Customizable>false</Customizable>
+                </Expression>
+            </Bucket>
+            <Bucket id="G}1955eea5:145f205160c:-7b65">
+                <Name>&quot;PROSPECTO&quot;</Name>
+                <Alias>&quot;PROSPECTO&quot;</Alias>
+                <Visible>true</Visible>
+                <CreationUpdateNumber>28</CreationUpdateNumber>
+                <Inclusive>false</Inclusive>
+                <Otherwise>false</Otherwise>
+                <Excluded>false</Excluded>
+                <Expression id="L}295">
+                    <Value>&quot;PROSPECTO&quot;</Value>
+                    <ResolvedValue>&quot;PROSPECTO&quot;</ResolvedValue>
+                    <IsConstant>true</IsConstant>
+                    <ParameterID>B}nil</ParameterID>
+                    <Customizable>false</Customizable>
+                </Expression>
+            </Bucket>
+            <CalendarForm>Date</CalendarForm>
+            <Excluded>false</Excluded>
+            <ValidationUpdateNumber>31</ValidationUpdateNumber>
+        </BucketSet>
+        <SupportsXPathEnabled>false</SupportsXPathEnabled>
+        <DecisionFunction id="G}1955eea5:145f205160c:-7b53">
+            <Name>ValidateRulesPY_DecisionFunction</Name>
+            <Alias>ValidateRulesPY_DecisionFunction</Alias>
+            <Visible>true</Visible>
+            <CreationUpdateNumber>114</CreationUpdateNumber>
+            <WebService>true</WebService>
+            <CheckRuleFlow>true</CheckRuleFlow>
+            <Stateless>true</Stateless>
+            <DecisionFunctionInput id="L}370">
+                <Name>validation</Name>
+                <Alias>validation</Alias>
+                <Visible>true</Visible>
+                <CreationUpdateNumber>116</CreationUpdateNumber>
+                <IDofType>J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidationType</IDofType>
+                <List>false</List>
+                <Tree>true</Tree>
+            </DecisionFunctionInput>
+            <DecisionFunctionRuleSet id="L}372">
+                <CreationUpdateNumber>122</CreationUpdateNumber>
+                <Form>rule set</Form>
+                <Ruleset>Ruleset_ClientStatus</Ruleset>
+                <DecisionFunction>Ruleset_ClientStatus</DecisionFunction>
+                <refID>G}1955eea5:145f205160c:-7b62</refID>
+            </DecisionFunctionRuleSet>
+            <DecisionFunctionRuleSet id="L}373">
+                <CreationUpdateNumber>122</CreationUpdateNumber>
+                <Form>rule set</Form>
+                <Ruleset>Ruleset_InvoiceProfile</Ruleset>
+                <DecisionFunction>Ruleset_InvoiceProfile</DecisionFunction>
+                <refID>G}1955eea5:145f205160c:-7b61</refID>
+            </DecisionFunctionRuleSet>
+            <DecisionFunctionOutput id="L}371">
+                <Name>validatedRule</Name>
+                <Alias>validatedRule</Alias>
+                <Visible>true</Visible>
+                <CreationUpdateNumber>117</CreationUpdateNumber>
+                <IDofType>J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidatedRuleType</IDofType>
+                <List>false</List>
+                <Tree>false</Tree>
+            </DecisionFunctionOutput>
+            <ValidationUpdateNumber>123</ValidationUpdateNumber>
+            <RuleFiringLimit>unlimited</RuleFiringLimit>
+        </DecisionFunction>
+        <UpdateNumber>161</UpdateNumber>
+        <ValidationUpdateNumber>161</ValidationUpdateNumber>
+    </DataModel>
+    <RuleSet id="G}1955eea5:145f205160c:-7b62">
+        <Name>Ruleset_ClientStatus</Name>
+        <Alias>Ruleset_ClientStatus</Alias>
+        <Description>A set of rules to execute</Description>
+        <ValidationUpdateNumber>162</ValidationUpdateNumber>
+        <Customizable>true</Customizable>
+        <Active>true</Active>
+        <CalendarForm>DateTime</CalendarForm>
+        <RuleSheet id="G}1955eea5:145f205160c:-7b5f">
+            <Name>DecisionTableClientStatus</Name>
+            <Alias>DecisionTableClientStatus</Alias>
+            <ValidationUpdateNumber>162</ValidationUpdateNumber>
+            <Priority>medium</Priority>
+            <Customizable>true</Customizable>
+            <Active>true</Active>
+            <CalendarForm>DateTime</CalendarForm>
+            <Pattern id="L}300">
+                <Form>Fact Type</Form>
+                <FactType>ValidationType</FactType>
+                <IDofFactType>J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidationType</IDofFactType>
+                <Connective>&amp;&amp;</Connective>
+                <TestForm>Simple</TestForm>
+                <Expression id="L}301">
+                    <IsConstant>false</IsConstant>
+                    <ParameterID>B}nil</ParameterID>
+                    <Customizable>false</Customizable>
+                </Expression>
+                <Operator>(for each case where)</Operator>
+                <SimpleTest id="L}304">
+                    <Expression id="L}305">
+                        <Value>ValidationType.rule.id</Value>
+                        <ResolvedValue>`L}300`.`J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidationType.{rule}`.`J}com.tigo.rules.v1.schema.RuleType.{id}`</ResolvedValue>
+                        <IsConstant>false</IsConstant>
+                        <ParameterID>B}nil</ParameterID>
+                        <Customizable>false</Customizable>
+                    </Expression>
+                    <Expression id="L}306">
+                        <Value>&quot;PY_BR000&quot;</Value>
+                        <ResolvedValue>&quot;PY_BR000&quot;</ResolvedValue>
+                        <IsConstant>false</IsConstant>
+                        <ParameterID>B}nil</ParameterID>
+                        <Customizable>false</Customizable>
+                    </Expression>
+                    <IDofOperator>B}==</IDofOperator>
+                    <Connective>&amp;&amp;</Connective>
+                    <Form>FormNotNested</Form>
+                </SimpleTest>
+                <FactPath>ValidationType</FactPath>
+                <FactPathIDs>L}300</FactPathIDs>
+            </Pattern>
+            <ShowPatterns>true</ShowPatterns>
+            <TreeMode>false</TreeMode>
+            <Visible>true</Visible>
+            <Logical>false</Logical>
+            <Dimension id="L}311">
+                <Value>ValidationType.processID</Value>
+                <ResolvedValue>`L}300`.`J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidationType.{processID}`</ResolvedValue>
+                <IsConstant>false</IsConstant>
+                <ParameterID>B}nil</ParameterID>
+                <Customizable>false</Customizable>
+                <IDofSharedBucketSet>G}1955eea5:145f205160c:-7b75</IDofSharedBucketSet>
+                <DimensionNode id="L}403">
+                    <BucketIDTable>G}1955eea5:145f205160c:-7b74 G}1955eea5:145f205160c:-7b6e</BucketIDTable>
+                    <Values>otherwise ECOFACTURA,%20GESTION%20MODALIDAD%20PAGO,%20CAMBIO%20DE%20CICLO</Values>
+                    <ParentDimensionNode>B}nil</ParentDimensionNode>
+                    <ChildDimensionNodes>L}404 L}317</ChildDimensionNodes>
+                </DimensionNode>
+                <PrivateBucketSet id="G}1955eea5:145f205160c:-7b5d">
+                    <Visible>true</Visible>
+                    <CreationUpdateNumber>56</CreationUpdateNumber>
+                    <IDofType>J}java.lang.String</IDofType>
+                    <ListContentID>B}nil</ListContentID>
+                    <Type>String</Type>
+                    <Form>Default</Form>
+                    <Bucket id="G}1955eea5:145f205160c:-7b5b">
+                        <Name>otherwise</Name>
+                        <Alias>otherwise</Alias>
+                        <Visible>true</Visible>
+                        <CreationUpdateNumber>58</CreationUpdateNumber>
+                        <Inclusive>true</Inclusive>
+                        <Otherwise>true</Otherwise>
+                        <Excluded>false</Excluded>
+                        <Expression id="L}318">
+                            <IsConstant>true</IsConstant>
+                            <ParameterID>B}nil</ParameterID>
+                            <Customizable>false</Customizable>
+                        </Expression>
+                    </Bucket>
+                    <CalendarForm>Date</CalendarForm>
+                    <Excluded>false</Excluded>
+                    <ValidationUpdateNumber>58</ValidationUpdateNumber>
+                </PrivateBucketSet>
+                <SharedBucketSet>Process</SharedBucketSet>
+            </Dimension>
+            <Dimension id="L}316">
+                <Value>getDataEntity(ValidationType.rule.entities.entity,&quot;STATUS&quot;)</Value>
+                <ResolvedValue>`G}1955eea5:145f205160c:-7b78`(`L}300`.`J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidationType.{rule}`.`J}com.tigo.rules.v1.schema.RuleType.{entities}`.`J}com.tigo.entities.v1.schema.EntitiesArray.{entity}`,&quot;STATUS&quot;)</ResolvedValue>
+                <IsConstant>false</IsConstant>
+                <ParameterID>B}nil</ParameterID>
+                <Customizable>false</Customizable>
+                <IDofSharedBucketSet>G}1955eea5:145f205160c:-7b69</IDofSharedBucketSet>
+                <DimensionNode id="L}404">
+                    <BucketIDTable>G}1955eea5:145f205160c:-7b68 G}1955eea5:145f205160c:-7b66</BucketIDTable>
+                    <Values>otherwise &quot;INACTIVO&quot;</Values>
+                    <ParentDimensionNode>L}403</ParentDimensionNode>
+                    <ChildDimensionNodes></ChildDimensionNodes>
+                </DimensionNode>
+                <DimensionNode id="L}317">
+                    <BucketIDTable>G}1955eea5:145f205160c:-7b67</BucketIDTable>
+                    <Values>&quot;ACTIVO&quot;</Values>
+                    <ParentDimensionNode>L}403</ParentDimensionNode>
+                    <ChildDimensionNodes></ChildDimensionNodes>
+                </DimensionNode>
+                <PrivateBucketSet id="G}1955eea5:145f205160c:-7b5c">
+                    <Visible>true</Visible>
+                    <CreationUpdateNumber>57</CreationUpdateNumber>
+                    <IDofType>J}java.lang.String</IDofType>
+                    <ListContentID>B}nil</ListContentID>
+                    <Type>String</Type>
+                    <Form>Default</Form>
+                    <Bucket id="G}1955eea5:145f205160c:-7b5a">
+                        <Name>otherwise</Name>
+                        <Alias>otherwise</Alias>
+                        <Visible>true</Visible>
+                        <CreationUpdateNumber>62</CreationUpdateNumber>
+                        <Inclusive>true</Inclusive>
+                        <Otherwise>true</Otherwise>
+                        <Excluded>false</Excluded>
+                        <Expression id="L}319">
+                            <IsConstant>true</IsConstant>
+                            <ParameterID>B}nil</ParameterID>
+                            <Customizable>false</Customizable>
+                        </Expression>
+                    </Bucket>
+                    <CalendarForm>Date</CalendarForm>
+                    <Excluded>false</Excluded>
+                    <ValidationUpdateNumber>63</ValidationUpdateNumber>
+                </PrivateBucketSet>
+                <SharedBucketSet>ClientStatus</SharedBucketSet>
+            </Dimension>
+            <DTAction id="L}360">
+                <Form>Assert New</Form>
+                <Target>ValidatedRuleType</Target>
+                <ResolvedTarget>`J}public com.tigo.enterprise.business.entities.validate.v1.schema.ValidatedRuleType()`</ResolvedTarget>
+                <Expression id="L}362">
+                    <IsConstant>false</IsConstant>
+                    <ParameterAlias>action</ParameterAlias>
+                    <ParameterID>J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidatedRuleType.{action}</ParameterID>
+                    <DTActionParameterName>action</DTActionParameterName>
+                    <Customizable>false</Customizable>
+                </Expression>
+                <Expression id="L}363">
+                    <IsConstant>false</IsConstant>
+                    <ParameterAlias>comments</ParameterAlias>
+                    <ParameterID>J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidatedRuleType.{comments}</ParameterID>
+                    <DTActionParameterName>comments</DTActionParameterName>
+                    <Customizable>false</Customizable>
+                </Expression>
+                <Expression id="L}364">
+                    <IsConstant>false</IsConstant>
+                    <ParameterAlias>ruleID</ParameterAlias>
+                    <ParameterID>J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidatedRuleType.{ruleID}</ParameterID>
+                    <DTActionParameterName>ruleID</DTActionParameterName>
+                    <Customizable>false</Customizable>
+                </Expression>
+                <Expression id="L}365">
+                    <IsConstant>false</IsConstant>
+                    <ParameterAlias>status</ParameterAlias>
+                    <ParameterID>J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidatedRuleType.{status}</ParameterID>
+                    <DTActionParameterName>status</DTActionParameterName>
+                    <Customizable>false</Customizable>
+                </Expression>
+                <AlwaysSelected>false</AlwaysSelected>
+                <DTActionNode id="L}406">
+                    <Selected>true</Selected>
+                    <Expression id="L}408">
+                        <Value>&quot;Cliente Inválido&quot;</Value>
+                        <ResolvedValue>&quot;Cliente Inválido&quot;</ResolvedValue>
+                        <IsConstant>false</IsConstant>
+                        <ParameterAlias>comments</ParameterAlias>
+                        <ParameterID>J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidatedRuleType.{comments}</ParameterID>
+                        <DTActionParameterName>comments</DTActionParameterName>
+                        <Customizable>false</Customizable>
+                    </Expression>
+                    <Expression id="L}409">
+                        <Value>&quot;PROVISIONING&quot;</Value>
+                        <ResolvedValue>&quot;PROVISIONING&quot;</ResolvedValue>
+                        <IsConstant>false</IsConstant>
+                        <ParameterAlias>action</ParameterAlias>
+                        <ParameterID>J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidatedRuleType.{action}</ParameterID>
+                        <DTActionParameterName>action</DTActionParameterName>
+                        <Customizable>false</Customizable>
+                    </Expression>
+                    <Expression id="L}410">
+                        <Value>ValidationType.rule.id</Value>
+                        <ResolvedValue>`L}300`.`J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidationType.{rule}`.`J}com.tigo.rules.v1.schema.RuleType.{id}`</ResolvedValue>
+                        <IsConstant>false</IsConstant>
+                        <ParameterAlias>ruleID</ParameterAlias>
+                        <ParameterID>J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidatedRuleType.{ruleID}</ParameterID>
+                        <DTActionParameterName>ruleID</DTActionParameterName>
+                        <Customizable>false</Customizable>
+                    </Expression>
+                    <Expression id="L}411">
+                        <Value>&quot;ERROR&quot;</Value>
+                        <ResolvedValue>&quot;ERROR&quot;</ResolvedValue>
+                        <IsConstant>false</IsConstant>
+                        <ParameterAlias>status</ParameterAlias>
+                        <ParameterID>J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidatedRuleType.{status}</ParameterID>
+                        <DTActionParameterName>status</DTActionParameterName>
+                        <Customizable>false</Customizable>
+                    </Expression>
+                </DTActionNode>
+                <DTActionNode id="L}361">
+                    <Selected>true</Selected>
+                    <Expression id="L}366">
+                        <Value>&quot;Cliente Valido&quot;</Value>
+                        <ResolvedValue>&quot;Cliente Valido&quot;</ResolvedValue>
+                        <IsConstant>false</IsConstant>
+                        <ParameterAlias>comments</ParameterAlias>
+                        <ParameterID>J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidatedRuleType.{comments}</ParameterID>
+                        <DTActionParameterName>comments</DTActionParameterName>
+                        <Customizable>false</Customizable>
+                    </Expression>
+                    <Expression id="L}367">
+                        <Value>&quot;PROVISIONING&quot;</Value>
+                        <ResolvedValue>&quot;PROVISIONING&quot;</ResolvedValue>
+                        <IsConstant>false</IsConstant>
+                        <ParameterAlias>action</ParameterAlias>
+                        <ParameterID>J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidatedRuleType.{action}</ParameterID>
+                        <DTActionParameterName>action</DTActionParameterName>
+                        <Customizable>false</Customizable>
+                    </Expression>
+                    <Expression id="L}368">
+                        <Value>ValidationType.rule.id</Value>
+                        <ResolvedValue>`L}300`.`J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidationType.{rule}`.`J}com.tigo.rules.v1.schema.RuleType.{id}`</ResolvedValue>
+                        <IsConstant>false</IsConstant>
+                        <ParameterAlias>ruleID</ParameterAlias>
+                        <ParameterID>J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidatedRuleType.{ruleID}</ParameterID>
+                        <DTActionParameterName>ruleID</DTActionParameterName>
+                        <Customizable>false</Customizable>
+                    </Expression>
+                    <Expression id="L}369">
+                        <Value>&quot;OK&quot;</Value>
+                        <ResolvedValue>&quot;OK&quot;</ResolvedValue>
+                        <IsConstant>false</IsConstant>
+                        <ParameterAlias>status</ParameterAlias>
+                        <ParameterID>J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidatedRuleType.{status}</ParameterID>
+                        <DTActionParameterName>status</DTActionParameterName>
+                        <Customizable>false</Customizable>
+                    </Expression>
+                </DTActionNode>
+            </DTAction>
+            <DTRule id="L}405">
+                <Override></Override>
+                <RunBefore></RunBefore>
+                <NoConflict></NoConflict>
+                <OverriddenBy></OverriddenBy>
+                <RunAfter></RunAfter>
+                <CreationUpdateNumber>150</CreationUpdateNumber>
+            </DTRule>
+            <DTRule id="L}313">
+                <Override></Override>
+                <RunBefore></RunBefore>
+                <NoConflict></NoConflict>
+                <OverriddenBy></OverriddenBy>
+                <RunAfter></RunAfter>
+                <CreationUpdateNumber>56</CreationUpdateNumber>
+            </DTRule>
+            <AllowGaps>true</AllowGaps>
+            <ConflictPolicy>manual</ConflictPolicy>
+            <OrderRulesByBucket>true</OrderRulesByBucket>
+        </RuleSheet>
+        <VisibilityFilterEnabled>false</VisibilityFilterEnabled>
+        <CreationUpdateNumber>38</CreationUpdateNumber>
+    </RuleSet>
+    <RuleSet id="G}1955eea5:145f205160c:-7b61">
+        <Name>Ruleset_InvoiceProfile</Name>
+        <Alias>Ruleset_InvoiceProfile</Alias>
+        <Description>Validacion de Email</Description>
+        <ValidationUpdateNumber>160</ValidationUpdateNumber>
+        <Customizable>true</Customizable>
+        <Active>true</Active>
+        <CalendarForm>DateTime</CalendarForm>
+        <RuleSheet id="G}1955eea5:145f205160c:-7b5e">
+            <Name>DecisionTableInvoiceProfile</Name>
+            <Alias>DecisionTableInvoiceProfile</Alias>
+            <ValidationUpdateNumber>160</ValidationUpdateNumber>
+            <Priority>medium</Priority>
+            <Customizable>true</Customizable>
+            <Active>true</Active>
+            <CalendarForm>DateTime</CalendarForm>
+            <Pattern id="L}302">
+                <Form>Fact Type</Form>
+                <FactType>ValidationType</FactType>
+                <IDofFactType>J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidationType</IDofFactType>
+                <Connective>&amp;&amp;</Connective>
+                <TestForm>Simple</TestForm>
+                <Expression id="L}303">
+                    <IsConstant>false</IsConstant>
+                    <ParameterID>B}nil</ParameterID>
+                    <Customizable>false</Customizable>
+                </Expression>
+                <Operator>(for each case where)</Operator>
+                <SimpleTest id="L}308">
+                    <Expression id="L}309">
+                        <Value>ValidationType.rule.id</Value>
+                        <ResolvedValue>`L}302`.`J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidationType.{rule}`.`J}com.tigo.rules.v1.schema.RuleType.{id}`</ResolvedValue>
+                        <IsConstant>false</IsConstant>
+                        <ParameterID>B}nil</ParameterID>
+                        <Customizable>false</Customizable>
+                    </Expression>
+                    <Expression id="L}310">
+                        <Value>&quot;PY_BR057&quot;</Value>
+                        <ResolvedValue>&quot;PY_BR057&quot;</ResolvedValue>
+                        <IsConstant>false</IsConstant>
+                        <ParameterID>B}nil</ParameterID>
+                        <Customizable>false</Customizable>
+                    </Expression>
+                    <IDofOperator>B}==</IDofOperator>
+                    <Connective>&amp;&amp;</Connective>
+                    <Form>FormNotNested</Form>
+                </SimpleTest>
+                <FactPath>ValidationType</FactPath>
+                <FactPathIDs>L}302</FactPathIDs>
+            </Pattern>
+            <ShowPatterns>true</ShowPatterns>
+            <TreeMode>false</TreeMode>
+            <Visible>true</Visible>
+            <Logical>false</Logical>
+            <Dimension id="L}320">
+                <Value>ValidationType.processID</Value>
+                <ResolvedValue>`L}302`.`J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidationType.{processID}`</ResolvedValue>
+                <IsConstant>false</IsConstant>
+                <ParameterID>B}nil</ParameterID>
+                <Customizable>false</Customizable>
+                <IDofSharedBucketSet>G}1955eea5:145f205160c:-7b75</IDofSharedBucketSet>
+                <DimensionNode id="L}391">
+                    <BucketIDTable>G}1955eea5:145f205160c:-7b6e</BucketIDTable>
+                    <Values>ECOFACTURA,%20GESTION%20MODALIDAD%20PAGO,%20CAMBIO%20DE%20CICLO</Values>
+                    <ParentDimensionNode>B}nil</ParentDimensionNode>
+                    <ChildDimensionNodes>L}392 L}337</ChildDimensionNodes>
+                </DimensionNode>
+                <PrivateBucketSet id="G}1955eea5:145f205160c:-7b59">
+                    <Visible>true</Visible>
+                    <CreationUpdateNumber>67</CreationUpdateNumber>
+                    <IDofType>J}java.lang.String</IDofType>
+                    <ListContentID>B}nil</ListContentID>
+                    <Type>String</Type>
+                    <Form>Default</Form>
+                    <Bucket id="G}1955eea5:145f205160c:-7b56">
+                        <Name>otherwise</Name>
+                        <Alias>otherwise</Alias>
+                        <Visible>true</Visible>
+                        <CreationUpdateNumber>70</CreationUpdateNumber>
+                        <Inclusive>true</Inclusive>
+                        <Otherwise>true</Otherwise>
+                        <Excluded>false</Excluded>
+                        <Expression id="L}331">
+                            <IsConstant>true</IsConstant>
+                            <ParameterID>B}nil</ParameterID>
+                            <Customizable>false</Customizable>
+                        </Expression>
+                    </Bucket>
+                    <CalendarForm>Date</CalendarForm>
+                    <Excluded>false</Excluded>
+                    <ValidationUpdateNumber>70</ValidationUpdateNumber>
+                </PrivateBucketSet>
+                <SharedBucketSet>Process</SharedBucketSet>
+            </Dimension>
+            <Dimension id="L}325">
+                <Value>getDataEntity(ValidationType.rule.entities.entity,&quot;MEDIA_TYPE&quot;)</Value>
+                <ResolvedValue>`G}1955eea5:145f205160c:-7b78`(`L}302`.`J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidationType.{rule}`.`J}com.tigo.rules.v1.schema.RuleType.{entities}`.`J}com.tigo.entities.v1.schema.EntitiesArray.{entity}`,&quot;MEDIA_TYPE&quot;)</ResolvedValue>
+                <IsConstant>false</IsConstant>
+                <ParameterID>B}nil</ParameterID>
+                <Customizable>false</Customizable>
+                <IDofSharedBucketSet>G}1955eea5:145f205160c:-7b6b</IDofSharedBucketSet>
+                <DimensionNode id="L}392">
+                    <BucketIDTable>G}1955eea5:145f205160c:-7b6a</BucketIDTable>
+                    <Values>otherwise</Values>
+                    <ParentDimensionNode>L}391</ParentDimensionNode>
+                    <ChildDimensionNodes>L}393</ChildDimensionNodes>
+                </DimensionNode>
+                <DimensionNode id="L}337">
+                    <BucketIDTable>G}1955eea5:145f205160c:-7b63</BucketIDTable>
+                    <Values>&quot;ECOFACTURA&quot;</Values>
+                    <ParentDimensionNode>L}391</ParentDimensionNode>
+                    <ChildDimensionNodes>L}330 L}338</ChildDimensionNodes>
+                </DimensionNode>
+                <PrivateBucketSet id="G}1955eea5:145f205160c:-7b58">
+                    <Visible>true</Visible>
+                    <CreationUpdateNumber>68</CreationUpdateNumber>
+                    <IDofType>J}java.lang.String</IDofType>
+                    <ListContentID>B}nil</ListContentID>
+                    <Type>String</Type>
+                    <Form>Default</Form>
+                    <Bucket id="G}1955eea5:145f205160c:-7b55">
+                        <Name>otherwise</Name>
+                        <Alias>otherwise</Alias>
+                        <Visible>true</Visible>
+                        <CreationUpdateNumber>71</CreationUpdateNumber>
+                        <Inclusive>true</Inclusive>
+                        <Otherwise>true</Otherwise>
+                        <Excluded>false</Excluded>
+                        <Expression id="L}332">
+                            <IsConstant>true</IsConstant>
+                            <ParameterID>B}nil</ParameterID>
+                            <Customizable>false</Customizable>
+                        </Expression>
+                    </Bucket>
+                    <CalendarForm>Date</CalendarForm>
+                    <Excluded>false</Excluded>
+                    <ValidationUpdateNumber>76</ValidationUpdateNumber>
+                </PrivateBucketSet>
+                <SharedBucketSet>MediaType</SharedBucketSet>
+            </Dimension>
+            <Dimension id="L}329">
+                <Value>(getDataEntity(ValidationType.rule.entities.entity,&quot;EMAIL&quot;)!=&quot;&quot;)</Value>
+                <ResolvedValue>(`G}1955eea5:145f205160c:-7b78`(`L}302`.`J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidationType.{rule}`.`J}com.tigo.rules.v1.schema.RuleType.{entities}`.`J}com.tigo.entities.v1.schema.EntitiesArray.{entity}`,&quot;EMAIL&quot;)!=&quot;&quot;)</ResolvedValue>
+                <IsConstant>false</IsConstant>
+                <ParameterID>B}nil</ParameterID>
+                <Customizable>false</Customizable>
+                <IDofSharedBucketSet>B}bbs</IDofSharedBucketSet>
+                <DimensionNode id="L}393">
+                    <BucketIDTable></BucketIDTable>
+                    <Values>-</Values>
+                    <ParentDimensionNode>L}392</ParentDimensionNode>
+                    <ChildDimensionNodes></ChildDimensionNodes>
+                </DimensionNode>
+                <DimensionNode id="L}330">
+                    <BucketIDTable>B}bbtrue</BucketIDTable>
+                    <Values>true</Values>
+                    <ParentDimensionNode>L}337</ParentDimensionNode>
+                    <ChildDimensionNodes></ChildDimensionNodes>
+                </DimensionNode>
+                <DimensionNode id="L}338">
+                    <BucketIDTable>B}bbfalse</BucketIDTable>
+                    <Values>false</Values>
+                    <ParentDimensionNode>L}337</ParentDimensionNode>
+                    <ChildDimensionNodes></ChildDimensionNodes>
+                </DimensionNode>
+                <PrivateBucketSet id="G}1955eea5:145f205160c:-7b57">
+                    <Visible>true</Visible>
+                    <CreationUpdateNumber>69</CreationUpdateNumber>
+                    <IDofType>J}java.lang.String</IDofType>
+                    <ListContentID>B}nil</ListContentID>
+                    <Type>String</Type>
+                    <Form>LOV</Form>
+                    <Bucket id="G}1955eea5:145f205160c:-7b54">
+                        <Name>otherwise</Name>
+                        <Alias>otherwise</Alias>
+                        <Visible>true</Visible>
+                        <CreationUpdateNumber>72</CreationUpdateNumber>
+                        <Inclusive>true</Inclusive>
+                        <Otherwise>true</Otherwise>
+                        <Excluded>false</Excluded>
+                        <Expression id="L}333">
+                            <IsConstant>true</IsConstant>
+                            <ParameterID>B}nil</ParameterID>
+                            <Customizable>false</Customizable>
+                        </Expression>
+                    </Bucket>
+                    <CalendarForm>Date</CalendarForm>
+                    <Excluded>false</Excluded>
+                    <ValidationUpdateNumber>81</ValidationUpdateNumber>
+                </PrivateBucketSet>
+                <SharedBucketSet>boolean</SharedBucketSet>
+            </Dimension>
+            <DTAction id="L}343">
+                <Form>Assert New</Form>
+                <Target>ValidatedRuleType</Target>
+                <ResolvedTarget>`J}public com.tigo.enterprise.business.entities.validate.v1.schema.ValidatedRuleType()`</ResolvedTarget>
+                <Expression id="L}346">
+                    <IsConstant>false</IsConstant>
+                    <ParameterAlias>action</ParameterAlias>
+                    <ParameterID>J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidatedRuleType.{action}</ParameterID>
+                    <DTActionParameterName>action</DTActionParameterName>
+                    <Customizable>false</Customizable>
+                </Expression>
+                <Expression id="L}347">
+                    <IsConstant>false</IsConstant>
+                    <ParameterAlias>comments</ParameterAlias>
+                    <ParameterID>J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidatedRuleType.{comments}</ParameterID>
+                    <DTActionParameterName>comments</DTActionParameterName>
+                    <Customizable>false</Customizable>
+                </Expression>
+                <Expression id="L}348">
+                    <IsConstant>false</IsConstant>
+                    <ParameterAlias>ruleID</ParameterAlias>
+                    <ParameterID>J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidatedRuleType.{ruleID}</ParameterID>
+                    <DTActionParameterName>ruleID</DTActionParameterName>
+                    <Customizable>false</Customizable>
+                </Expression>
+                <Expression id="L}349">
+                    <IsConstant>false</IsConstant>
+                    <ParameterAlias>status</ParameterAlias>
+                    <ParameterID>J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidatedRuleType.{status}</ParameterID>
+                    <DTActionParameterName>status</DTActionParameterName>
+                    <Customizable>false</Customizable>
+                </Expression>
+                <AlwaysSelected>false</AlwaysSelected>
+                <DTActionNode id="L}395">
+                    <Selected>true</Selected>
+                    <Expression id="L}397">
+                        <Value>ValidationType.rule.id</Value>
+                        <ResolvedValue>`L}302`.`J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidationType.{rule}`.`J}com.tigo.rules.v1.schema.RuleType.{id}`</ResolvedValue>
+                        <IsConstant>false</IsConstant>
+                        <ParameterAlias>ruleID</ParameterAlias>
+                        <ParameterID>J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidatedRuleType.{ruleID}</ParameterID>
+                        <DTActionParameterName>ruleID</DTActionParameterName>
+                        <Customizable>false</Customizable>
+                    </Expression>
+                    <Expression id="L}398">
+                        <Value>&quot;OK&quot;</Value>
+                        <ResolvedValue>&quot;OK&quot;</ResolvedValue>
+                        <IsConstant>false</IsConstant>
+                        <ParameterAlias>status</ParameterAlias>
+                        <ParameterID>J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidatedRuleType.{status}</ParameterID>
+                        <DTActionParameterName>status</DTActionParameterName>
+                        <Customizable>false</Customizable>
+                    </Expression>
+                    <Expression id="L}399">
+                        <Value>&quot;PROVISIONING&quot;</Value>
+                        <ResolvedValue>&quot;PROVISIONING&quot;</ResolvedValue>
+                        <IsConstant>false</IsConstant>
+                        <ParameterAlias>action</ParameterAlias>
+                        <ParameterID>J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidatedRuleType.{action}</ParameterID>
+                        <DTActionParameterName>action</DTActionParameterName>
+                        <Customizable>false</Customizable>
+                    </Expression>
+                    <Expression id="L}400">
+                        <Value>&quot;Caso Externo&quot;</Value>
+                        <ResolvedValue>&quot;Caso Externo&quot;</ResolvedValue>
+                        <IsConstant>false</IsConstant>
+                        <ParameterAlias>comments</ParameterAlias>
+                        <ParameterID>J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidatedRuleType.{comments}</ParameterID>
+                        <DTActionParameterName>comments</DTActionParameterName>
+                        <Customizable>false</Customizable>
+                    </Expression>
+                </DTActionNode>
+                <DTActionNode id="L}344">
+                    <Selected>true</Selected>
+                    <Expression id="L}350">
+                        <Value>ValidationType.rule.id</Value>
+                        <ResolvedValue>`L}302`.`J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidationType.{rule}`.`J}com.tigo.rules.v1.schema.RuleType.{id}`</ResolvedValue>
+                        <IsConstant>false</IsConstant>
+                        <ParameterAlias>ruleID</ParameterAlias>
+                        <ParameterID>J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidatedRuleType.{ruleID}</ParameterID>
+                        <DTActionParameterName>ruleID</DTActionParameterName>
+                        <Customizable>false</Customizable>
+                    </Expression>
+                    <Expression id="L}351">
+                        <Value>&quot;OK&quot;</Value>
+                        <ResolvedValue>&quot;OK&quot;</ResolvedValue>
+                        <IsConstant>false</IsConstant>
+                        <ParameterAlias>status</ParameterAlias>
+                        <ParameterID>J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidatedRuleType.{status}</ParameterID>
+                        <DTActionParameterName>status</DTActionParameterName>
+                        <Customizable>false</Customizable>
+                    </Expression>
+                    <Expression id="L}352">
+                        <Value>&quot;PROVISIONING&quot;</Value>
+                        <ResolvedValue>&quot;PROVISIONING&quot;</ResolvedValue>
+                        <IsConstant>false</IsConstant>
+                        <ParameterAlias>action</ParameterAlias>
+                        <ParameterID>J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidatedRuleType.{action}</ParameterID>
+                        <DTActionParameterName>action</DTActionParameterName>
+                        <Customizable>false</Customizable>
+                    </Expression>
+                    <Expression id="L}353">
+                        <Value>&quot;Correo Válido&quot;</Value>
+                        <ResolvedValue>&quot;Correo Válido&quot;</ResolvedValue>
+                        <IsConstant>false</IsConstant>
+                        <ParameterAlias>comments</ParameterAlias>
+                        <ParameterID>J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidatedRuleType.{comments}</ParameterID>
+                        <DTActionParameterName>comments</DTActionParameterName>
+                        <Customizable>false</Customizable>
+                    </Expression>
+                </DTActionNode>
+                <DTActionNode id="L}345">
+                    <Selected>true</Selected>
+                    <Expression id="L}354">
+                        <Value>ValidationType.rule.id</Value>
+                        <ResolvedValue>`L}302`.`J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidationType.{rule}`.`J}com.tigo.rules.v1.schema.RuleType.{id}`</ResolvedValue>
+                        <IsConstant>false</IsConstant>
+                        <ParameterAlias>ruleID</ParameterAlias>
+                        <ParameterID>J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidatedRuleType.{ruleID}</ParameterID>
+                        <DTActionParameterName>ruleID</DTActionParameterName>
+                        <Customizable>false</Customizable>
+                    </Expression>
+                    <Expression id="L}355">
+                        <Value>&quot;WARNING&quot;</Value>
+                        <ResolvedValue>&quot;WARNING&quot;</ResolvedValue>
+                        <IsConstant>false</IsConstant>
+                        <ParameterAlias>status</ParameterAlias>
+                        <ParameterID>J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidatedRuleType.{status}</ParameterID>
+                        <DTActionParameterName>status</DTActionParameterName>
+                        <Customizable>false</Customizable>
+                    </Expression>
+                    <Expression id="L}356">
+                        <Value>&quot;PROVISIONING&quot;</Value>
+                        <ResolvedValue>&quot;PROVISIONING&quot;</ResolvedValue>
+                        <IsConstant>false</IsConstant>
+                        <ParameterAlias>action</ParameterAlias>
+                        <ParameterID>J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidatedRuleType.{action}</ParameterID>
+                        <DTActionParameterName>action</DTActionParameterName>
+                        <Customizable>false</Customizable>
+                    </Expression>
+                    <Expression id="L}357">
+                        <Value>&quot;Correo Inválido&quot;</Value>
+                        <ResolvedValue>&quot;Correo Inválido&quot;</ResolvedValue>
+                        <IsConstant>false</IsConstant>
+                        <ParameterAlias>comments</ParameterAlias>
+                        <ParameterID>J}com.tigo.enterprise.business.entities.validate.v1.schema.ValidatedRuleType.{comments}</ParameterID>
+                        <DTActionParameterName>comments</DTActionParameterName>
+                        <Customizable>false</Customizable>
+                    </Expression>
+                </DTActionNode>
+            </DTAction>
+            <DTRule id="L}394">
+                <Override></Override>
+                <RunBefore></RunBefore>
+                <NoConflict></NoConflict>
+                <OverriddenBy></OverriddenBy>
+                <RunAfter></RunAfter>
+                <CreationUpdateNumber>142</CreationUpdateNumber>
+            </DTRule>
+            <DTRule id="L}322">
+                <Override></Override>
+                <RunBefore></RunBefore>
+                <NoConflict></NoConflict>
+                <OverriddenBy></OverriddenBy>
+                <RunAfter></RunAfter>
+                <CreationUpdateNumber>67</CreationUpdateNumber>
+            </DTRule>
+            <DTRule id="L}339">
+                <Override></Override>
+                <RunBefore></RunBefore>
+                <NoConflict></NoConflict>
+                <OverriddenBy></OverriddenBy>
+                <RunAfter></RunAfter>
+                <CreationUpdateNumber>84</CreationUpdateNumber>
+            </DTRule>
+            <AllowGaps>true</AllowGaps>
+            <ConflictPolicy>manual</ConflictPolicy>
+            <OrderRulesByBucket>true</OrderRulesByBucket>
+        </RuleSheet>
+        <VisibilityFilterEnabled>false</VisibilityFilterEnabled>
+        <CreationUpdateNumber>39</CreationUpdateNumber>
+    </RuleSet>
+    <IDcounter>414</IDcounter>
+    <ValidationUpdateNumber>162</ValidationUpdateNumber>
+    <UpdateNumber>162</UpdateNumber>
+</RuleDictionary>

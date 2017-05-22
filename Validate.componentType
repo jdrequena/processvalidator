@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<componentType xmlns="http://xmlns.oracle.com/sca/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ui="http://xmlns.oracle.com/soa/designer/" xml:id="id_1">
+   <service name="validate_client" ui:wsdlLocation="ProcessValidateWrapper.wsdl" xml:id="id_2">
+      <interface.wsdl interface="http://xmlns.tigo.com/ProcessValidator/Validate#wsdl.interface(ProcessValidator)" xml:id="id_3"/>
+   </service>
+   <reference name="WS_MasterDataEngineService" ui:wsdlLocation="MasterDataEngineServiceWrapper.wsdl" xml:id="id_4">
+      <interface.wsdl interface="http://tigo.com/enterprise/business/task/MasterDataEngine/v1#wsdl.interface(EntitiesServicePortType)" xml:id="id_5"/>
+   </reference>
+   <reference name="MediatorValidations.MediatorValidations" ui:wsdlLocation="MediatorValidationsWrapper.wsdl" xml:id="id_6">
+      <interface.wsdl interface="http://xmlns.tigo.com/ProcessValidator/Validations#wsdl.interface(MediatorValidationsPortType)" xml:id="id_7"/>
+   </reference>
+   <reference name="DB_Select_PROCESS_RULES_DATAS" ui:wsdlLocation="DB_Select_PROCESS_RULES_DATAS.wsdl" xml:id="id_8">
+      <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/PSV_v2/ProcessValidatorV2/DB_Select_PROCESS_RULES_DATAS#wsdl.interface(DB_Select_PROCESS_RULES_DATAS_ptt)" xml:id="id_9"/>
+   </reference>
+   <reference name="DB_Select_PROCESSID_GROUP" ui:wsdlLocation="DB_Select_PROCESSID_GROUP.wsdl" xml:id="id_10">
+      <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/Broker/ProcessValidatorV2/DB_Select_PROCESSID_GROUP#wsdl.interface(DB_Select_PROCESSID_GROUP_ptt)" xml:id="id_11"/>
+   </reference>
+   <reference name="DB_Select_PROCESS_RULES_INFO" ui:wsdlLocation="DB_Select_PROCESS_RULES_INFO.wsdl" xml:id="id_12">
+      <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/Broker/ProcessValidatorV2/DB_Select_PROCESS_RULES_INFO#wsdl.interface(DB_Select_PROCESS_RULES_INFO_ptt)" xml:id="id_13"/>
+   </reference>
+   <reference name="DB_Select_PROCESSID_GROUPV2" ui:wsdlLocation="DB_Select_PROCESSID_GROUPV2.wsdl" xml:id="id_14">
+      <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/Broker/ProcessValidatorV2/DB_Select_PROCESSID_GROUPV2#wsdl.interface(DB_Select_PROCESSID_GROUPV2_ptt)" xml:id="id_15"/>
+   </reference>
+</componentType>

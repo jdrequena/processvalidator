@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<decisionServices xmlns="http://xmlns.oracle.com/bpel/rules" name="ValidateRulesGT">
+   <ruleEngineProvider provider="Oracle_11.0.0.0.0" name="OracleRulesSDK">
+      <repository type="SCA-Archive">
+         <path>ProcessValidatorV2/oracle/rules/pvsv2/ValidateRulesGT.rules</path>
+      </repository>
+   </ruleEngineProvider>
+   <schemaInformation>
+      <dictionary fqnPackage="pvsv2" fqnName="ValidateRulesGT" updateNumber="5">
+         <schemaBrowser>
+            <package>com.tigo.rules.v1.schema</package>
+            <namespace>http://tigo.com/rules/v1/schema</namespace>
+         </schemaBrowser>
+         <schemaImport namespace="http://xmlns.oracle.com/ValidateRules_BOL/ValidateRules_BOL_StatusLine_1" localPart="BasicValidate_schema.xsd" schemaLocation="xsd/ValidateRules_BOL_StatusLine_1MessageTypes.xsd" package="">
+            <import namespace="http://xmlns.oracle.com/ValidateRules_BOL/ValidateRules_BOL_StatusLine_1" localPart="BasicValidate_schema.xsd"/>
+            <import namespace="http://tigo.com/rules/v1/schema" localPart="BasicRules_schema.xsd"/>
+            <import namespace="http://tigo.com/entities/v1/schema" localPart="BasicEntities_schema.xsd"/>
+            <import namespace="http://xmlns.tigo.com/AdditionalSchema/V1" localPart="AdditionalSchemaV1.xsd"/>
+            <import namespace="http://tigo.com/enterprise/business/entities/validate/v1/schema" localPart="BasicValidate_schema.xsd"/>
+            <import namespace="http://xmlns.oracle.com/bpel" localPart="BpelProcess.xsd"/>
+            <import namespace="http://xmlns.oracle.com/ValidateRules_BOL/ValidateRules_BOL_StatusLine_1" localPart="ValidateRules_BOL_StatusLine_1Types.xsd"/>
+            <import namespace="http://xmlns.oracle.com/bpel/rules" localPart="DecisionServicePrimitiveTypes.xsd"/>
+         </schemaImport>
+      </dictionary>
+   </schemaInformation>
+</decisionServices>

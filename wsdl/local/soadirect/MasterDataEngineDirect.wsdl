@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='utf-8'?>
+<wsdl:definitions xmlns:plnk="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://tigo.com/enterprise/business/task/MasterDataEngine/v1" xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="MasterDataEngineService" targetNamespace="http://tigo.com/enterprise/business/task/MasterDataEngine/v1" xmlns:sch="http://tigo.com/enterprise/business/task/MasterDataEngine/v1/schema" xmlns:grs="http://tigo.com/enterprise/resources/GeneralResponse/v1/schema">
+   <wsdl:types>
+      <xsd:schema targetNamespace="http://tigo.com/enterprise/business/task/MasterDataEngine/v1">
+         <xsd:import namespace="http://tigo.com/enterprise/business/task/MasterDataEngine/v1/schema" schemaLocation="../MasterDataEngineService/MasterDataEngine_schema.xsd"/>
+         <xsd:import namespace="http://tigo.com/enterprise/resources/GeneralResponse/v1/schema" schemaLocation="../../../xsd/commons/resources/GeneralResponse.xsd"/>
+      </xsd:schema>
+   </wsdl:types>
+   <wsdl:message name="EntitiesRequest_msg">
+      <wsdl:part name="body" element="sch:SubmitOrder_Request"/>
+   </wsdl:message>
+   <wsdl:message name="EntitiesResponse_msg">
+      <wsdl:part name="body" element="sch:SubmitOrder_Response"/>
+   </wsdl:message>
+   <wsdl:message name="GeneralResponseMessage">
+      <wsdl:part name="fault" element="grs:GeneralResponse"/>
+   </wsdl:message>
+   <wsdl:portType name="EntitiesServicePortType">
+      <wsdl:operation name="ExecuteOrder">
+         <wsdl:input name="Entities_RequestPort" message="tns:EntitiesRequest_msg"/>
+         <wsdl:output name="Entities_ResponsePort" message="tns:EntitiesResponse_msg"/>
+         <wsdl:fault name="fault" message="tns:GeneralResponseMessage"/>
+      </wsdl:operation>
+   </wsdl:portType>
+   <wsdl:binding name="EntitiesServiceDirectBinding1.1" type="tns:EntitiesServicePortType">
+      <soap:binding xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" transport="http://xmlns.oracle.com/soa/direct"/>
+      <wsdl:operation name="ExecuteOrder">
+         <soap:operation xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" style="document" soapAction="ExecuteOrder"/>
+         <wsdl:input name="Entities_RequestPort">
+            <soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" use="literal" namespace="http://tigo.com/enterprise/business/task/MasterDataEngine/v1"/>
+         </wsdl:input>
+         <wsdl:output name="Entities_ResponsePort">
+            <soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" use="literal" namespace="http://tigo.com/enterprise/business/task/MasterDataEngine/v1"/>
+         </wsdl:output>
+         <wsdl:fault name="fault">
+            <soap:fault xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="fault" use="literal" encodingStyle=""/>
+         </wsdl:fault>
+      </wsdl:operation>
+   </wsdl:binding>
+   <wsdl:binding name="EntitiesServiceDirectBinding1.2" type="tns:EntitiesServicePortType">
+      <soap12:binding xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" transport="http://xmlns.oracle.com/soa/direct"/>
+      <wsdl:operation name="ExecuteOrder">
+         <soap12:operation xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" style="document" soapAction="ExecuteOrder" soapActionRequired="false"/>
+         <wsdl:input name="Entities_RequestPort">
+            <soap12:body xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" use="literal" namespace="http://tigo.com/enterprise/business/task/MasterDataEngine/v1"/>
+         </wsdl:input>
+         <wsdl:output name="Entities_ResponsePort">
+            <soap12:body xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" use="literal" namespace="http://tigo.com/enterprise/business/task/MasterDataEngine/v1"/>
+         </wsdl:output>
+         <wsdl:fault name="fault">
+            <soap12:fault xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" name="fault" use="literal" encodingStyle=""/>
+         </wsdl:fault>
+      </wsdl:operation>
+   </wsdl:binding>
+   <wsdl:service name="MasterDataDirect">
+      <wsdl:port name="MasterDataDirectDirectBindingPort11" binding="tns:EntitiesServiceDirectBinding1.1">
+         <soap:address xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" location="t3://osmsoaqa.tigo.com.gt:8001/ffs/MasterDataEngine_v2!1.1/MasterDataDirect"/>
+      </wsdl:port>
+      <wsdl:port name="MasterDataDirectDirectBindingPort12" binding="tns:EntitiesServiceDirectBinding1.2">
+         <soap12:address xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" location="t3://osmsoaqa.tigo.com.gt:8001/PVSO2/MasterDataEngine_v2!1.2/MasterDataDirect"/>
+      </wsdl:port>
+   </wsdl:service>
+</wsdl:definitions>

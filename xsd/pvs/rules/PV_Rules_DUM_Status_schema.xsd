@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xsd:schema version="1.0" targetNamespace="http://tigo.com/enterprise/business/task/dum/status/v1/schema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:prl="http://tigo.com/enterprise/business/task/dum/status/v1/schema">
+   <xsd:element name="PvRulesDum_Type" type="prl:PvRulesDum_Type"/>
+   <xsd:complexType name="PvRulesDum_Type">
+      <xsd:sequence>
+         <xsd:element name="sn" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+         <xsd:element name="status" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+      </xsd:sequence>
+   </xsd:complexType>
+</xsd:schema>

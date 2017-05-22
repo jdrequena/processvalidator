@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<properties>
+   <entry key="AG}76817b93:14f8b186729:-77b3">GT_DESBLOQUEO_IMEI</entry>
+   <entry key="AG}-78699c77:14b1352f4ca:-7c33">GT_LINEAS_ACTIVAS_EN_LEGADO1</entry>
+   <entry key="AG}26e04ca0:14fb4a0ee40:-780b">GT_MINIMO_DE_LINEAS_ACTIVAS</entry>
+   <entry key="AG}6b49b19d:159b41c996f:-7c32">TRASLADO  E1</entry>
+   <entry key="AG}76817b93:14f8b186729:-77bf">GT_BLOQUEO_ACTIVO</entry>
+   <entry key="AG}72ecf33b:14c56afd820:-7c2f">GT_MOTIVO_BLOQUEO</entry>
+   <entry key="AG}76817b93:14f8b186729:-77b9">GT_ESTADO_IMEI</entry>
+   <entry key="AG}5ae51acf:1507293fc04:-7853">TIGO</entry>
+   <entry key="AG}7e1e54a7:14fba1a7700:-7805">GT_VALIDAR_FIN_DE_CONTRATO</entry>
+   <entry key="AG}7e1e54a7:14fba1a7700:-780b">GT_VALIDAR_CAMBIO_PLAN_MENOR_COSTO</entry>
+   <entry key="AG}43fd5b1b:15049f8ed02:-77ce">MIGRACION GSM ICC</entry>
+   <entry key="DG}4c956c42:14953e7af37:-7c00">Lista de rangos para validar el periodo de tiempo de cambio</entry>
+   <entry key="AG}27a741de:15015443941:-7860">DISPONIBLE</entry>
+   <entry key="AG}21aa823a:1486533bb95:-7c0f">StatusLine</entry>
+</properties>

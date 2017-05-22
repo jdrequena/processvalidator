@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<wsdl:definitions name="DB_Select_PROCESS_RULES_DATAS" targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/PSV_v2/ProcessValidatorV2/DB_Select_PROCESS_RULES_DATAS" xmlns:db="http://xmlns.oracle.com/pcbpel/adapter/db/DB_Select_PROCESS_RULES_DATAS" xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/PSV_v2/ProcessValidatorV2/DB_Select_PROCESS_RULES_DATAS" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/">
+   <plt:partnerLinkType name="DB_Select_PROCESS_RULES_DATAS_plt">
+      <plt:role name="DB_Select_PROCESS_RULES_DATAS_role">
+         <plt:portType name="tns:DB_Select_PROCESS_RULES_DATAS_ptt"/>
+      </plt:role>
+   </plt:partnerLinkType>
+   <wsdl:types>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema">
+         <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/DB_Select_PROCESS_RULES_DATAS" schemaLocation="xsd/DB_Select_PROCESS_RULES_DATAS.xsd"/>
+      </schema>
+   </wsdl:types>
+   <wsdl:message name="DB_Select_PROCESS_RULES_DATASInput_msg">
+      <wsdl:part name="DB_Select_PROCESS_RULES_DATASInput_msg" element="db:DB_Select_PROCESS_RULES_DATASInput"/>
+   </wsdl:message>
+   <wsdl:message name="DB_Select_PROCESS_RULES_DATASOutputCollection_msg">
+      <wsdl:part name="DB_Select_PROCESS_RULES_DATASOutputCollection" element="db:DB_Select_PROCESS_RULES_DATASOutputCollection"/>
+   </wsdl:message>
+   <wsdl:portType name="DB_Select_PROCESS_RULES_DATAS_ptt">
+      <wsdl:operation name="DB_Select_PROCESS_RULES_DATAS">
+         <wsdl:input message="tns:DB_Select_PROCESS_RULES_DATASInput_msg"/>
+         <wsdl:output message="tns:DB_Select_PROCESS_RULES_DATASOutputCollection_msg"/>
+      </wsdl:operation>
+   </wsdl:portType>
+</wsdl:definitions>

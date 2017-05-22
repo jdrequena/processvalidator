@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<rul:rules xmlns:rul="http://tigo.com/rules/v1/schema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://tigo.com/rules/v1/schema file:/E:/Broker/ProcessValidatorV2/xsd/pvs/BasicRules_schema.xsd">
+   <rule>
+      <id>RULE_ID1</id>
+      <name>NAME2</name>
+   </rule>
+   <rule>
+      <id>RULE_ID11</id>
+      <name>NAME12</name>
+   </rule>
+</rul:rules>

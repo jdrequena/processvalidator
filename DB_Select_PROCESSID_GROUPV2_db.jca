@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<adapter-config name="DB_Select_PROCESSID_GROUPV2" adapter="Database Adapter" wsdlLocation="DB_Select_PROCESSID_GROUPV2.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+   <connection-factory location="eis/DB/DBConnection" UIConnectionName="osblab" adapterRef=""/>
+   <endpoint-interaction portType="DB_Select_PROCESSID_GROUPV2_ptt" operation="DB_Select_PROCESSID_GROUPV2Select">
+      <interaction-spec className="oracle.tip.adapter.db.DBPureSQLInteractionSpec">
+         <property name="SqlString" value="SELECT  PROCESSID, GROUP_PROCESS FROM ID_VALIDATOR.PROCESSID_GROUP WHERE PROCESSID = #processId  AND  TRIM(#processType) IN (NOMBRE_PROC_OSM1,NOMBRE_PROC_OSM2)"/>
+         <property name="GetActiveUnitOfWork" value="false"/>
+      </interaction-spec>
+      <input/>
+      <output/>
+   </endpoint-interaction>
+</adapter-config>

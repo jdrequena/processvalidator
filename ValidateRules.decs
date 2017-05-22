@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<decisionServices xmlns="http://xmlns.oracle.com/bpel/rules" name="ValidateRules">
+   <ruleEngineProvider name="OracleRulesSDK" provider="Oracle_11.0.0.0.0">
+      <repository type="SCA-Archive">
+         <path>ProcessValidatorV2/oracle/rules/soa/df/ValidateRules.rules</path>
+      </repository>
+   </ruleEngineProvider>
+   <decisionService targetNamespace="http://xmlns.oracle.com/ValidateRules/ValidateRules_DecisionFunction_DUM" ruleEngineProviderReference="OracleRulesSDK" name="ValidateRules_DecisionFunction_DUM">
+      <catalog>ValidateRules</catalog>
+      <pattern name="CallFunctionStateless">
+         <arguments>
+            <call>soa.df.ValidateRules.ValidateRules_DecisionFunction_DUM</call>
+         </arguments>
+      </pattern>
+      <pattern name="CallFunctionStateful">
+         <arguments>
+            <call>soa.df.ValidateRules.ValidateRules_DecisionFunction_DUM</call>
+         </arguments>
+      </pattern>
+   </decisionService>
+</decisionServices>

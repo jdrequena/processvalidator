@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<wsdl:definitions name="DB_Select_PROCESS_RULES_INFO" targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/Broker/ProcessValidatorV2/DB_Select_PROCESS_RULES_INFO" xmlns:db="http://xmlns.oracle.com/pcbpel/adapter/db/DB_Select_PROCESS_RULES_INFO" xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/Broker/ProcessValidatorV2/DB_Select_PROCESS_RULES_INFO" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/">
+   <plt:partnerLinkType name="DB_Select_PROCESS_RULES_INFO_plt">
+      <plt:role name="DB_Select_PROCESS_RULES_INFO_role">
+         <plt:portType name="tns:DB_Select_PROCESS_RULES_INFO_ptt"/>
+      </plt:role>
+   </plt:partnerLinkType>
+   <wsdl:types>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema">
+         <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/DB_Select_PROCESS_RULES_INFO" schemaLocation="xsd/DB_Select_PROCESS_RULES_INFO.xsd"/>
+      </schema>
+   </wsdl:types>
+   <wsdl:message name="DB_Select_PROCESS_RULES_INFOInput_msg">
+      <wsdl:part name="DB_Select_PROCESS_RULES_INFOInput_msg" element="db:DB_Select_PROCESS_RULES_INFOInput"/>
+   </wsdl:message>
+   <wsdl:message name="DB_Select_PROCESS_RULES_INFOOutputCollection_msg">
+      <wsdl:part name="DB_Select_PROCESS_RULES_INFOOutputCollection" element="db:DB_Select_PROCESS_RULES_INFOOutputCollection"/>
+   </wsdl:message>
+   <wsdl:portType name="DB_Select_PROCESS_RULES_INFO_ptt">
+      <wsdl:operation name="DB_Select_PROCESS_RULES_INFO">
+         <wsdl:input message="tns:DB_Select_PROCESS_RULES_INFOInput_msg"/>
+         <wsdl:output message="tns:DB_Select_PROCESS_RULES_INFOOutputCollection_msg"/>
+      </wsdl:operation>
+   </wsdl:portType>
+</wsdl:definitions>

@@ -1,0 +1,73 @@
+Modified Composite [ ProcessValidatorV2 ]
+  Composite properties
+	Property [ auditLevel ]
+		No change in old and new value Development 
+	Property [ validateSchema ]
+		No change in old and new value true 
+	Component
+	  Component  [ Validate ]
+	    Property [ configuration.monitorLocation ]
+		No change in old and new value Validate.monitor 
+	    Property [ configuration.sensorLocation ]
+		No change in old and new value Validate_sensor.xml 
+	  Component  [ ProcessValidatorPartnerMediator ]
+	    Property [ isResequencing ]
+		No change in old and new value false 
+	  Component  [ EntityError ]
+	    Property [ bpel.config.transaction ]
+		No change in old and new value required 
+	    Property [ bpel.config.oneWayDeliveryPolicy ]
+		No change in old and new value async.persist 
+	Service
+	  Service  [ ProcessValidatorPartnerService ]
+	    Service Bindings
+	  	Binding  [ ws ]
+	    Property [ weblogic.wsee.wsat.transaction.flowOption ]
+		No change in old and new value NEVER 
+	Attribute name=port
+		No change in old and new value http://xmlns.tigo.com/ProcessValidator/ProcessValidatorService/v2#wsdl.endpoint(ProcessValidatorPartnerService/ProcessValidator_pt) 
+	Reference
+	  Reference  [ WS_MasterDataEngineService ]
+	    Reference Bindings
+	  	Binding  [ ws ]
+	    Property [ weblogic.wsee.wsat.transaction.flowOption ]
+		No change in old and new value WSDLDriven 
+	Attribute name=port
+		No change in old and new value http://tigo.com/enterprise/business/task/MasterDataEngine/v1#wsdl.endpoint(MasterDataEngineService/EntitiesServicePort) 
+	Attribute name=location
+		No change in old and new value wsdl/local/MasterDataEngineService/MasterDataEngineService.wsdl 
+	  Reference  [ DB_Select_PROCESS_RULES_DATAS ]
+	    Property [ jca.retry.count ]
+		No change in old and new value 4 
+	    Property [ jca.retry.interval ]
+		No change in old and new value 1 
+	    Property [ jca.retry.backoff ]
+		No change in old and new value 2 
+	    Property [ jca.retry.maxInterval ]
+		No change in old and new value 120 
+	    Reference Bindings
+	  	Binding  [ jca ]
+	  Reference  [ DB_Select_PROCESSID_GROUP ]
+	    Property [ jca.retry.count ]
+		No change in old and new value 4 
+	    Property [ jca.retry.interval ]
+		No change in old and new value 1 
+	    Property [ jca.retry.backoff ]
+		No change in old and new value 2 
+	    Property [ jca.retry.maxInterval ]
+		No change in old and new value 120 
+	    Reference Bindings
+	  	Binding  [ jca ]
+	  Reference  [ DB_Select_PROCESS_RULES_INFO ]
+	    Property [ jca.retry.count ]
+		No change in old and new value 4 
+	    Property [ jca.retry.interval ]
+		No change in old and new value 1 
+	    Property [ jca.retry.backoff ]
+		No change in old and new value 2 
+	    Property [ jca.retry.maxInterval ]
+		No change in old and new value 120 
+	    Reference Bindings
+	  	Binding  [ jca ]
+---End Match for composite [ ProcessValidatorV2 ] in config plan---
+Checking for replacement in wsdl and schema files

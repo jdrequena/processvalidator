@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Mediator name="MediatorValidations" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" wsdlTargetNamespace="http://xmlns.tigo.com/ProcessValidator/Validations" xmlns="http://xmlns.oracle.com/sca/1.0/mediator" xmlns:sch="http://tigo.com/enterprise/business/entities/validate/v1/schema" xml:id="id_1">
+   <operation name="Validate" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false" xml:id="id_2">
+      <switch xml:id="id_3">
+         <case executionType="direct" name="ValidateRules.ValidateRules_DecisionFunction_DUM.callFunctionStateless" xml:id="id_4">
+            <condition language="xpath" xml:id="id_5">
+               <expression xml:id="id_6">starts-with($in.part/sch:validation/rule/id, 'RULE_DUM')</expression>
+            </condition>
+            <action xml:id="id_7">
+               <transform xml:id="id_8">
+                  <part name="$out.payload" function="xslt(xsl/validationDum_To_callFunctionStateless.xsl, $in.part)" xml:id="id_9"/>
+               </transform>
+               <invoke reference="ValidateRules.ValidateRules_DecisionFunction_DUM" operation="callFunctionStateless" xml:id="id_10">
+                  <onReply xml:id="id_11">
+                     <transform xml:id="id_12">
+                        <part name="$out.part" function="xslt(xsl/callFunctionStatelessDecision_To_validatedRuleDum.xsl, $in.payload)" xml:id="id_13"/>
+                     </transform>
+                     <reply xml:id="id_14"/>
+                  </onReply>
+                  <onFault type="operationErroredFault" xml:id="id_15">
+                     <fault type="fault" xml:id="id_16"/>
+                  </onFault>
+               </invoke>
+            </action>
+         </case>
+         <case executionType="direct" name="ValidateRules_GT.ValidateRules_GT_DecisionService_1.callFunctionStateless" defaultRule="true" xml:id="id_17">
+            <action xml:id="id_18">
+               <transform xml:id="id_19">
+                  <part name="$out.payload" function="xslt(xsl/validation_To_GT_DS_1_callFunctionStateless.xsl, $in.part)" xml:id="id_20"/>
+               </transform>
+               <invoke reference="ValidateRules_GT.ValidateRules_GT_DecisionService_1" operation="callFunctionStateless" xml:id="id_21">
+                  <onReply xml:id="id_22">
+                     <assign xml:id="id_23">
+                        <copy target="$out.part/ns4:validatedRule" expression="$in.payload/tns:callFunctionStatelessDecision/tns:resultList/ns4:validatedRule" xmlns:tns="http://xmlns.oracle.com/ValidateRules_GT/ValidateRules_GT_DecisionService_1" xmlns:ns4="http://tigo.com/enterprise/business/entities/validate/v1/schema" xml:id="id_24"/>
+                     </assign>
+                     <reply xml:id="id_25"/>
+                  </onReply>
+                  <onFault type="operationErroredFault" xml:id="id_26">
+                     <fault type="fault" xml:id="id_27"/>
+                  </onFault>
+               </invoke>
+            </action>
+         </case>
+         <case executionType="direct" name="EntityError.entityerror_client.Validate" xml:id="id_28">
+            <condition language="xpath" xml:id="id_29">
+               <expression xml:id="id_30">(count($in.part/sch:validation/rule/entities/entity[code='ERROR']) > 0 ) or (count($in.part/sch:validation/rule/entities/entity[code='NA']) > 0) or (count($in.part/sch:validation/rule/entities/entity[code='FATAL']) > 0)</expression>
+            </condition>
+            <action xml:id="id_31">
+               <assign xml:id="id_32">
+                  <copy target="$out.part/sch:validation" expression="$in.part/sch:validation" xmlns:sch="http://tigo.com/enterprise/business/entities/validate/v1/schema" xml:id="id_33"/>
+               </assign>
+               <invoke reference="EntityError.entityerror_client" operation="Validate" xml:id="id_34">
+                  <onReply xml:id="id_35">
+                     <assign xml:id="id_36">
+                        <copy target="$out.part/sch:validatedRule" expression="$in.part/sch:validatedRule" xmlns:sch="http://tigo.com/enterprise/business/entities/validate/v1/schema" xml:id="id_37"/>
+                     </assign>
+                     <reply xml:id="id_38"/>
+                  </onReply>
+                  <onFault type="fault" xml:id="id_39">
+                     <fault type="fault" xml:id="id_40"/>
+                  </onFault>
+               </invoke>
+            </action>
+         </case>
+      </switch>
+   </operation>
+</Mediator>
